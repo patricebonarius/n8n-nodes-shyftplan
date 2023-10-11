@@ -1,0 +1,18 @@
+{
+	"node": "n8n-nodes-base.shyftplan",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Analytics", "Data"],
+	"resources": {
+		"credentialDocumentation": [
+			{
+				"url": "http://shyftplan.com"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "http://shyftplan.com/"
+			}
+		]
+	}
+}

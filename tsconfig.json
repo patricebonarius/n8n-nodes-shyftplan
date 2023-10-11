@@ -13,7 +13,7 @@
 		"noUnusedLocals": true,
 		"strictNullChecks": true,
 		"preserveConstEnums": true,
-		"esModuleInterop": true,
+		"esModuleInterop": false,
 		"resolveJsonModule": true,
 		"incremental": true,
 		"declaration": true,
@@ -27,4 +27,5 @@
 		"nodes/**/*.json",
 		"package.json",
 	],
+	
 }

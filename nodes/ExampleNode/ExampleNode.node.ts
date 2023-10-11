@@ -16,6 +16,7 @@ export class ExampleNode implements INodeType {
 		defaults: {
 			name: 'Example Node',
 		},
+		// main is always one input
 		inputs: ['main'],
 		outputs: ['main'],
 		properties: [
@@ -29,6 +30,14 @@ export class ExampleNode implements INodeType {
 				placeholder: 'Placeholder value',
 				description: 'The description text',
 			},
+			{
+				displayName: 'My String2',
+				name: 'myString2',
+				type: 'string',
+				default: '',
+				placeholder: 'Placeholder value2',
+				description: 'The description text2',
+			},
 		],
 	};
 
@@ -41,6 +50,7 @@ export class ExampleNode implements INodeType {
 
 		let item: INodeExecutionData;
 		let myString: string;
+		let myString2: string;
 
 		// Iterates over all input items and add the key "myString" with the
 		// value the parameter "myString" resolves to.
@@ -48,9 +58,11 @@ export class ExampleNode implements INodeType {
 		for (let itemIndex = 0; itemIndex < items.length; itemIndex++) {
 			try {
 				myString = this.getNodeParameter('myString', itemIndex, '') as string;
+				myString2 = this.getNodeParameter('myString2', itemIndex, '') as string;
 				item = items[itemIndex];
 
 				item.json['myString'] = myString;
+				item.json['myString2'] = myString2;
 			} catch (error) {
 				// This node should never fail but we want to showcase how
 				// to handle errors.
