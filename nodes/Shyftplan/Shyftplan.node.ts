@@ -7,7 +7,7 @@ import {
 	IHttpRequestOptions,
 } from 'n8n-workflow';
 
-import { OptionsWithUri } from 'request';
+//import { OptionsWithUri } from 'request';
 import { employmentsDeleteFields } from './employments/delete_by_id/description';
 import { employmentsCreateFields } from './employments/create/description';
 import { employmentsOps } from './employments/employmentsOps';

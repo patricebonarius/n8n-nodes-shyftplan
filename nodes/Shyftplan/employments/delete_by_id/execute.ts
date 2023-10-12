@@ -1,4 +1,4 @@
-import { ICredentialData, IDataObject, IExecuteFunctions, IHttpRequestOptions } from 'n8n-workflow';
+/* import { IDataObject, IExecuteFunctions, IHttpRequestOptions } from 'n8n-workflow';
 
 export async function apiEmploymentsDeleteByID(
 	this: IExecuteFunctions,
@@ -12,7 +12,7 @@ export async function apiEmploymentsDeleteByID(
 		employment_id,
 	};
 	const options: IHttpRequestOptions = {
-		url: credentials.domain + '/api/v2/employments/' + employment_id,
+		url: credentials?.domain + '/api/v2/employments/' + employment_id,
 		method: 'DELETE',
 		body: Object.assign(data, credentials),
 	};
@@ -20,3 +20,4 @@ export async function apiEmploymentsDeleteByID(
 
 	return responseData;
 }
+ */
