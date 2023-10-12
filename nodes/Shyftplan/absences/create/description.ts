@@ -115,8 +115,8 @@ export const absencesCreateFields: INodeProperties[] = [
 		default: {},
 		displayOptions: {
 			show: {
-				operation: ['employments_create'],
-				resource: ['employment'],
+				operation: ['absences_create'],
+				resource: ['absences'],
 			},
 		},
 		options: [

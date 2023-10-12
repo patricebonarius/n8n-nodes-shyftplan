@@ -16,8 +16,12 @@ export const absencesOps: INodeProperties[] = [
 			{
 				name: 'Create an Absence',
 				value: 'absences_create',
-				description: 'Create an employee',
 				action: 'Create an absence',
+			},
+			{
+				name: 'Delete an Absence',
+				value: 'absences_delete',
+				action: 'Delete an absence',
 			},
 		],
 		default: 'absences_create',
