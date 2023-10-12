@@ -5,16 +5,30 @@ import {
 	INodeProperties,
 } from 'n8n-workflow';
 
-export class shyftplanApiApi implements ICredentialType {
+export class ShyftplanApi implements ICredentialType {
 	name = 'shyftplanApi';
-	displayName = 'Shyftplan Api';
+	displayName = 'Shyftplan API';
 	documentationUrl = 'https://shyftplan.com/swagger/index.html';
 	properties: INodeProperties[] = [
 		{
-			displayName: 'Token',
-			name: 'token',
+			displayName: 'User Email',
+			name: 'user_email',
 			type: 'string',
 			default: '',
+			placeholder: 'some@somewhere.com',
+		},
+		{
+			displayName: 'Auth Token',
+			name: 'authentication_token',
+			type: 'string',
+			default: '',
+		},
+		{
+			displayName: 'Company ID',
+			name: 'company_id',
+			type: 'number',
+			default: '',
+			placeholder: '12345',
 		},
 		{
 			displayName: 'Domain',
@@ -32,7 +46,7 @@ export class shyftplanApiApi implements ICredentialType {
 		type: 'generic',
 		properties: {
 			headers: {
-				Authorization: '={{"Bearer " + $credentials.token}}',
+				Authorization: '={{"Bearer " + $credentials.authentication_token}}',
 			},
 		},
 	};
@@ -41,7 +55,8 @@ export class shyftplanApiApi implements ICredentialType {
 	test: ICredentialTestRequest = {
 		request: {
 			baseURL: '={{$credentials?.domain}}',
-			url: '/bearer',
+			//url: '/employments',
+			url: '={{ "/v2/employments?" + "user_email=" + $credentials?.user_email + "&authentication_token=" + $credentials?.user_email + "&company_id=" + $credentials.companyid.toString() }}',
 		},
 	};
 }

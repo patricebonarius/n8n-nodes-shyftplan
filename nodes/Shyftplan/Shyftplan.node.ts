@@ -4,6 +4,7 @@ import {
 	INodeType,
 	INodeTypeDescription,
 	IDataObject,
+	IHttpRequestOptions,
 } from 'n8n-workflow';
 
 import { OptionsWithUri } from 'request';
@@ -11,7 +12,7 @@ import { OptionsWithUri } from 'request';
 export class Shyftplan implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Shyftplan',
-		name: 'shyftPlan',
+		name: 'Shyftplan',
 		// eslint-disable-next-line n8n-nodes-base/node-class-description-icon-not-svg
 		icon: 'file:shyftplan-icon.png',
 		group: ['transform'],
@@ -24,7 +25,7 @@ export class Shyftplan implements INodeType {
 		outputs: ['main'],
 		credentials: [
 			{
-				name: 'ShyftplanApi',
+				name: 'shyftplanApi',
 				required: true,
 			},
 		],
@@ -65,13 +66,13 @@ export class Shyftplan implements INodeType {
 				},
 				options: [
 					{
-						name: 'Create',
-						value: 'create',
+						name: 'Create Employee',
+						value: 'employments_create',
 						description: 'Create an employee',
 						action: 'Create an employee',
 					},
 				],
-				default: 'create',
+				default: 'employments_create',
 				noDataExpression: true,
 			},
 
@@ -83,7 +84,7 @@ export class Shyftplan implements INodeType {
 				required: true,
 				displayOptions: {
 					show: {
-						operation: ['create'],
+						operation: ['employments_create'],
 						resource: ['employment'],
 					},
 				},
@@ -98,12 +99,12 @@ export class Shyftplan implements INodeType {
 				required: true,
 				displayOptions: {
 					show: {
-						operation: ['create'],
+						operation: ['employments_create'],
 						resource: ['employment'],
 					},
 				},
 				default: '',
-				placeholder: 'name@email.com',
+				placeholder: 'firstname',
 				description: 'Please enter the employees firstname',
 			},
 			{
@@ -113,7 +114,7 @@ export class Shyftplan implements INodeType {
 				required: true,
 				displayOptions: {
 					show: {
-						operation: ['create'],
+						operation: ['employments_create'],
 						resource: ['employment'],
 					},
 				},
@@ -131,8 +132,8 @@ export class Shyftplan implements INodeType {
 				default: {},
 				displayOptions: {
 					show: {
+						operation: ['employments_create'],
 						resource: ['employment'],
-						operation: ['create'],
 					},
 				},
 				options: [
@@ -175,19 +176,26 @@ export class Shyftplan implements INodeType {
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 		// Handle data coming from previous nodes
 		const items = this.getInputData();
+		console.log('input', items);
 		let responseData;
 		const returnData = [];
+		// get the user input
 		const resource = this.getNodeParameter('resource', 0) as string;
+		console.log(resource);
 		const operation = this.getNodeParameter('operation', 0) as string;
+		console.log(operation);
 
 		// For each item, make an API call to create an employee
+		// <= to run at least once
 		for (let i = 0; i < items.length; i++) {
-			if (resource === 'employments') {
-				if (operation === 'create') {
+			if (resource === 'employment') {
+				if (operation === 'employments_create') {
+					console.log('inside the loop');
 					// Get inputs
 					const company = this.getNodeParameter('company_id', i) as number;
 					const first_name = this.getNodeParameter('first_name', i) as string;
 					const last_name = this.getNodeParameter('last_name', i) as string;
+					console.log('params: ', company, first_name, last_name);
 					// Get additional fields input
 					const additionalFields = this.getNodeParameter('additionalFields', i) as IDataObject;
 					const data: IDataObject = {
@@ -203,19 +211,35 @@ export class Shyftplan implements INodeType {
 						headers: {
 							Accept: 'application/json',
 						},
-						method: 'PUT',
+						method: 'POST',
 						body: {
 							employments: [data],
 						},
-						uri: `https://release.sppt-beta.com/api/v2/employments`,
+						uri: 'https://release.sppt-beta.com/api/v2/employments',
 						json: true,
 					};
+					const credentials = await this.getCredentials('shyftplanApi');
+					console.log(credentials);
+					console.log(options);
+					//console.log(this);
+					/*
 					// use Credentials here
 					responseData = await this.helpers.requestWithAuthentication.call(
 						this,
 						'shyftplanApi',
 						options,
+						//additionalCredentialOptions
 					);
+ */
+					// https://docs.n8n.io/integrations/creating-nodes/build/reference/http-helpers/#usage
+					const myOptions: IHttpRequestOptions = {
+						url: 'https://release.sppt-beta.com/api/v2/employments',
+						method: 'PUT',
+						body: Object.assign(data, credentials),
+					};
+					responseData = await this.helpers.httpRequest(myOptions);
+
+					console.log('response data: ', JSON.stringify(responseData));
 					returnData.push(responseData);
 				}
 			}

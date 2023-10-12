@@ -32,7 +32,7 @@
 		"credentials": [
 			"dist/credentials/ExampleCredentialsApi.credentials.js",
 			"dist/credentials/HttpBinApi.credentials.js",
-			"/dist/credentials/ShyftplanApi.credentials.js"
+			"dist/credentials/ShyftplanApi.credentials.js"
 		],
 		"nodes": [
 			"dist/nodes/ExampleNode/ExampleNode.node.js",
