@@ -24,13 +24,6 @@ export class ShyftplanApi implements ICredentialType {
 			default: '',
 		},
 		{
-			displayName: 'Company ID',
-			name: 'company_id',
-			type: 'number',
-			default: '',
-			placeholder: '12345',
-		},
-		{
 			displayName: 'Domain',
 			name: 'domain',
 			type: 'string',

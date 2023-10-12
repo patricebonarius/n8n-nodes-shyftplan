@@ -8,6 +8,9 @@ import {
 } from 'n8n-workflow';
 
 import { OptionsWithUri } from 'request';
+import { employmentsDeleteFields } from './employments/delete_by_id/description';
+import { employmentsCreateFields } from './employments/create/description';
+import { employmentsOps } from './employments/employmentsOps';
 
 export class Shyftplan implements INodeType {
 	description: INodeTypeDescription = {
@@ -18,6 +21,7 @@ export class Shyftplan implements INodeType {
 		group: ['transform'],
 		version: 1,
 		description: 'Consume Shyfplan Beta API',
+		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
 		defaults: {
 			name: 'Shyftplan',
 		},
@@ -34,7 +38,7 @@ export class Shyftplan implements INodeType {
 		properties: [
 			// Resources and operations will go here
 
-			// Resource Object - The thing to operate on
+			// First Resource Objects - The things to operate on
 			{
 				displayName: 'Resource',
 				name: 'resource',
@@ -46,166 +50,64 @@ export class Shyftplan implements INodeType {
 						name: 'Employment',
 						value: 'employment',
 					},
+					{
+						name: 'Absence',
+						value: 'absence',
+					},
 				],
 				default: 'employment',
 				noDataExpression: true,
 				required: true,
-				description: 'Create a new employee',
-			},
-			// the operations CRUD and more
-
-			// CREATE OPERATION
-			{
-				displayName: 'Operation',
-				name: 'operation',
-				type: 'options',
-				displayOptions: {
-					show: {
-						resource: ['employment'],
-					},
-				},
-				options: [
-					{
-						name: 'Create Employee',
-						value: 'employments_create',
-						description: 'Create an employee',
-						action: 'Create an employee',
-					},
-				],
-				default: 'employments_create',
-				noDataExpression: true,
+				description: 'Choose a resource / endpoint',
 			},
 
-			/* --- Required Fields --- */
-			{
-				displayName: 'Company Number',
-				name: 'company_id',
-				type: 'number',
-				required: true,
-				displayOptions: {
-					show: {
-						operation: ['employments_create'],
-						resource: ['employment'],
-					},
-				},
-				default: '',
-				placeholder: 'company_id',
-				description: 'Please enter the company number',
-			},
-			{
-				displayName: 'First Name',
-				name: 'first_name',
-				type: 'string',
-				required: true,
-				displayOptions: {
-					show: {
-						operation: ['employments_create'],
-						resource: ['employment'],
-					},
-				},
-				default: '',
-				placeholder: 'firstname',
-				description: 'Please enter the employees firstname',
-			},
-			{
-				displayName: 'Last Name',
-				name: 'last_name',
-				type: 'string',
-				required: true,
-				displayOptions: {
-					show: {
-						operation: ['employments_create'],
-						resource: ['employment'],
-					},
-				},
-				default: '',
-				placeholder: 'lastname',
-				description: 'Please enter the employees surname',
-			},
-
-			/* --- Optional or Additional Fields --- */
-			{
-				displayName: 'Additional Fields',
-				name: 'additionalFields',
-				type: 'collection',
-				placeholder: 'Add Field',
-				default: {},
-				displayOptions: {
-					show: {
-						operation: ['employments_create'],
-						resource: ['employment'],
-					},
-				},
-				options: [
-					{
-						displayName: 'Is Payed Monthly',
-						name: 'is_paid_monthly',
-						type: 'boolean',
-						default: false,
-					},
-					{
-						displayName: 'Phone Number',
-						name: 'phone_number',
-						type: 'string',
-						default: '',
-					},
-					{
-						displayName: 'Email',
-						name: 'email',
-						type: 'string',
-						default: '',
-						placeholder: 'name@email.com',
-					},
-					{
-						displayName: 'Note',
-						name: 'note',
-						type: 'string',
-						default: '',
-					},
-					{
-						displayName: 'Billing Type Number',
-						name: 'billing_type_id',
-						type: 'number',
-						default: '',
-					},
-				],
-			},
+			/* --- EMPLOYMENTS --- */
+			/* Employments Operations */
+			...employmentsOps,
+			/*  Employments Create View Fields  */
+			...employmentsCreateFields,
+			/* Employments Delete View Fields */
+			...employmentsDeleteFields,
 		],
 	};
 	// The execute method will go here
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 		// Handle data coming from previous nodes
 		const items = this.getInputData();
-		console.log('input', items);
-		let responseData;
-		const returnData = [];
-		// get the user input
-		const resource = this.getNodeParameter('resource', 0) as string;
-		console.log(resource);
-		const operation = this.getNodeParameter('operation', 0) as string;
-		console.log(operation);
+		// Get the std credentials
+		const credentials = await this.getCredentials('shyftplanApi');
 
-		// For each item, make an API call to create an employee
+		let responseData;
+		let returnData = [];
+
+		// get the chosen resource (aka endpoint) and operation(aka CRUD)
+		const resource = this.getNodeParameter('resource', 0) as string;
+		const operation = this.getNodeParameter('operation', 0) as string;
+
+		// For each item from incoming data, make an API call to create an employee
 		// <= to run at least once
 		for (let i = 0; i < items.length; i++) {
+			// Employments
 			if (resource === 'employment') {
+				// create
 				if (operation === 'employments_create') {
-					console.log('inside the loop');
 					// Get inputs
-					const company = this.getNodeParameter('company_id', i) as number;
+					const company_id = this.getNodeParameter('company_id', i) as number;
 					const first_name = this.getNodeParameter('first_name', i) as string;
 					const last_name = this.getNodeParameter('last_name', i) as string;
-					console.log('params: ', company, first_name, last_name);
+					console.log('params: ', company_id, first_name, last_name);
 					// Get additional fields input
 					const additionalFields = this.getNodeParameter('additionalFields', i) as IDataObject;
 					const data: IDataObject = {
-						company,
+						company_id,
 						first_name,
 						last_name,
 					};
 					// put it together
 					Object.assign(data, additionalFields);
-
+					// add credentials
+					Object.assign(data, credentials);
+					/*
 					// Make HTTP request according to https://shyftplan.com/swagger/index.html#/employments/
 					const options: OptionsWithUri = {
 						headers: {
@@ -215,12 +117,10 @@ export class Shyftplan implements INodeType {
 						body: {
 							employments: [data],
 						},
-						uri: 'https://release.sppt-beta.com/api/v2/employments',
+						uri: '$credentials./api/v2/employments',
 						json: true,
 					};
-					const credentials = await this.getCredentials('shyftplanApi');
-					console.log(credentials);
-					console.log(options);
+ */
 					//console.log(this);
 					/*
 					// use Credentials here
@@ -233,13 +133,34 @@ export class Shyftplan implements INodeType {
  */
 					// https://docs.n8n.io/integrations/creating-nodes/build/reference/http-helpers/#usage
 					const myOptions: IHttpRequestOptions = {
-						url: 'https://release.sppt-beta.com/api/v2/employments',
+						url: credentials.domain + '/api/v2/employments',
 						method: 'PUT',
+						body: data,
+					};
+
+					responseData = await this.helpers.httpRequest(myOptions);
+					//console.log('response data: ', JSON.stringify(responseData));
+					returnData.push(responseData);
+				}
+
+				// delete
+				if (operation === 'employments_delete_by_id') {
+					// Get inputs
+					const company_id = this.getNodeParameter('company_id', i) as number;
+					const employment_id = this.getNodeParameter('employment_id', i) as string;
+
+					const data: IDataObject = {
+						company_id,
+						employment_id,
+					};
+
+					const options: IHttpRequestOptions = {
+						url: credentials.domain + '/api/v2/employments/' + employment_id,
+						method: 'DELETE',
 						body: Object.assign(data, credentials),
 					};
-					responseData = await this.helpers.httpRequest(myOptions);
 
-					console.log('response data: ', JSON.stringify(responseData));
+					responseData = await this.helpers.httpRequest(options);
 					returnData.push(responseData);
 				}
 			}
