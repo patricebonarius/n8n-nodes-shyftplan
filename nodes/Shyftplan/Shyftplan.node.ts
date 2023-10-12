@@ -64,10 +64,6 @@ export class Shyftplan implements INodeType {
 			/* --- EMPLOYMENTS --- */
 			/* Employments Operations */
 			...employmentsOps,
-			/*  Employments Create View Fields  */
-			...employmentsCreateFields,
-			/* Employments Delete View Fields */
-			...employmentsDeleteFields,
 		],
 	};
 	// The execute method will go here
