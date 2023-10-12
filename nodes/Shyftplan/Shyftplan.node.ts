@@ -3,14 +3,15 @@ import {
 	INodeExecutionData,
 	INodeType,
 	INodeTypeDescription,
-	IDataObject,
-	IHttpRequestOptions,
+	//IDataObject,
+	//IHttpRequestOptions,
 } from 'n8n-workflow';
 
 //import { OptionsWithUri } from 'request';
-import { employmentsDeleteFields } from './employments/delete_by_id/description';
-import { employmentsCreateFields } from './employments/create/description';
+
 import { employmentsOps } from './employments/employmentsOps';
+import { employmentsExecute } from './employments/employmentsExecute';
+import { absencesOps } from './absences/absencesOps';
 
 export class Shyftplan implements INodeType {
 	description: INodeTypeDescription = {
@@ -61,9 +62,11 @@ export class Shyftplan implements INodeType {
 				description: 'Choose a resource / endpoint',
 			},
 
-			/* --- EMPLOYMENTS --- */
 			/* Employments Operations */
 			...employmentsOps,
+
+			/* absences Operations */
+			...absencesOps,
 		],
 	};
 	// The execute method will go here
@@ -71,7 +74,7 @@ export class Shyftplan implements INodeType {
 		// Handle data coming from previous nodes
 		const items = this.getInputData();
 		// Get the std credentials
-		const credentials = await this.getCredentials('shyftplanApi');
+		//const credentials = await this.getCredentials('shyftplanApi');
 
 		let responseData;
 		let returnData = [];
@@ -85,80 +88,12 @@ export class Shyftplan implements INodeType {
 		for (let i = 0; i < items.length; i++) {
 			// Employments
 			if (resource === 'employment') {
-				// create
-				if (operation === 'employments_create') {
-					// Get inputs
-					const company_id = this.getNodeParameter('company_id', i) as number;
-					const first_name = this.getNodeParameter('first_name', i) as string;
-					const last_name = this.getNodeParameter('last_name', i) as string;
-					console.log('params: ', company_id, first_name, last_name);
-					// Get additional fields input
-					const additionalFields = this.getNodeParameter('additionalFields', i) as IDataObject;
-					const data: IDataObject = {
-						company_id,
-						first_name,
-						last_name,
-					};
-					// put it together
-					Object.assign(data, additionalFields);
-					// add credentials
-					Object.assign(data, credentials);
-					/*
-					// Make HTTP request according to https://shyftplan.com/swagger/index.html#/employments/
-					const options: OptionsWithUri = {
-						headers: {
-							Accept: 'application/json',
-						},
-						method: 'POST',
-						body: {
-							employments: [data],
-						},
-						uri: '$credentials./api/v2/employments',
-						json: true,
-					};
- */
-					//console.log(this);
-					/*
-					// use Credentials here
-					responseData = await this.helpers.requestWithAuthentication.call(
-						this,
-						'shyftplanApi',
-						options,
-						//additionalCredentialOptions
-					);
- */
-					// https://docs.n8n.io/integrations/creating-nodes/build/reference/http-helpers/#usage
-					const myOptions: IHttpRequestOptions = {
-						url: credentials.domain + '/api/v2/employments',
-						method: 'PUT',
-						body: data,
-					};
-
-					responseData = await this.helpers.httpRequest(myOptions);
-					//console.log('response data: ', JSON.stringify(responseData));
-					returnData.push(responseData);
-				}
-
-				// delete
-				if (operation === 'employments_delete_by_id') {
-					// Get inputs
-					const company_id = this.getNodeParameter('company_id', i) as number;
-					const employment_id = this.getNodeParameter('employment_id', i) as string;
-
-					const data: IDataObject = {
-						company_id,
-						employment_id,
-					};
-
-					const options: IHttpRequestOptions = {
-						url: credentials.domain + '/api/v2/employments/' + employment_id,
-						method: 'DELETE',
-						body: Object.assign(data, credentials),
-					};
-
-					responseData = await this.helpers.httpRequest(options);
-					returnData.push(responseData);
-				}
+				responseData = await employmentsExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'employment') {
+				responseData = await employmentsExecute(this, operation, i);
+				returnData.push(responseData);
 			}
 		}
 		// Map data to n8n data structure

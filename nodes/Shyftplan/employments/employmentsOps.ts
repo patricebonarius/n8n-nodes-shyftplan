@@ -1,6 +1,6 @@
 import { INodeProperties } from 'n8n-workflow';
 import { employmentsCreateFields } from './create/description';
-import { employmentsDeleteFields } from './delete_by_id/description';
+import { employmentsDeleteFields } from './delete/description';
 
 export const employmentsOps: INodeProperties[] = [
 	// CREATE OPERATION
