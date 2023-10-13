@@ -25,7 +25,7 @@ export const absencesOps: INodeProperties[] = [
 				action: 'Create an absence',
 			},
 		],
-		default: 'absences_create',
+		default: 'absences_getAll',
 		noDataExpression: true,
 	},
 

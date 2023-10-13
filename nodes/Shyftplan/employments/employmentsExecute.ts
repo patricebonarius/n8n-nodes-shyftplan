@@ -5,6 +5,36 @@ export async function employmentsExecute(node: IExecuteFunctions, operation: str
 	const credentials = await node.getCredentials('shyftplanApi');
 	let responseData;
 
+	// get All
+	if (operation === 'employments_getAll') {
+		// Get inputs
+		const company_id = node.getNodeParameter('company_id', i) as number;
+		const page = node.getNodeParameter('page', i) as number;
+		const per_page = node.getNodeParameter('per_page', i) as number;
+		const created_after = node.getNodeParameter('created_after', i) as string;
+		const search = node.getNodeParameter('search', i) as string;
+		const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
+
+		const data: IDataObject = {
+			company_id,
+			page,
+			per_page,
+			created_after,
+			search,
+		};
+		Object.assign(data, additionalFields);
+		Object.assign(data, credentials);
+
+		const options: IHttpRequestOptions = {
+			url: credentials.domain + '/api/v1/employments',
+			method: 'GET',
+			qs: data,
+		};
+
+		responseData = await node.helpers.httpRequest(options);
+		return responseData;
+	}
+
 	// create
 	if (operation === 'employments_create') {
 		// Get inputs
@@ -49,35 +79,6 @@ export async function employmentsExecute(node: IExecuteFunctions, operation: str
 			url: credentials.domain + '/api/v2/employments/' + employment_id,
 			method: 'DELETE',
 			body: Object.assign(data, credentials),
-		};
-
-		responseData = await node.helpers.httpRequest(options);
-		return responseData;
-	}
-
-	if (operation === 'employments_getAll') {
-		// Get inputs
-		const company_id = node.getNodeParameter('company_id', i) as number;
-		const page = node.getNodeParameter('page', i) as number;
-		const per_page = node.getNodeParameter('per_page', i) as number;
-		const created_after = node.getNodeParameter('created_after', i) as string;
-		const search = node.getNodeParameter('search', i) as string;
-		const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-
-		const data: IDataObject = {
-			company_id,
-			page,
-			per_page,
-			created_after,
-			search,
-		};
-		Object.assign(data, additionalFields);
-		Object.assign(data, credentials);
-
-		const options: IHttpRequestOptions = {
-			url: credentials.domain + '/api/v1/employments',
-			method: 'GET',
-			qs: data,
 		};
 
 		responseData = await node.helpers.httpRequest(options);

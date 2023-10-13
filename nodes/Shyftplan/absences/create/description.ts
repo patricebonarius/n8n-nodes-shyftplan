@@ -33,8 +33,8 @@ export const absencesCreateFields: INodeProperties[] = [
 		description: 'Please enter the starting time',
 	},
 	{
-		displayName: 'Last Name',
-		name: 'last_name',
+		displayName: 'Ends At',
+		name: 'ends_at',
 		type: 'string',
 		required: true,
 		displayOptions: {
@@ -74,8 +74,8 @@ export const absencesCreateFields: INodeProperties[] = [
 			},
 		},
 		default: '',
-		placeholder: '1233134',
-		description: 'Please enter the reasons ID if you know it',
+		placeholder: '',
+		description: '5706 vacation, 5707 sick, 5708 overtime, 5709 other',
 	},
 	{
 		displayName: 'Days of Absence',

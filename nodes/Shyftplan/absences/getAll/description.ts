@@ -46,7 +46,7 @@ export const absencesGetAllFields: INodeProperties[] = [
 		placeholder: 'per page',
 		description: 'How many items are shown per Page',
 	},
-	/*
+
 	{
 		displayName: 'Created After',
 		name: 'created_after',
@@ -75,7 +75,7 @@ export const absencesGetAllFields: INodeProperties[] = [
 		default: '',
 		placeholder: '0',
 		description: 'Search for employments by name or staff number',
-	}, */
+	},
 
 	/* --- Optional or Additional Fields --- */
 	{
