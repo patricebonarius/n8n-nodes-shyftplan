@@ -4,22 +4,6 @@ export const employmentsGetAllFields: INodeProperties[] = [
 	/* --- Required Fields --- */
 
 	/* --- Shown Fields --- */
-	/*
-	{
-		displayName: 'Content Type',
-		name: 'Content-Type',
-		type: 'string',
-		displayOptions: {
-			show: {
-				operation: ['employments_getAll'],
-				resource: ['employments'],
-			},
-		},
-		default: 'application/x-www-form-urlencoded',
-		placeholder: 'application/x-www-form-urlencoded',
-		description: 'NoChoice',
-	}, */
-
 	{
 		displayName: 'Company Number',
 		name: 'company_id',

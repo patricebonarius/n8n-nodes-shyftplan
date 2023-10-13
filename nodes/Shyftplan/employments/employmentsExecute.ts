@@ -74,63 +74,9 @@ export async function employmentsExecute(node: IExecuteFunctions, operation: str
 		Object.assign(data, additionalFields);
 		Object.assign(data, credentials);
 
-		// version 1 using querystrings in url
-		// works but is visible in url
-		/*
-		const createHeaders = (obj: Object) => {
-			let outputStr = '';
-			for (const [key, value] of Object.entries(obj)) {
-				outputStr += `${key}=${value}&`;
-			}
-			console.log(outputStr);
-			return new URLSearchParams(outputStr);
-		}; */
-
-		/* const options: IHttpRequestOptions = {
-			url: credentials.domain + '/api/v1/employments?' + createHeaders(data),
-			method: 'GET',
-			headers: headers,
-		};
-		console.log(options);
- 		*/
-
-		// version 2 using urlSearchParams in qs body
-		// doesn't work but woulb be best
-		/*
-		const createBody = (obj: Object) => {
-			let searchParams = new URLSearchParams();
-			for (const [key, value] of Object.entries(data)) {
-				const str = '' + value;
-				//let encodedKey = encodeURIComponent(key);
-				//let encodedValue = encodeURIComponent(str);
-				searchParams.append(key, str);
-			}
-			return searchParams;
-		};
-
-		const body = createBody(data);
-		console.log(body);
-
 		const options: IHttpRequestOptions = {
 			url: credentials.domain + '/api/v1/employments',
 			method: 'GET',
-			headers: headers,
-			body: body,
-		};
-		*/
-
-		// version 3 using urlSearchParams in qs body
-
-		/*
-		const headers: IDataObject = {
-			// prettier-ignore
-			'content-type': 'application/x-www-form-urlencoded',
-		};
-		 */
-		const options: IHttpRequestOptions = {
-			url: credentials.domain + '/api/v1/employments',
-			method: 'GET',
-			//headers: headers,
 			qs: data,
 		};
 
