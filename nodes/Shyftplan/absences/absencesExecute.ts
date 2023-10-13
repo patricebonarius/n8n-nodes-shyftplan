@@ -1,6 +1,6 @@
 import { IDataObject, IExecuteFunctions, IHttpRequestOptions } from 'n8n-workflow';
 
-export async function employmentsExecute(node: IExecuteFunctions, operation: string, i: number) {
+export async function absencesExecute(node: IExecuteFunctions, operation: string, i: number) {
 	const credentials = await node.getCredentials('shyftplanApi');
 	let responseData;
 

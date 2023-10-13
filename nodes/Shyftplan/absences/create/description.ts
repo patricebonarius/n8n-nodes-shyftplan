@@ -17,7 +17,7 @@ export const absencesCreateFields: INodeProperties[] = [
 		placeholder: 'company_id',
 		description: 'Please enter the company number',
 	},
-	{
+	/* 	{
 		displayName: 'Starts At',
 		name: 'starts_at',
 		type: 'string',
@@ -104,10 +104,10 @@ export const absencesCreateFields: INodeProperties[] = [
 			},
 		},
 		default: false,
-	},
+	}, */
 
 	/* --- Optional or Additional Fields --- */
-	{
+	/* {
 		displayName: 'Additional Fields',
 		name: 'additionalFields',
 		type: 'collection',
@@ -135,5 +135,5 @@ export const absencesCreateFields: INodeProperties[] = [
 				default: '',
 			},
 		],
-	},
+	}, */
 ];

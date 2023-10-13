@@ -3,8 +3,6 @@ import {
 	INodeExecutionData,
 	INodeType,
 	INodeTypeDescription,
-	//IDataObject,
-	//IHttpRequestOptions,
 } from 'n8n-workflow';
 
 //import { OptionsWithUri } from 'request';
@@ -12,6 +10,7 @@ import {
 import { employmentsOps } from './employments/employmentsOps';
 import { employmentsExecute } from './employments/employmentsExecute';
 import { absencesOps } from './absences/absencesOps';
+import { absencesExecute } from './absences/absencesExecute';
 
 export class Shyftplan implements INodeType {
 	description: INodeTypeDescription = {
@@ -61,12 +60,11 @@ export class Shyftplan implements INodeType {
 				required: true,
 				description: 'Choose a resource / endpoint',
 			},
+			/* absences Operations */
+			...absencesOps,
 
 			/* Employments Operations */
 			...employmentsOps,
-
-			/* absences Operations */
-			...absencesOps,
 		],
 	};
 	// The execute method will go here
@@ -75,7 +73,6 @@ export class Shyftplan implements INodeType {
 		const items = this.getInputData();
 		// Get the std credentials
 		//const credentials = await this.getCredentials('shyftplanApi');
-
 		let responseData;
 		let returnData = [];
 
@@ -91,8 +88,8 @@ export class Shyftplan implements INodeType {
 				responseData = await employmentsExecute(this, operation, i);
 				returnData.push(responseData);
 			}
-			if (resource === 'employment') {
-				responseData = await employmentsExecute(this, operation, i);
+			if (resource === 'absence') {
+				responseData = await absencesExecute(this, operation, i);
 				returnData.push(responseData);
 			}
 		}
