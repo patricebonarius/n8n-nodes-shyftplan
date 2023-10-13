@@ -10,7 +10,7 @@ export async function employmentsExecute(node: IExecuteFunctions, operation: str
 		const company_id = node.getNodeParameter('company_id', i) as number;
 		const first_name = node.getNodeParameter('first_name', i) as string;
 		const last_name = node.getNodeParameter('last_name', i) as string;
-		console.log('params: ', company_id, first_name, last_name);
+		console.log('params: ', company_id, first_name, last_name, credentials);
 		// Get additional fields input
 		const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
 		const data: IDataObject = {
@@ -26,7 +26,7 @@ export async function employmentsExecute(node: IExecuteFunctions, operation: str
 		// construct request
 		const myOptions: IHttpRequestOptions = {
 			url: credentials.domain + '/api/v2/employments',
-			method: 'PUT',
+			method: 'POST',
 			body: data,
 		};
 
@@ -36,7 +36,6 @@ export async function employmentsExecute(node: IExecuteFunctions, operation: str
 
 	// delete
 	if (operation === 'employments_delete_by_id') {
-		// Get inputs
 		const company_id = node.getNodeParameter('company_id', i) as number;
 		const employment_id = node.getNodeParameter('employment_id', i) as string;
 
@@ -50,6 +49,45 @@ export async function employmentsExecute(node: IExecuteFunctions, operation: str
 			method: 'DELETE',
 			body: Object.assign(data, credentials),
 		};
+
+		responseData = await node.helpers.httpRequest(options);
+		return responseData;
+	}
+
+	if (operation === 'employments_getAll') {
+		// Get inputs
+		const company_id = node.getNodeParameter('company_id', i) as number;
+		const page = node.getNodeParameter('page', i) as number;
+		const per_page = node.getNodeParameter('per_page', i) as number;
+		const created_after = node.getNodeParameter('created_after', i) as string;
+		const search = node.getNodeParameter('search', i) as string;
+		const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
+		//const Content_Type = node.getNodeParameter('Content-Type', i) as string;
+
+		const data: IDataObject = {
+			company_id,
+			page,
+			per_page,
+			created_after,
+			search,
+			//Content_Type,
+		};
+		Object.assign(data, additionalFields);
+
+		const headers: IDataObject = {
+			'content-type': 'application/x-www-form-urlencoded',
+			accept: 'application/json',
+		};
+
+		Object.assign(headers, data);
+
+		const options: IHttpRequestOptions = {
+			url: credentials.domain + '/api/v1/employments',
+			method: 'GET',
+			headers: headers,
+			//body: Object.assign(data, credentials),
+		};
+		console.log(options);
 
 		responseData = await node.helpers.httpRequest(options);
 		return responseData;

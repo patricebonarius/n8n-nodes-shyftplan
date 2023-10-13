@@ -5,7 +5,7 @@ import {
 	INodeTypeDescription,
 } from 'n8n-workflow';
 
-//import { OptionsWithUri } from 'request';
+// import { OptionsWithUri } from 'request';
 
 import { employmentsOps } from './employments/employmentsOps';
 import { employmentsExecute } from './employments/employmentsExecute';
@@ -48,14 +48,14 @@ export class Shyftplan implements INodeType {
 				options: [
 					{
 						name: 'Employment',
-						value: 'employment',
+						value: 'employments',
 					},
 					{
 						name: 'Absence',
-						value: 'absence',
+						value: 'absences',
 					},
 				],
-				default: 'employment',
+				default: 'employments',
 				noDataExpression: true,
 				required: true,
 				description: 'Choose a resource / endpoint',
@@ -67,6 +67,7 @@ export class Shyftplan implements INodeType {
 			...employmentsOps,
 		],
 	};
+
 	// The execute method will go here
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 		// Handle data coming from previous nodes
@@ -84,11 +85,11 @@ export class Shyftplan implements INodeType {
 		// <= to run at least once
 		for (let i = 0; i < items.length; i++) {
 			// Employments
-			if (resource === 'employment') {
+			if (resource === 'employments') {
 				responseData = await employmentsExecute(this, operation, i);
 				returnData.push(responseData);
 			}
-			if (resource === 'absence') {
+			if (resource === 'absences') {
 				responseData = await absencesExecute(this, operation, i);
 				returnData.push(responseData);
 			}

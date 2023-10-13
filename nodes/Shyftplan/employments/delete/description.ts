@@ -9,7 +9,7 @@ export const employmentsDeleteFields: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				operation: ['employments_delete_by_ID'],
-				resource: ['employment'],
+				resource: ['employments'],
 			},
 		},
 		default: '',
@@ -24,7 +24,7 @@ export const employmentsDeleteFields: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				operation: ['employments_delete_by_ID'],
-				resource: ['employment'],
+				resource: ['employments'],
 			},
 		},
 		default: '',

@@ -1,19 +1,26 @@
 import { INodeProperties } from 'n8n-workflow';
+import { employmentsGetAllFields } from './getAll/description';
 import { employmentsCreateFields } from './create/description';
 import { employmentsDeleteFields } from './delete/description';
 
 export const employmentsOps: INodeProperties[] = [
-	// CREATE OPERATION
+	// Choose Operations like CRUD on resource (endpoint)
 	{
 		displayName: 'Operation',
 		name: 'operation',
 		type: 'options',
 		displayOptions: {
 			show: {
-				resource: ['employment'],
+				resource: ['employments'],
 			},
 		},
 		options: [
+			{
+				name: 'Get All',
+				value: 'employments_getAll',
+				description: 'Get all company employments',
+				action: 'Get all',
+			},
 			{
 				name: 'Create Employee',
 				value: 'employments_create',
@@ -27,15 +34,16 @@ export const employmentsOps: INodeProperties[] = [
 				action: 'Delete an employee by ID',
 			},
 		],
-		default: 'employments_create',
+		default: 'employments_getAll',
 		noDataExpression: true,
 	},
 
-	/*  Create Fields  */
+	/* Get All Employments Fields aka Views */
+	...employmentsGetAllFields,
 
+	/*  Create Fields  */
 	...employmentsCreateFields,
 
 	/* Delete Fields */
-
 	...employmentsDeleteFields,
 ];

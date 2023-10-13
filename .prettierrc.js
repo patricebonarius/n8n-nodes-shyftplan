@@ -37,7 +37,7 @@ module.exports = {
 	/**
 	 * https://prettier.io/docs/en/options.html#quote-props
 	 */
-	quoteProps: 'as-needed',
+	//quoteProps: 'as-needed',
 
 	/**
 	 * https://prettier.io/docs/en/options.html#end-of-line

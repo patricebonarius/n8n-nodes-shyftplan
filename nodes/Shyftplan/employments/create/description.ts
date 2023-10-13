@@ -10,7 +10,7 @@ export const employmentsCreateFields: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				operation: ['employments_create'],
-				resource: ['employment'],
+				resource: ['employments'],
 			},
 		},
 		default: '',
@@ -25,7 +25,7 @@ export const employmentsCreateFields: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				operation: ['employments_create'],
-				resource: ['employment'],
+				resource: ['employments'],
 			},
 		},
 		default: '',
@@ -40,7 +40,7 @@ export const employmentsCreateFields: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				operation: ['employments_create'],
-				resource: ['employment'],
+				resource: ['employments'],
 			},
 		},
 		default: '',
@@ -58,7 +58,7 @@ export const employmentsCreateFields: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				operation: ['employments_create'],
-				resource: ['employment'],
+				resource: ['employments'],
 			},
 		},
 		options: [
