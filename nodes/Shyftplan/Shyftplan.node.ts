@@ -37,7 +37,6 @@ export class Shyftplan implements INodeType {
 		// Basic node details will go here
 		properties: [
 			// Resources and operations will go here
-
 			// First Resource Objects - The things to operate on
 			{
 				displayName: 'Resource',

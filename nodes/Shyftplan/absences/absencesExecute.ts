@@ -4,6 +4,44 @@ export async function absencesExecute(node: IExecuteFunctions, operation: string
 	const credentials = await node.getCredentials('shyftplanApi');
 	let responseData;
 
+	// getAll
+	if (operation === 'absencens_getAll') {
+		// Get required inputs
+		const company_id = node.getNodeParameter('company_id', i) as number;
+		const page = node.getNodeParameter('page', i) as number;
+		const per_page = node.getNodeParameter('per_page', i) as number;
+		//const created_after = node.getNodeParameter('created_after', i) as string;
+		//const employment_id = node.getNodeParameter('employment_id', i) as number;
+
+		// Get additional fields input
+		const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
+		const data: IDataObject = {
+			company_id,
+			page,
+			per_page,
+			//created_after,
+			//employment_id,
+		};
+		// put it  all inputs together
+		Object.assign(data, additionalFields);
+		Object.assign(data, credentials);
+
+		const header = {
+			'content-type': 'x-www-form-urlencoded',
+		};
+
+		// construct request
+		const myOptions: IHttpRequestOptions = {
+			url: credentials.domain + '/api/v1/absences',
+			method: 'GET',
+			headers: header,
+			qs: data,
+		};
+
+		responseData = await node.helpers.httpRequest(myOptions);
+		return responseData;
+	}
+
 	// create
 	if (operation === 'absencens_create') {
 		// Get required inputs
@@ -14,10 +52,9 @@ export async function absencesExecute(node: IExecuteFunctions, operation: string
 		const absence_reason_id = node.getNodeParameter('absence_reason_id', i) as number;
 		const days = node.getNodeParameter('days', i) as number;
 		const paid = node.getNodeParameter('paid', i) as number;
-
-		console.log('params: ', company_id, starts_at, ends_at);
 		// Get additional fields input
 		const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
+
 		const data: IDataObject = {
 			company_id,
 			starts_at,
