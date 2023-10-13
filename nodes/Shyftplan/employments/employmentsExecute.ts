@@ -1,3 +1,4 @@
+//import { urlencoded } from 'express';
 import { IDataObject, IExecuteFunctions, IHttpRequestOptions } from 'n8n-workflow';
 
 export async function employmentsExecute(node: IExecuteFunctions, operation: string, i: number) {
@@ -62,7 +63,6 @@ export async function employmentsExecute(node: IExecuteFunctions, operation: str
 		const created_after = node.getNodeParameter('created_after', i) as string;
 		const search = node.getNodeParameter('search', i) as string;
 		const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-		//const Content_Type = node.getNodeParameter('Content-Type', i) as string;
 
 		const data: IDataObject = {
 			company_id,
@@ -70,24 +70,63 @@ export async function employmentsExecute(node: IExecuteFunctions, operation: str
 			per_page,
 			created_after,
 			search,
-			//Content_Type,
 		};
 		Object.assign(data, additionalFields);
+		Object.assign(data, credentials);
 
 		const headers: IDataObject = {
+			// prettier-ignore
 			'content-type': 'application/x-www-form-urlencoded',
-			accept: 'application/json',
+		};
+		// version 1 using querystrings in url
+		/* const createHeaders = (obj: Object) => {
+			let outputStr = '';
+			for (const [key, value] of Object.entries(obj)) {
+				outputStr += `${key}=${value}&`;
+			}
+			console.log(outputStr);
+			return new URLSearchParams(outputStr);
+		}; */
+
+		/* const options: IHttpRequestOptions = {
+			url: credentials.domain + '/api/v1/employments?' + createHeaders(data),
+			method: 'GET',
+			headers: headers,
+		};
+		console.log(options);
+ */
+
+		// version 2 using urlSearchParams in qs body
+		/*
+		const createBody = (obj: Object) => {
+			let searchParams = new URLSearchParams();
+			for (const [key, value] of Object.entries(data)) {
+				const str = '' + value;
+				//let encodedKey = encodeURIComponent(key);
+				//let encodedValue = encodeURIComponent(str);
+				searchParams.append(key, str);
+			}
+			return searchParams;
 		};
 
-		Object.assign(headers, data);
+		const body = createBody(data);
+		console.log(body);
 
 		const options: IHttpRequestOptions = {
 			url: credentials.domain + '/api/v1/employments',
 			method: 'GET',
 			headers: headers,
-			//body: Object.assign(data, credentials),
+			body: body,
+		}; */
+
+		// version 3 using urlSearchParams in qs body
+
+		const options: IHttpRequestOptions = {
+			url: credentials.domain + '/api/v1/employments',
+			method: 'GET',
+			headers: headers,
+			qs: data,
 		};
-		console.log(options);
 
 		responseData = await node.helpers.httpRequest(options);
 		return responseData;
