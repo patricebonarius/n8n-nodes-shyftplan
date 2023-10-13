@@ -74,12 +74,10 @@ export async function employmentsExecute(node: IExecuteFunctions, operation: str
 		Object.assign(data, additionalFields);
 		Object.assign(data, credentials);
 
-		const headers: IDataObject = {
-			// prettier-ignore
-			'content-type': 'application/x-www-form-urlencoded',
-		};
 		// version 1 using querystrings in url
-		/* const createHeaders = (obj: Object) => {
+		// works but is visible in url
+		/*
+		const createHeaders = (obj: Object) => {
 			let outputStr = '';
 			for (const [key, value] of Object.entries(obj)) {
 				outputStr += `${key}=${value}&`;
@@ -94,9 +92,10 @@ export async function employmentsExecute(node: IExecuteFunctions, operation: str
 			headers: headers,
 		};
 		console.log(options);
- */
+ 		*/
 
 		// version 2 using urlSearchParams in qs body
+		// doesn't work but woulb be best
 		/*
 		const createBody = (obj: Object) => {
 			let searchParams = new URLSearchParams();
@@ -117,14 +116,21 @@ export async function employmentsExecute(node: IExecuteFunctions, operation: str
 			method: 'GET',
 			headers: headers,
 			body: body,
-		}; */
+		};
+		*/
 
 		// version 3 using urlSearchParams in qs body
 
+		/*
+		const headers: IDataObject = {
+			// prettier-ignore
+			'content-type': 'application/x-www-form-urlencoded',
+		};
+		 */
 		const options: IHttpRequestOptions = {
 			url: credentials.domain + '/api/v1/employments',
 			method: 'GET',
-			headers: headers,
+			//headers: headers,
 			qs: data,
 		};
 
