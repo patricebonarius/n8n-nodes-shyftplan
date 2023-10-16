@@ -11,6 +11,8 @@ import { employmentsOps } from './employments/employmentsOps';
 import { employmentsExecute } from './employments/employmentsExecute';
 import { absencesOps } from './absences/absencesOps';
 import { absencesExecute } from './absences/absencesExecute';
+import { absence_reasonsOps } from './absence_reasons/absence_reasonsOps';
+import { absence_reasonsExecute } from './absence_reasons/absence_reasonsExecute';
 
 export class Shyftplan implements INodeType {
 	description: INodeTypeDescription = {
@@ -46,12 +48,16 @@ export class Shyftplan implements INodeType {
 				type: 'options',
 				options: [
 					{
-						name: 'Employment',
-						value: 'employments',
-					},
-					{
 						name: 'Absence',
 						value: 'absences',
+					},
+					{
+						name: 'Absence Reason',
+						value: 'absence_reasons',
+					},
+					{
+						name: 'Employment',
+						value: 'employments',
 					},
 				],
 				default: 'employments',
@@ -59,8 +65,12 @@ export class Shyftplan implements INodeType {
 				required: true,
 				description: 'Choose a resource / endpoint',
 			},
+
 			/* absences Operations */
 			...absencesOps,
+
+			/* absence_reasons Operations */
+			...absence_reasonsOps,
 
 			/* Employments Operations */
 			...employmentsOps,
@@ -84,12 +94,16 @@ export class Shyftplan implements INodeType {
 		// <= to run at least once
 		for (let i = 0; i < items.length; i++) {
 			// Employments
-			if (resource === 'employments') {
-				responseData = await employmentsExecute(this, operation, i);
-				returnData.push(responseData);
-			}
 			if (resource === 'absences') {
 				responseData = await absencesExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'absence_reasons') {
+				responseData = await absence_reasonsExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'employments') {
+				responseData = await employmentsExecute(this, operation, i);
 				returnData.push(responseData);
 			}
 		}

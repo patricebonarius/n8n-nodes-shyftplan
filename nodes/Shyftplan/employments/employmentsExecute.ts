@@ -30,8 +30,9 @@ export async function employmentsExecute(node: IExecuteFunctions, operation: str
 			method: 'GET',
 			qs: data,
 		};
-
+		console.log(options);
 		responseData = await node.helpers.httpRequest(options);
+		console.log('response length:', responseData.length);
 		return responseData;
 	}
 
