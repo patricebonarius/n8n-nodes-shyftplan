@@ -17,8 +17,8 @@ export const employmentsDeleteFields: INodeProperties[] = [
 		description: 'Please enter the company number',
 	},
 	{
-		displayName: 'Employment ID',
-		name: 'employment_id',
+		displayName: 'ID',
+		name: 'id',
 		type: 'number',
 		required: true,
 		displayOptions: {

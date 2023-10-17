@@ -1,5 +1,20 @@
 import { INodeProperties } from 'n8n-workflow';
-export const absence_reasonsCreateFields: INodeProperties[] = [
+export const absence_reasonsbyidUpdateFields: INodeProperties[] = [
+	{
+		displayName: 'Absence Reason ID.',
+		name: 'id',
+		type: 'number',
+		required: true,
+		default: '',
+		displayOptions: {
+			show: {
+				operation: ['absence_reasonsById_update'],
+				resource: ['absence_reasons'],
+			},
+		},
+		placeholder: '',
+		description: 'Absence Reason ID',
+	},
 	{
 		displayName: 'ID of a Company.',
 		name: 'company_id',
@@ -8,7 +23,7 @@ export const absence_reasonsCreateFields: INodeProperties[] = [
 		default: '',
 		displayOptions: {
 			show: {
-				operation: ['absence_reasons_post'],
+				operation: ['absence_reasonsById_update'],
 				resource: ['absence_reasons'],
 			},
 		},
@@ -16,43 +31,44 @@ export const absence_reasonsCreateFields: INodeProperties[] = [
 		description: 'ID of a Company',
 	},
 	{
-		displayName: 'Name of the Absence Reason',
+		displayName: 'Name of the Absence Reason.',
 		name: 'name',
 		type: 'string',
 		required: true,
 		default: '',
 		displayOptions: {
 			show: {
-				operation: ['absence_reasons_post'],
+				operation: ['absence_reasonsById_update'],
 				resource: ['absence_reasons'],
 			},
 		},
 		placeholder: '',
-		description: 'Name of the Reason',
+		description: 'Name of the Absence Reason',
 	},
 	{
-		displayName: 'No of Days of the Absence Reason',
+		displayName: 'No of Days of the Absence Reason.',
 		name: 'days',
 		type: 'number',
 		required: true,
 		default: '',
 		displayOptions: {
 			show: {
-				operation: ['absence_reasons_post'],
+				operation: ['absence_reasonsById_update'],
 				resource: ['absence_reasons'],
 			},
 		},
 		placeholder: '',
+		description: 'No of Days of the Absence Reason',
 	},
 	{
-		displayName: 'Calculation Type',
+		displayName: 'Days Calculation Type',
 		name: 'calculation_type',
 		type: 'string',
 		required: true,
-		default: '',
+		default: 'standart',
 		displayOptions: {
 			show: {
-				operation: ['absence_reasons_post'],
+				operation: ['absence_reasonsById_update'],
 				resource: ['absence_reasons'],
 			},
 		},
@@ -60,14 +76,14 @@ export const absence_reasonsCreateFields: INodeProperties[] = [
 		description: 'Absence days calculation type',
 	},
 	{
-		displayName: 'Hours Calc Type',
+		displayName: 'Hours Calculation Type',
 		name: 'hours_calculation_type',
 		type: 'string',
 		required: true,
-		default: '',
+		default: 'employee_profile',
 		displayOptions: {
 			show: {
-				operation: ['absence_reasons_post'],
+				operation: ['absence_reasonsById_update'],
 				resource: ['absence_reasons'],
 			},
 		},
@@ -82,28 +98,29 @@ export const absence_reasonsCreateFields: INodeProperties[] = [
 		default: {},
 		displayOptions: {
 			show: {
-				operation: ['absence_reasons_post'],
+				operation: ['absence_reasonsById_update'],
 				resource: ['absence_reasons'],
 			},
 		},
 		options: [
 			{
-				displayName: 'Short Name Reason',
+				displayName: 'Short Name of the Absence Reason',
 				name: 'short_name',
 				type: 'string',
 				default: '',
 				placeholder: '',
-				description: 'Short name of the Absence Reason',
+				description: 'Enter a short name',
 			},
 			{
-				displayName: 'Carry Over To Next Year',
+				displayName: 'Leftover Absence Days To The Next Year',
 				name: 'carry_over_days_enabled',
 				type: 'boolean',
 				default: false,
-				description: 'Whether one take left over absence days to the next year',
+				placeholder: '',
+				description: 'Whether Carry leftover absence days to the next year',
 			},
 			{
-				displayName: 'Expiration Date Of Carry Over.',
+				displayName: 'Expiration Date Absence Days',
 				name: 'carry_over_days_deadline',
 				type: 'string',
 				default: '',
@@ -111,12 +128,12 @@ export const absence_reasonsCreateFields: INodeProperties[] = [
 				description: 'Expiration date of carry over absence days',
 			},
 			{
-				displayName: 'Allow Attachments',
+				displayName: 'Allow Attachments?',
 				name: 'is_absence_attachments_allowed',
 				type: 'boolean',
 				default: false,
 				placeholder: '',
-				description: 'Whether one is allowed to upload stuff',
+				description: 'Whether Allow Attachments?',
 			},
 		],
 	},

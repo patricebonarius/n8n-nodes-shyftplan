@@ -1,18 +1,21 @@
 import { IDataObject, IExecuteFunctions, IHttpRequestOptions } from 'n8n-workflow';
 
-export async function absence_reasonsbyidGetExecute(
+export async function absence_reasonsGetAllExecute(
 	node: IExecuteFunctions,
 	operation: string,
 	i: number,
 ) {
 	const credentials = await node.getCredentials('shyftplanApi');
+	console.log(credentials);
 	let responseData;
-	const id = node.getNodeParameter('id', i) as number;
-	const company_id = node.getNodeParameter('company_id', i) as number;
+	/* 	const user_email = node.getNodeParameter('user_email', i) as string;
+	const authentication_token = node.getNodeParameter('authentication_token', i) as string; */
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {
-		company_id,
-	};
+	/* 	const data: IDataObject = {
+		user_email,
+		authentication_token,
+	}; */
+	const data: IDataObject = {};
 
 	// put it  all inputs together
 	Object.assign(data, additionalFields);
@@ -24,13 +27,13 @@ export async function absence_reasonsbyidGetExecute(
 
 	// construct request
 	const myOptions: IHttpRequestOptions = {
-		url: credentials.domain + '/api/v1/absence_reasons/' + id,
+		url: credentials.domain + '/api/v1/absence_reasons',
 		method: 'GET',
 		headers: header,
 		qs: data,
 	};
-
+	console.log(responseData);
 	responseData = await node.helpers.httpRequest(myOptions);
-	console.log('responseData from ', responseData);
+	console.log(responseData);
 	return responseData;
 }

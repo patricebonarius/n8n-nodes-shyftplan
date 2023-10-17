@@ -22,12 +22,18 @@ export async function employmentsExecute(node: IExecuteFunctions, operation: str
 			created_after,
 			search,
 		};
+
 		Object.assign(data, additionalFields);
 		Object.assign(data, credentials);
+
+		const header = {
+			'content-type': 'x-www-form-urlencoded',
+		};
 
 		const options: IHttpRequestOptions = {
 			url: credentials.domain + '/api/v1/employments',
 			method: 'GET',
+			headers: header,
 			qs: data,
 		};
 		console.log(options);
@@ -69,15 +75,15 @@ export async function employmentsExecute(node: IExecuteFunctions, operation: str
 	// delete
 	if (operation === 'employments_delete_by_id') {
 		const company_id = node.getNodeParameter('company_id', i) as number;
-		const employment_id = node.getNodeParameter('employment_id', i) as string;
+		const id = node.getNodeParameter('id', i) as string;
 
 		const data: IDataObject = {
 			company_id,
-			employment_id,
+			id,
 		};
 
 		const options: IHttpRequestOptions = {
-			url: credentials.domain + '/api/v2/employments/' + employment_id,
+			url: credentials.domain + '/api/v1/employments/' + id,
 			method: 'DELETE',
 			body: Object.assign(data, credentials),
 		};

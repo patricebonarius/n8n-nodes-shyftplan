@@ -1,5 +1,5 @@
 import { INodeProperties } from 'n8n-workflow';
-export const absence_reasonsbyidGetFields: INodeProperties[] = [
+export const absence_reasonsbyidDeleteFields: INodeProperties[] = [
 	{
 		displayName: 'Absence Reason ID.',
 		name: 'id',
@@ -8,7 +8,7 @@ export const absence_reasonsbyidGetFields: INodeProperties[] = [
 		default: '',
 		displayOptions: {
 			show: {
-				operation: ['absence_reasonsbyid_get'],
+				operation: ['absence_reasonsById_delete'],
 				resource: ['absence_reasons'],
 			},
 		},
@@ -23,7 +23,7 @@ export const absence_reasonsbyidGetFields: INodeProperties[] = [
 		default: '',
 		displayOptions: {
 			show: {
-				operation: ['absence_reasonsbyid_get'],
+				operation: ['absence_reasonsById_delete'],
 				resource: ['absence_reasons'],
 			},
 		},
@@ -38,7 +38,7 @@ export const absence_reasonsbyidGetFields: INodeProperties[] = [
 		default: {},
 		displayOptions: {
 			show: {
-				operation: ['absence_reasonsbyid_get'],
+				operation: ['absence_reasonsById_delete'],
 				resource: ['absence_reasons'],
 			},
 		},
