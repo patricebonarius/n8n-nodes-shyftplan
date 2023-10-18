@@ -15,6 +15,8 @@ import { absence_reasonsOps } from './absence_reasons/absence_reasonsOps';
 import { absence_reasonsExecute } from './absence_reasons/absence_reasonsExecute';
 import { locationsOps } from './locations/locationOps';
 import { locationsExecute } from './locations/locationsExecute';
+import { companiesOps } from './companies/companiesOps';
+import { companiesExecute } from './companies/companiesExe';
 
 export class Shyftplan implements INodeType {
 	description: INodeTypeDescription = {
@@ -58,6 +60,10 @@ export class Shyftplan implements INodeType {
 						value: 'absence_reasons',
 					},
 					{
+						name: 'Company',
+						value: 'companies',
+					},
+					{
 						name: 'Employment',
 						value: 'employments',
 					},
@@ -77,10 +83,10 @@ export class Shyftplan implements INodeType {
 
 			/* absence_reasons Operations */
 			...absence_reasonsOps,
-
+			/* location Operations */
+			...companiesOps,
 			/* Employments Operations */
 			...employmentsOps,
-
 			/* location Operations */
 			...locationsOps,
 		],
@@ -109,6 +115,10 @@ export class Shyftplan implements INodeType {
 			}
 			if (resource === 'absence_reasons') {
 				responseData = await absence_reasonsExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'companies') {
+				responseData = await companiesExecute(this, operation, i);
 				returnData.push(responseData);
 			}
 			if (resource === 'employments') {

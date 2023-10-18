@@ -13,7 +13,6 @@ export async function locationsExecute(node: IExecuteFunctions, operation: strin
 		console.log(responseData);
 		return responseData;
 	}
-
 	// delete
 	if (operation === 'locationsById_delete') {
 		responseData = await locationsbyidDeleteExecute(node, operation, i);
