@@ -19,21 +19,18 @@ export async function locationsExecute(node: IExecuteFunctions, operation: strin
 		console.log(responseData);
 		return responseData;
 	}
-
 	// getById
 	if (operation === 'locationsById_get') {
 		responseData = await locationsbyidGetExecute(node, operation, i);
 		console.log(responseData);
 		return responseData;
 	}
-
 	// get All
 	if (operation === 'locations_getAll') {
 		responseData = await locationsGetAllExecute(node, operation, i);
 		console.log(responseData);
 		return responseData;
 	}
-
 	// putById
 	if (operation === 'locationsById_update') {
 		responseData = await locationsbyidUpdateExecute(node, operation, i);

@@ -17,6 +17,8 @@ import { locationsOps } from './locations/locationOps';
 import { locationsExecute } from './locations/locationsExecute';
 import { companiesOps } from './companies/companiesOps';
 import { companiesExecute } from './companies/companiesExe';
+import { paygrade_typesOps } from './paygrade_types/paygrade_typesOps';
+import { paygrade_typesExe } from './paygrade_types/paygrade_typesExe';
 
 export class Shyftplan implements INodeType {
 	description: INodeTypeDescription = {
@@ -71,6 +73,10 @@ export class Shyftplan implements INodeType {
 						name: 'Location',
 						value: 'locations',
 					},
+					{
+						name: 'Paygrade Type',
+						value: 'paygrade_types',
+					},
 				],
 				default: 'employments',
 				noDataExpression: true,
@@ -80,7 +86,6 @@ export class Shyftplan implements INodeType {
 
 			/* absences Operations */
 			...absencesOps,
-
 			/* absence_reasons Operations */
 			...absence_reasonsOps,
 			/* location Operations */
@@ -89,6 +94,8 @@ export class Shyftplan implements INodeType {
 			...employmentsOps,
 			/* location Operations */
 			...locationsOps,
+			/* location Operations */
+			...paygrade_typesOps,
 		],
 	};
 
@@ -127,6 +134,10 @@ export class Shyftplan implements INodeType {
 			}
 			if (resource === 'locations') {
 				responseData = await locationsExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'paygrade_types') {
+				responseData = await paygrade_typesExe(this, operation, i);
 				returnData.push(responseData);
 			}
 		}
