@@ -1,36 +1,47 @@
 import { INodeProperties } from 'n8n-workflow';
-
-export const employmentsDeleteFields: INodeProperties[] = [
+export const deleteApiV1EmploymentsIdDeleteFields: INodeProperties[] = [
 	{
-		displayName: 'Company Number',
+		displayName: 'Company ID',
 		name: 'company_id',
 		type: 'number',
 		required: true,
+		default: '',
 		displayOptions: {
 			show: {
-				operation: ['employments_delete_by_ID'],
+				operation: ['deleteApiV1EmploymentsId'],
 				resource: ['employments'],
 			},
 		},
-		default: '',
-		placeholder: 'company_id',
-		description: 'Please enter the company number',
+		placeholder: '',
+		description: 'Enter company ID',
 	},
 	{
-		displayName: 'ID',
+		displayName: 'Employments ID',
 		name: 'id',
 		type: 'number',
 		required: true,
+		default: '',
 		displayOptions: {
 			show: {
-				operation: ['employments_delete_by_ID'],
+				operation: ['deleteApiV1EmploymentsId'],
 				resource: ['employments'],
 			},
 		},
-		default: '',
-		placeholder: '12345',
-		description: 'Please enter employment ID',
+		placeholder: '',
+		description: 'Enter Employments ID',
+	},
+	{
+		displayName: 'Additional Fields',
+		name: 'additionalFields',
+		type: 'collection',
+		placeholder: 'Add Field',
+		default: {},
+		displayOptions: {
+			show: {
+				operation: ['deleteApiV1EmploymentsId'],
+				resource: ['employments'],
+			},
+		},
+		options: [],
 	},
 ];
-
-//exports.employmentsDeleteFields = employmentsDeleteFields;

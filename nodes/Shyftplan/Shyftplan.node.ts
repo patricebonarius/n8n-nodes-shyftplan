@@ -5,10 +5,10 @@ import {
 	INodeTypeDescription,
 } from 'n8n-workflow';
 
-// import { OptionsWithUri } from 'request';
-
 import { employmentsOps } from './employments/employmentsOps';
-import { employmentsExecute } from './employments/employmentsExecute';
+import { employmentsExecute } from './employments/employmentsExe';
+import { employments_positionsOps } from './employments_positions/employments_positionsOps';
+import { employments_positionsExecute } from './employments_positions/employments_positionsExe';
 import { absencesOps } from './absences/absencesOps';
 import { absencesExecute } from './absences/absencesExecute';
 import { absence_reasonsOps } from './absence_reasons/absence_reasonsOps';
@@ -19,6 +19,10 @@ import { companiesOps } from './companies/companiesOps';
 import { companiesExecute } from './companies/companiesExe';
 import { paygrade_typesOps } from './paygrade_types/paygrade_typesOps';
 import { paygrade_typesExe } from './paygrade_types/paygrade_typesExe';
+import { shiftsOps } from './shifts/shiftsOps';
+import { shiftsExecute } from './shifts/shiftsExe';
+import { staff_shiftsOps } from './staff_shifts/staff_shiftsOps';
+import { staff_shiftsExecute } from './staff_shifts/staff_shiftsExe';
 
 export class Shyftplan implements INodeType {
 	description: INodeTypeDescription = {
@@ -70,12 +74,24 @@ export class Shyftplan implements INodeType {
 						value: 'employments',
 					},
 					{
+						name: 'Employment Position',
+						value: 'employments_positions',
+					},
+					{
 						name: 'Location',
 						value: 'locations',
 					},
 					{
 						name: 'Paygrade Type',
 						value: 'paygrade_types',
+					},
+					{
+						name: 'Shift',
+						value: 'shifts',
+					},
+					{
+						name: 'Staff Shift',
+						value: 'staff_shifts',
 					},
 				],
 				default: 'employments',
@@ -92,10 +108,16 @@ export class Shyftplan implements INodeType {
 			...companiesOps,
 			/* Employments Operations */
 			...employmentsOps,
+			/* Employments Operations */
+			...employments_positionsOps,
 			/* location Operations */
 			...locationsOps,
 			/* location Operations */
 			...paygrade_typesOps,
+			/* shifts Operations */
+			...shiftsOps,
+			/* staff shifts Operations */
+			...staff_shiftsOps,
 		],
 	};
 
@@ -132,12 +154,24 @@ export class Shyftplan implements INodeType {
 				responseData = await employmentsExecute(this, operation, i);
 				returnData.push(responseData);
 			}
+			if (resource === 'employments_positions') {
+				responseData = await employments_positionsExecute(this, operation, i);
+				returnData.push(responseData);
+			}
 			if (resource === 'locations') {
 				responseData = await locationsExecute(this, operation, i);
 				returnData.push(responseData);
 			}
 			if (resource === 'paygrade_types') {
 				responseData = await paygrade_typesExe(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'shifts') {
+				responseData = await shiftsExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'staff_shifts') {
+				responseData = await staff_shiftsExecute(this, operation, i);
 				returnData.push(responseData);
 			}
 		}
