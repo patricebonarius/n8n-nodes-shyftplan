@@ -5,6 +5,8 @@ import {
 	INodeTypeDescription,
 } from 'n8n-workflow';
 
+import { absence_entitlementsOps } from './absence_entitlements/absence_entitlementsOps';
+import { absence_entitlementsExecute } from './absence_entitlements/absence_entitlementsExe';
 import { employmentsOps } from './employments/employmentsOps';
 import { employmentsExecute } from './employments/employmentsExe';
 import { employments_positionsOps } from './employments_positions/employments_positionsOps';
@@ -64,6 +66,10 @@ export class Shyftplan implements INodeType {
 						value: 'absences',
 					},
 					{
+						name: 'Absence Entitlement',
+						value: 'absence_entitlements',
+					},
+					{
 						name: 'Absence Reason',
 						value: 'absence_reasons',
 					},
@@ -108,6 +114,8 @@ export class Shyftplan implements INodeType {
 
 			/* absences Operations */
 			...absencesOps,
+			/* absences entitlements Operations */
+			...absence_entitlementsOps,
 			/* absence_reasons Operations */
 			...absence_reasonsOps,
 			/* location Operations */
@@ -148,6 +156,10 @@ export class Shyftplan implements INodeType {
 			// Employments
 			if (resource === 'absences') {
 				responseData = await absencesExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'absence_entitlements') {
+				responseData = await absence_entitlementsExecute(this, operation, i);
 				returnData.push(responseData);
 			}
 			if (resource === 'absence_reasons') {
