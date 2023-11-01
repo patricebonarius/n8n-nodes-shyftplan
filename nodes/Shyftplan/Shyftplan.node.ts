@@ -23,6 +23,8 @@ import { shiftsOps } from './shifts/shiftsOps';
 import { shiftsExecute } from './shifts/shiftsExe';
 import { staff_shiftsOps } from './staff_shifts/staff_shiftsOps';
 import { staff_shiftsExecute } from './staff_shifts/staff_shiftsExe';
+import { shiftplansOps } from './shiftplans/shiftplansOps';
+import { shiftplansExecute } from './shiftplans/shiftplansExe';
 
 export class Shyftplan implements INodeType {
 	description: INodeTypeDescription = {
@@ -93,6 +95,10 @@ export class Shyftplan implements INodeType {
 						name: 'Staff Shift',
 						value: 'staff_shifts',
 					},
+					{
+						name: 'Shiftplan',
+						value: 'shiftplans',
+					},
 				],
 				default: 'employments',
 				noDataExpression: true,
@@ -118,6 +124,8 @@ export class Shyftplan implements INodeType {
 			...shiftsOps,
 			/* staff shifts Operations */
 			...staff_shiftsOps,
+			/* shiftplan Operations */
+			...shiftplansOps,
 		],
 	};
 
@@ -172,6 +180,10 @@ export class Shyftplan implements INodeType {
 			}
 			if (resource === 'staff_shifts') {
 				responseData = await staff_shiftsExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'shiftplans') {
+				responseData = await shiftplansExecute(this, operation, i);
 				returnData.push(responseData);
 			}
 		}
