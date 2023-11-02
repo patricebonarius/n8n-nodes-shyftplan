@@ -14,7 +14,7 @@ import { employmentsExecute } from './employments/employmentsExe';
 import { employments_positionsOps } from './employments_positions/employments_positionsOps';
 import { employments_positionsExecute } from './employments_positions/employments_positionsExe';
 import { absencesOps } from './absences/absencesOps';
-import { absencesExecute } from './absences/absencesExecute';
+import { absencesExecute } from './absences/absencesExe';
 import { absence_reasonsOps } from './absence_reasons/absence_reasonsOps';
 import { absence_reasonsExecute } from './absence_reasons/absence_reasonsExecute';
 import { locationsOps } from './locations/locationOps';
