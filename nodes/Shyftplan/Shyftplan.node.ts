@@ -7,6 +7,8 @@ import {
 
 import { absence_entitlementsOps } from './absence_entitlements/absence_entitlementsOps';
 import { absence_entitlementsExecute } from './absence_entitlements/absence_entitlementsExe';
+import { availabilitiesOps } from './availabilities/availabilitiesOps';
+import { availabilitiesExecute } from './availabilities/availabilitiesExe';
 import { employmentsOps } from './employments/employmentsOps';
 import { employmentsExecute } from './employments/employmentsExe';
 import { employments_positionsOps } from './employments_positions/employments_positionsOps';
@@ -74,6 +76,10 @@ export class Shyftplan implements INodeType {
 						value: 'absence_reasons',
 					},
 					{
+						name: 'Availability',
+						value: 'availabilities',
+					},
+					{
 						name: 'Company',
 						value: 'companies',
 					},
@@ -118,6 +124,8 @@ export class Shyftplan implements INodeType {
 			...absence_entitlementsOps,
 			/* absence_reasons Operations */
 			...absence_reasonsOps,
+			/* availlabilities Operations */
+			...availabilitiesOps,
 			/* location Operations */
 			...companiesOps,
 			/* Employments Operations */
@@ -164,6 +172,10 @@ export class Shyftplan implements INodeType {
 			}
 			if (resource === 'absence_reasons') {
 				responseData = await absence_reasonsExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'availabilities') {
+				responseData = await availabilitiesExecute(this, operation, i);
 				returnData.push(responseData);
 			}
 			if (resource === 'companies') {
