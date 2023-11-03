@@ -4,31 +4,31 @@ export const postApiV1EmployeeEvaluationsStaffShiftIdAcceptCreateFields: INodePr
 		displayName: 'Company ID',
 		name: 'company_id',
 		type: 'number',
-		required: true,
 		default: '',
+		placeholder: '',
+		description: 'Enter Company ID',
+		required: true,
 		displayOptions: {
 			show: {
 				operation: ['postApiV1EmployeeEvaluationsStaffShiftIdAccept'],
 				resource: ['employee_evaluations'],
 			},
 		},
-		placeholder: '',
-		description: 'Enter Company ID',
 	},
 	{
 		displayName: 'Staff Shift_ID',
 		name: 'staff_shift_id',
 		type: 'number',
-		required: true,
 		default: '',
+		placeholder: '',
+		description: 'Enter Staff Shift_ID',
+		required: true,
 		displayOptions: {
 			show: {
 				operation: ['postApiV1EmployeeEvaluationsStaffShiftIdAccept'],
 				resource: ['employee_evaluations'],
 			},
 		},
-		placeholder: '',
-		description: 'Enter Staff Shift ID',
 	},
 	{
 		displayName: 'Additional Fields',
@@ -55,11 +55,11 @@ export const postApiV1EmployeeEvaluationsStaffShiftIdAcceptCreateFields: INodePr
 			{
 				displayName: 'Ignore Conflicts',
 				name: 'ignore_conflicts',
-				type: 'boolean',
-				default: false,
+				type: 'json',
+				default: '',
 				placeholder: '',
 				description:
-					'Whether true to ignore all conflicts listed below or an Array of specific conflicts to ignore Only warnings can be ignored, enforced conflicts will persist. Possible values are:<ul> <li>minimum_break</li></ul>.',
+					'Either true to ignore all conflicts listed below or an Array of specific conflicts to ignore Only warnings can be ignored, enforced conflicts will persist. Possible values are:<ul> <li>minimum_break</li></ul>.',
 			},
 		],
 	},
