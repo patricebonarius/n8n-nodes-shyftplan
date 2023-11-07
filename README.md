@@ -23,3 +23,4 @@ derived from: https://github.com/n8n-io/n8n-nodes-starter
 
 - if inputs do not seem to work try as JSON input
   `{{ value }}`
+- look at the Reference: https://docs.n8n.io/integrations/creating-nodes/build/reference/
