@@ -18,3 +18,8 @@ derived from: https://github.com/n8n-io/n8n-nodes-starter
 - npm run build
 - n8n start to start dev server
 - always save each file you made changes to!!!
+
+#### TroublesShooting
+
+- if inputs do not seem to work try as JSON input
+  `{{ value }}`
