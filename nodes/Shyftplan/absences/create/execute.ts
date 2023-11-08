@@ -14,7 +14,8 @@ export async function postApiV1AbsencesCreateExecute(
 	const days = node.getNodeParameter('days', i) as number;
 	const paid = node.getNodeParameter('paid', i) as boolean;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {
+
+	let data: IDataObject = {
 		starts_at,
 		ends_at,
 		employment_id,
@@ -27,11 +28,31 @@ export async function postApiV1AbsencesCreateExecute(
 	Object.assign(data, additionalFields);
 	Object.assign(data, credentials);
 
+	// split out the file data to use it in qs doesnt work
+	/* let theFile: IDataObject = {};
+	if (data.file) {
+		theFile = data.file as IDataObject;
+		delete data.file;
+	} */
+
+	const header = {
+		// 'content-type': 'multipart/form-data',
+		'content-type': 'application/json',
+	};
+
+	// console.log('data from absences create: ', data);
+
 	// construct request
 	const myOptions: IHttpRequestOptions = {
+		// if you use webhook disable credentials :-)
+		// url: 'https://webhook.site/05bd6f56-5431-4269-abf0-efd23d473d18',
 		url: credentials.domain + '/api' + '/v1' + '/absences',
 		method: 'POST',
 		body: data,
+		arrayFormat: 'repeat',
+		headers: header,
+		//json: true,
+		//qs: data,
 	};
 
 	responseData = await node.helpers.httpRequest(myOptions);
