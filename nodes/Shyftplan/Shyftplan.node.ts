@@ -33,11 +33,23 @@ import { employmentsOps } from './employments/employmentsOps';
 import { employmentsExecute } from './employments/employmentsExe';
 import { employments_paygradesOps } from './employments_paygrades/employments_paygradesOps';
 import { employments_paygradesExecute } from './employments_paygrades/employments_paygradesExe';
-
 import { employments_positionsOps } from './employments_positions/employments_positionsOps';
 import { employments_positionsExecute } from './employments_positions/employments_positionsExe';
-import { locationsOps } from './locations/locationOps';
-import { locationsExecute } from './locations/locationsExecute';
+import { employments_rotation_groupsOps } from './employments_rotation_groups/employments_rotation_groupsOps';
+import { employments_rotation_groupsExecute } from './employments_rotation_groups/employments_rotation_groupsExe';
+import { evaluation_breaksOps } from './evaluation_breaks/evaluation_breaksOps';
+import { evaluation_breaksExecute } from './evaluation_breaks/evaluation_breaksExe';
+import { evaluationsOps } from './evaluations/evaluationsOps';
+import { evaluationsExecute } from './evaluations/evaluationsExe';
+import { individual_rotationsOps } from './individual_rotations/individual_rotationsOps';
+import { individual_rotationsExecute } from './individual_rotations/individual_rotationsExe';
+import { languagesOps } from './languages/languagesOps';
+import { languagesExecute } from './languages/languagesExe';
+import { live_staff_shiftsOps } from './live_staff_shifts/live_staff_shiftsOps';
+import { live_staff_shiftsExecute } from './live_staff_shifts/live_staff_shiftsExe';
+import { locationsOps } from './locations/locationsOps';
+import { locationsExecute } from './locations/locationsExe';
+
 import { paygrade_typesOps } from './paygrade_types/paygrade_typesOps';
 import { paygrade_typesExe } from './paygrade_types/paygrade_typesExe';
 import { shiftsOps } from './shifts/shiftsOps';
@@ -141,9 +153,34 @@ export class Shyftplan implements INodeType {
 						value: 'employments_positions',
 					},
 					{
+						name: 'Employment Rotation Groups',
+						value: 'employments_rotation_groups',
+					},
+					{
+						name: 'Evaluation Break',
+						value: 'evaluation_breaks',
+					},
+					{
+						name: 'Evaluation',
+						value: 'evaluations',
+					},
+					{
+						name: 'Individual Rotation',
+						value: 'individual_rotations',
+					},
+					{
+						name: 'Language',
+						value: 'language',
+					},
+					{
+						name: 'Live Staff Shift',
+						value: 'live_staff_shifts',
+					},
+					{
 						name: 'Location',
 						value: 'locations',
 					},
+
 					{
 						name: 'Paygrade Type',
 						value: 'paygrade_types',
@@ -196,6 +233,19 @@ export class Shyftplan implements INodeType {
 			...employments_paygradesOps,
 			/* Employments Operations */
 			...employments_positionsOps,
+			/* rotation group Operations */
+			...employments_rotation_groupsOps,
+			/* evaluation breaks Operations */
+			...evaluation_breaksOps,
+			/* evaluations Operations */
+			...evaluationsOps,
+			/* individual rotations Operations */
+			...individual_rotationsOps,
+			/* language Operations */
+			...languagesOps,
+			/* live staff shifts Operations */
+			...live_staff_shiftsOps,
+
 			/* location Operations */
 			...locationsOps,
 			/* location Operations */
@@ -285,10 +335,35 @@ export class Shyftplan implements INodeType {
 				responseData = await employments_positionsExecute(this, operation, i);
 				returnData.push(responseData);
 			}
+			if (resource === 'employments_rotation_groups') {
+				responseData = await employments_rotation_groupsExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'evaluation_breaks') {
+				responseData = await evaluation_breaksExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'evaluations') {
+				responseData = await evaluationsExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'individual_rotations') {
+				responseData = await individual_rotationsExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'language') {
+				responseData = await languagesExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'live_staff_shifts') {
+				responseData = await live_staff_shiftsExecute(this, operation, i);
+				returnData.push(responseData);
+			}
 			if (resource === 'locations') {
 				responseData = await locationsExecute(this, operation, i);
 				returnData.push(responseData);
 			}
+
 			if (resource === 'paygrade_types') {
 				responseData = await paygrade_typesExe(this, operation, i);
 				returnData.push(responseData);

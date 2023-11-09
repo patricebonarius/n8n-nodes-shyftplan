@@ -1,18 +1,19 @@
 import { INodeProperties } from 'n8n-workflow';
-export const locationsbyidGetFields: INodeProperties[] = [
+export const getApiV1LocationsIdGetFields: INodeProperties[] = [
 	{
-		displayName: 'Location ID',
+		displayName: 'ID',
 		name: 'id',
 		type: 'number',
-		required: true,
 		default: '',
+		placeholder: '',
+		description: 'Location ID',
+		required: true,
 		displayOptions: {
 			show: {
-				operation: ['locationsById_get'],
+				operation: ['getApiV1LocationsId'],
 				resource: ['locations'],
 			},
 		},
-		placeholder: '',
 	},
 	{
 		displayName: 'Additional Fields',
@@ -22,7 +23,7 @@ export const locationsbyidGetFields: INodeProperties[] = [
 		default: {},
 		displayOptions: {
 			show: {
-				operation: ['locationsById_get'],
+				operation: ['getApiV1LocationsId'],
 				resource: ['locations'],
 			},
 		},
@@ -32,7 +33,8 @@ export const locationsbyidGetFields: INodeProperties[] = [
 				name: 'company_id',
 				type: 'number',
 				default: '',
-				placeholder: '11234',
+				placeholder: '',
+				description: 'Enter Company ID',
 			},
 		],
 	},

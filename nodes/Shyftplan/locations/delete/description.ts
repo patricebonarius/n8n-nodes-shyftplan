@@ -1,19 +1,19 @@
 import { INodeProperties } from 'n8n-workflow';
-export const locationsbyidDeleteFields: INodeProperties[] = [
+export const deleteApiV1LocationsIdDeleteFields: INodeProperties[] = [
 	{
-		displayName: 'Location ID',
+		displayName: 'ID',
 		name: 'id',
 		type: 'number',
-		required: true,
 		default: '',
+		placeholder: '',
+		description: 'Location ID',
+		required: true,
 		displayOptions: {
 			show: {
-				operation: ['locationsById_delete'],
+				operation: ['deleteApiV1LocationsId'],
 				resource: ['locations'],
 			},
 		},
-		placeholder: '',
-		description: 'Enter the Location ID',
 	},
 	{
 		displayName: 'Additional Fields',
@@ -23,7 +23,7 @@ export const locationsbyidDeleteFields: INodeProperties[] = [
 		default: {},
 		displayOptions: {
 			show: {
-				operation: ['locationsById_delete'],
+				operation: ['deleteApiV1LocationsId'],
 				resource: ['locations'],
 			},
 		},
@@ -33,8 +33,8 @@ export const locationsbyidDeleteFields: INodeProperties[] = [
 				name: 'company_id',
 				type: 'number',
 				default: '',
-				placeholder: '11231',
-				description: 'Enter the company Number',
+				placeholder: '',
+				description: 'Enter Company ID',
 			},
 		],
 	},

@@ -1,6 +1,6 @@
 import { IDataObject, IExecuteFunctions, IHttpRequestOptions } from 'n8n-workflow';
 
-export async function locationsbyidDeleteExecute(
+export async function deleteApiV1LocationsIdDeleteExecute(
 	node: IExecuteFunctions,
 	operation: string,
 	i: number,
@@ -9,7 +9,7 @@ export async function locationsbyidDeleteExecute(
 	let responseData;
 	const id = node.getNodeParameter('id', i) as number;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {
+	let data: IDataObject = {
 		id,
 	};
 
@@ -19,9 +19,10 @@ export async function locationsbyidDeleteExecute(
 
 	// construct request
 	const myOptions: IHttpRequestOptions = {
-		url: credentials.domain + '/api/v1/locations/' + id,
+		url: credentials.domain + '/api' + '/v1' + '/locations' + '/' + id,
 		method: 'DELETE',
 		body: data,
+		arrayFormat: 'repeat',
 	};
 
 	responseData = await node.helpers.httpRequest(myOptions);

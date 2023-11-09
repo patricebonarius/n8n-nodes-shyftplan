@@ -1,20 +1,5 @@
 import { INodeProperties } from 'n8n-workflow';
-export const locationsGetAllFields: INodeProperties[] = [
-	{
-		displayName: 'Filter For Single Location ID',
-		name: 'id',
-		type: 'number',
-		default: '',
-		placeholder: '',
-
-		displayOptions: {
-			show: {
-				operation: ['locations_getAll'],
-				resource: ['locations'],
-			},
-		},
-		description: 'Filter for an ID',
-	},
+export const getApiV1LocationsGetAllFields: INodeProperties[] = [
 	{
 		displayName: 'Additional Fields',
 		name: 'additionalFields',
@@ -23,7 +8,7 @@ export const locationsGetAllFields: INodeProperties[] = [
 		default: {},
 		displayOptions: {
 			show: {
-				operation: ['locations_getAll'],
+				operation: ['getApiV1Locations'],
 				resource: ['locations'],
 			},
 		},
@@ -60,23 +45,45 @@ export const locationsGetAllFields: INodeProperties[] = [
 				placeholder: '',
 				description: 'Return all records which are created before',
 			},
-
 			{
-				displayName: 'Filter An Array Of Location ID',
-				name: 'ids[]',
-				type: 'string',
+				displayName: 'ID',
+				name: 'id',
+				type: 'number',
 				default: '',
 				placeholder: '',
-				description: 'Put in seperated by comma',
+				description: 'Filter for single Location ID',
 			},
-
 			{
-				displayName: 'Filter An Array Of Company ID',
-				name: 'company_ids[]',
-				type: 'string',
+				displayName: 'IDs[]',
+				name: 'idsSTARTEND',
+				type: 'json',
+				typeOptions: {
+					multipleValues: true,
+					multipleValueButtonText: 'Add Tag',
+				},
 				default: '',
 				placeholder: '',
-				description: 'Takes an array',
+				description: 'Filter an array of Location ID',
+			},
+			{
+				displayName: 'Company ID',
+				name: 'company_id',
+				type: 'number',
+				default: '',
+				placeholder: '',
+				description: 'Filter for single Company ID',
+			},
+			{
+				displayName: 'Company IDs[]',
+				name: 'company_idsSTARTEND',
+				type: 'json',
+				typeOptions: {
+					multipleValues: true,
+					multipleValueButtonText: 'Add Tag',
+				},
+				default: '',
+				placeholder: '',
+				description: 'Filter an array of Company ID',
 			},
 		],
 	},

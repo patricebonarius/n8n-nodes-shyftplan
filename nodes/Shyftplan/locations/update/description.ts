@@ -1,18 +1,19 @@
 import { INodeProperties } from 'n8n-workflow';
-export const locationsbyidUpdateFields: INodeProperties[] = [
+export const putApiV1LocationsIdUpdateFields: INodeProperties[] = [
 	{
-		displayName: 'Location ID',
+		displayName: 'ID',
 		name: 'id',
 		type: 'string',
-		required: true,
 		default: '',
+		placeholder: '',
+		description: 'Location ID',
+		required: true,
 		displayOptions: {
 			show: {
-				operation: ['locationsById_update'],
+				operation: ['putApiV1LocationsId'],
 				resource: ['locations'],
 			},
 		},
-		placeholder: '',
 	},
 	{
 		displayName: 'Additional Fields',
@@ -22,7 +23,7 @@ export const locationsbyidUpdateFields: INodeProperties[] = [
 		default: {},
 		displayOptions: {
 			show: {
-				operation: ['locationsById_update'],
+				operation: ['putApiV1LocationsId'],
 				resource: ['locations'],
 			},
 		},
@@ -32,8 +33,8 @@ export const locationsbyidUpdateFields: INodeProperties[] = [
 				name: 'company_id',
 				type: 'number',
 				default: '',
-				placeholder: '12345',
-				description: 'Enter the company ID',
+				placeholder: '',
+				description: 'Enter Company ID',
 			},
 			{
 				displayName: 'Name',
@@ -41,10 +42,10 @@ export const locationsbyidUpdateFields: INodeProperties[] = [
 				type: 'string',
 				default: '',
 				placeholder: '',
-				description: 'Enter the locations name',
+				description: 'Enter Name',
 			},
 			{
-				displayName: 'Used To Order Locations',
+				displayName: 'Sort',
 				name: 'sort',
 				type: 'number',
 				default: '',
@@ -52,12 +53,16 @@ export const locationsbyidUpdateFields: INodeProperties[] = [
 				description: 'Used to order Locations in the UI',
 			},
 			{
-				displayName: 'Location Metadata',
+				displayName: 'Metadata',
 				name: 'metadata',
 				type: 'json',
+				typeOptions: {
+					multipleValues: true,
+					multipleValueButtonText: 'Add Tag',
+				},
 				default: '',
 				placeholder: '',
-				description: 'Metadata provided as Object',
+				description: 'Location metadata as JSON',
 			},
 		],
 	},

@@ -1,6 +1,6 @@
 import { IDataObject, IExecuteFunctions, IHttpRequestOptions } from 'n8n-workflow';
 
-export async function locationsCreateExecute(
+export async function postApiV1LocationsCreateExecute(
 	node: IExecuteFunctions,
 	operation: string,
 	i: number,
@@ -10,7 +10,7 @@ export async function locationsCreateExecute(
 	const company_id = node.getNodeParameter('company_id', i) as string;
 	const name = node.getNodeParameter('name', i) as string;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {
+	let data: IDataObject = {
 		company_id,
 		name,
 	};
@@ -21,9 +21,10 @@ export async function locationsCreateExecute(
 
 	// construct request
 	const myOptions: IHttpRequestOptions = {
-		url: credentials.domain + '/api/v1/locations',
+		url: credentials.domain + '/api' + '/v1' + '/locations',
 		method: 'POST',
 		body: data,
+		arrayFormat: 'repeat',
 	};
 
 	responseData = await node.helpers.httpRequest(myOptions);

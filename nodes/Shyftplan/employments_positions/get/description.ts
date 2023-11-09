@@ -4,16 +4,16 @@ export const getApiV1EmploymentsPositionsIdGetFields: INodeProperties[] = [
 		displayName: 'ID',
 		name: 'id',
 		type: 'number',
-		required: true,
 		default: '',
+		placeholder: '',
+		description: 'EmploymentsPosition ID',
+		required: true,
 		displayOptions: {
 			show: {
 				operation: ['getApiV1EmploymentsPositionsId'],
 				resource: ['employments_positions'],
 			},
 		},
-		placeholder: '',
-		description: 'EmploymentsPosition ID',
 	},
 	{
 		displayName: 'Additional Fields',

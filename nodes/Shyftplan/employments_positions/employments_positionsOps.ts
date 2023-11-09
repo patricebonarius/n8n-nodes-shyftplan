@@ -24,7 +24,7 @@ export const employments_positionsOps: INodeProperties[] = [
 			{
 				name: 'Get Employments Positions',
 				value: 'getApiV1EmploymentsPositions',
-				description: 'List all Employments Positions',
+				description: 'List all EmploymentsPositions',
 				action: 'Get employments positions',
 			},
 			{
@@ -36,11 +36,11 @@ export const employments_positionsOps: INodeProperties[] = [
 			{
 				name: 'Get Employments Positions By ID',
 				value: 'getApiV1EmploymentsPositionsId',
-				description: 'Return a Employments Position',
+				description: 'Return a EmploymentsPosition',
 				action: 'Get employments positions by ID',
 			},
 		],
-		default: 'getApiV1EmploymentsPositions',
+		default: 'getApiV1EmploymentsPositionsId',
 		noDataExpression: true,
 	},
 

@@ -1,6 +1,6 @@
 import { IDataObject, IExecuteFunctions, IHttpRequestOptions } from 'n8n-workflow';
 
-export async function locationsbyidGetExecute(
+export async function getApiV1LocationsIdGetExecute(
 	node: IExecuteFunctions,
 	operation: string,
 	i: number,
@@ -9,7 +9,7 @@ export async function locationsbyidGetExecute(
 	let responseData;
 	const id = node.getNodeParameter('id', i) as number;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {
+	let data: IDataObject = {
 		id,
 	};
 
@@ -17,16 +17,29 @@ export async function locationsbyidGetExecute(
 	Object.assign(data, additionalFields);
 	Object.assign(data, credentials);
 
+	let dataKeys = Object.keys(data);
+	dataKeys.forEach((key) => {
+		if (key.includes('START')) {
+			// switch that part if value is not of type number
+			let currentValue = data[key];
+			let newKey = key.replace(/(START)/g, '[');
+			newKey = newKey.replace(/(END)/g, ']');
+			data = { ...data, [newKey]: currentValue };
+			delete data[key];
+		}
+	});
+
 	const header = {
 		'content-type': 'x-www-form-urlencoded',
 	};
 
 	// construct request
 	const myOptions: IHttpRequestOptions = {
-		url: credentials.domain + '/api/v1/locations/' + id,
+		url: credentials.domain + '/api' + '/v1' + '/locations' + '/' + id,
 		method: 'GET',
 		headers: header,
 		qs: data,
+		arrayFormat: 'repeat',
 	};
 
 	responseData = await node.helpers.httpRequest(myOptions);

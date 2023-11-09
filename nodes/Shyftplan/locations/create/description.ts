@@ -1,33 +1,34 @@
 import { INodeProperties } from 'n8n-workflow';
-export const locationsCreateFields: INodeProperties[] = [
+export const postApiV1LocationsCreateFields: INodeProperties[] = [
 	{
 		displayName: 'Company ID',
 		name: 'company_id',
 		type: 'string',
-		required: true,
 		default: '',
+		placeholder: '',
+		description: 'Enter Company ID',
+		required: true,
 		displayOptions: {
 			show: {
-				operation: ['locations_create'],
+				operation: ['postApiV1Locations'],
 				resource: ['locations'],
 			},
 		},
-		placeholder: '',
 	},
 	{
 		displayName: 'Name',
 		name: 'name',
 		type: 'string',
-		required: true,
 		default: '',
+		placeholder: '',
+		description: 'Enter Name',
+		required: true,
 		displayOptions: {
 			show: {
-				operation: ['locations_create'],
+				operation: ['postApiV1Locations'],
 				resource: ['locations'],
 			},
 		},
-		placeholder: '',
-		description: 'Name of the location',
 	},
 	{
 		displayName: 'Additional Fields',
@@ -37,13 +38,13 @@ export const locationsCreateFields: INodeProperties[] = [
 		default: {},
 		displayOptions: {
 			show: {
-				operation: ['locations_create'],
+				operation: ['postApiV1Locations'],
 				resource: ['locations'],
 			},
 		},
 		options: [
 			{
-				displayName: 'Order',
+				displayName: 'Sort',
 				name: 'sort',
 				type: 'number',
 				default: '',
@@ -51,11 +52,16 @@ export const locationsCreateFields: INodeProperties[] = [
 				description: 'Used to order Locations in the UI',
 			},
 			{
-				displayName: 'Location Metadata As Json',
+				displayName: 'Metadata',
 				name: 'metadata',
 				type: 'json',
+				typeOptions: {
+					multipleValues: true,
+					multipleValueButtonText: 'Add Tag',
+				},
 				default: '',
 				placeholder: '',
+				description: 'Location metadata as JSON',
 			},
 		],
 	},
