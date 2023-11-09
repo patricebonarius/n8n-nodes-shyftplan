@@ -4,16 +4,16 @@ export const putApiV1AbsencesIdUpdateFields: INodeProperties[] = [
 		displayName: 'ID',
 		name: 'id',
 		type: 'number',
-		required: true,
 		default: '',
+		placeholder: '',
+		description: 'Absence ID',
+		required: true,
 		displayOptions: {
 			show: {
 				operation: ['putApiV1AbsencesId'],
 				resource: ['absences'],
 			},
 		},
-		placeholder: '',
-		description: 'Enter Absence ID',
 	},
 	{
 		displayName: 'Additional Fields',
@@ -93,7 +93,7 @@ export const putApiV1AbsencesIdUpdateFields: INodeProperties[] = [
 				description: 'Note of Absence',
 			},
 			{
-				displayName: 'paID',
+				displayName: 'PaID',
 				name: 'paid',
 				type: 'boolean',
 				default: false,

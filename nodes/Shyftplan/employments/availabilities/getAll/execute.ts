@@ -7,28 +7,41 @@ import { IDataObject, IExecuteFunctions, IHttpRequestOptions } from 'n8n-workflo
 const ends_at = node.getNodeParameter('ends_at', i) as string;
 const id = node.getNodeParameter('id', i) as number;
 const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-const data: IDataObject = {
+let data: IDataObject = {
 starts_at,
 ends_at,
 id,
 };
 
-    // put it  all inputs together
-    Object.assign(data, additionalFields);
-    Object.assign(data, credentials);
+        // put it  all inputs together
+        Object.assign(data, additionalFields);
+        Object.assign(data, credentials);
 
-    const header = {
-        'content-type': 'x-www-form-urlencoded',
-    };
-
-    // construct request
-    const myOptions: IHttpRequestOptions = {
-        url: "" + credentials.domain + "/api/v1/" + "employments/" + id + "/availabilities",
-        method: 'GET',
-        headers: header,
-        qs: data,
-    };
+        let dataKeys = Object.keys(data);
+	    dataKeys.forEach((key) => {
+            if (key.includes('START')) {
+                // switch that part if value is not of type number
+                let currentValue = data[key];
+                let newKey = key.replace(/(START)/g, "[");
+                newKey = newKey.replace(/(END)/g, "]");
+                data = { ...data, [newKey]: currentValue };
+                delete data[key];
+            }
+	    });
     
-    responseData = await node.helpers.httpRequest(myOptions);
-    return responseData;
-}
+        const header = {
+            'content-type': 'x-www-form-urlencoded',
+        };
+    
+        // construct request
+        const myOptions: IHttpRequestOptions = {
+            url: credentials.domain + "/api"+ "/v1"+ "/employments"+ "/" +id+ "/availabilities",
+            method: 'GET',
+            headers: header,
+            qs: data,
+            arrayFormat: 'repeat',
+        };
+        
+        responseData = await node.helpers.httpRequest(myOptions);
+        return responseData;
+        }

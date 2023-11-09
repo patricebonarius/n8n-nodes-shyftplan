@@ -14,7 +14,7 @@ export async function postApiV1AvailabilitiesCreateExecute(
 	const employment_id = node.getNodeParameter('employment_id', i) as number;
 	const repeat = node.getNodeParameter('repeat', i) as boolean;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {
+	let data: IDataObject = {
 		starts_at,
 		ends_at,
 		override,
@@ -32,6 +32,7 @@ export async function postApiV1AvailabilitiesCreateExecute(
 		url: credentials.domain + '/api' + '/v1' + '/availabilities',
 		method: 'POST',
 		body: data,
+		arrayFormat: 'repeat',
 	};
 
 	responseData = await node.helpers.httpRequest(myOptions);

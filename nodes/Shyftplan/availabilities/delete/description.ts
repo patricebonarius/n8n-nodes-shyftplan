@@ -4,16 +4,16 @@ export const deleteApiV1AvailabilitiesAvailabilityIdDeleteFields: INodePropertie
 		displayName: 'Availability ID',
 		name: 'availability_id',
 		type: 'number',
-		required: true,
 		default: '',
+		placeholder: '',
+		description: 'Enter Availability ID',
+		required: true,
 		displayOptions: {
 			show: {
 				operation: ['deleteApiV1AvailabilitiesAvailabilityId'],
 				resource: ['availabilities'],
 			},
 		},
-		placeholder: '',
-		description: 'Enter Availability ID',
 	},
 	{
 		displayName: 'Additional Fields',
@@ -34,7 +34,7 @@ export const deleteApiV1AvailabilitiesAvailabilityIdDeleteFields: INodePropertie
 				type: 'number',
 				default: '',
 				placeholder: '',
-				description: 'Enter company ID',
+				description: 'Enter Company ID',
 			},
 		],
 	},

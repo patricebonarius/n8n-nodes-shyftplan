@@ -32,12 +32,14 @@ export const availabilitiesOps: INodeProperties[] = [
 				description: 'Create a new Availability',
 				action: 'Post availabilities',
 			},
-			{
+
+			/* 	{
 				name: 'Get Availabilities Exceptions',
 				value: 'getApiV1AvailabilitiesExceptions',
 				description: 'List all Availability Exceptions',
 				action: 'Get availabilities exceptions',
 			},
+			 */
 			{
 				name: 'Delete Availabilities Exceptions Exception By ID',
 				value: 'deleteApiV1AvailabilitiesExceptionsExceptionId',
@@ -81,13 +83,15 @@ export const availabilitiesOps: INodeProperties[] = [
 				action: 'Post availabilities availability by ID exceptions',
 			},
 		],
-		default: 'availabilities_getAll',
+		default: 'postApiV1AvailabilitiesAvailabilityIdExceptions',
 		noDataExpression: true,
 	},
 
 	...getApiV1AvailabilitiesGetAllFields,
 
 	...postApiV1AvailabilitiesCreateFields,
+
+	//...getApiV1AvailabilitiesExceptionsGetAllFields,
 
 	...deleteApiV1AvailabilitiesExceptionsExceptionIdDeleteFields,
 

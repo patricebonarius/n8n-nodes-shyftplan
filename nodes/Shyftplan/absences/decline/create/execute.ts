@@ -9,7 +9,7 @@ export async function postApiV1AbsencesIdDeclineCreateExecute(
 	let responseData;
 	const id = node.getNodeParameter('id', i) as number;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {
+	let data: IDataObject = {
 		id,
 	};
 
@@ -22,6 +22,7 @@ export async function postApiV1AbsencesIdDeclineCreateExecute(
 		url: credentials.domain + '/api' + '/v1' + '/absences' + '/' + id + '/decline',
 		method: 'POST',
 		body: data,
+		arrayFormat: 'repeat',
 	};
 
 	responseData = await node.helpers.httpRequest(myOptions);

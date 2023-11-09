@@ -1,78 +1,79 @@
 import { INodeProperties } from 'n8n-workflow';
-export const absence_reasonsCreateFields: INodeProperties[] = [
+export const postApiV1AbsenceReasonsCreateFields: INodeProperties[] = [
 	{
-		displayName: 'ID of a Company.',
+		displayName: 'Company ID',
 		name: 'company_id',
 		type: 'number',
-		required: true,
 		default: '',
-		displayOptions: {
-			show: {
-				operation: ['absence_reasons_post'],
-				resource: ['absence_reasons'],
-			},
-		},
 		placeholder: '',
 		description: 'ID of a Company',
+		required: true,
+		displayOptions: {
+			show: {
+				operation: ['postApiV1AbsenceReasons'],
+				resource: ['absence_reasons'],
+			},
+		},
 	},
 	{
-		displayName: 'Name of the Absence Reason',
+		displayName: 'Name',
 		name: 'name',
 		type: 'string',
-		required: true,
 		default: '',
+		placeholder: '',
+		description: 'Name of the Absence Reason',
+		required: true,
 		displayOptions: {
 			show: {
-				operation: ['absence_reasons_post'],
+				operation: ['postApiV1AbsenceReasons'],
 				resource: ['absence_reasons'],
 			},
 		},
-		placeholder: '',
-		description: 'Name of the Reason',
 	},
 	{
-		displayName: 'No of Days of the Absence Reason',
+		displayName: 'Days',
 		name: 'days',
 		type: 'number',
-		required: true,
 		default: '',
+		placeholder: '',
+		description: 'No of Days of the Absence Reason',
+		required: true,
 		displayOptions: {
 			show: {
-				operation: ['absence_reasons_post'],
+				operation: ['postApiV1AbsenceReasons'],
 				resource: ['absence_reasons'],
 			},
 		},
-		placeholder: '',
 	},
 	{
 		displayName: 'Calculation Type',
 		name: 'calculation_type',
 		type: 'string',
-		required: true,
 		default: '',
-		displayOptions: {
-			show: {
-				operation: ['absence_reasons_post'],
-				resource: ['absence_reasons'],
-			},
-		},
 		placeholder: '',
 		description: 'Absence days calculation type',
-	},
-	{
-		displayName: 'Hours Calc Type',
-		name: 'hours_calculation_type',
-		type: 'string',
 		required: true,
-		default: '',
 		displayOptions: {
 			show: {
-				operation: ['absence_reasons_post'],
+				operation: ['postApiV1AbsenceReasons'],
 				resource: ['absence_reasons'],
 			},
 		},
+	},
+	{
+		displayName: 'Hours Calculation_type',
+		name: 'hours_calculation_type',
+		type: 'string',
+		default: '',
 		placeholder: '',
 		description: 'Absence hours calculation type',
+		required: true,
+		displayOptions: {
+			show: {
+				operation: ['postApiV1AbsenceReasons'],
+				resource: ['absence_reasons'],
+			},
+		},
 	},
 	{
 		displayName: 'Additional Fields',
@@ -82,13 +83,13 @@ export const absence_reasonsCreateFields: INodeProperties[] = [
 		default: {},
 		displayOptions: {
 			show: {
-				operation: ['absence_reasons_post'],
+				operation: ['postApiV1AbsenceReasons'],
 				resource: ['absence_reasons'],
 			},
 		},
 		options: [
 			{
-				displayName: 'Short Name Reason',
+				displayName: 'Short Name',
 				name: 'short_name',
 				type: 'string',
 				default: '',
@@ -96,14 +97,15 @@ export const absence_reasonsCreateFields: INodeProperties[] = [
 				description: 'Short name of the Absence Reason',
 			},
 			{
-				displayName: 'Carry Over To Next Year',
+				displayName: 'Carry Over_days_enabled',
 				name: 'carry_over_days_enabled',
 				type: 'boolean',
 				default: false,
-				description: 'Whether one take left over absence days to the next year',
+				placeholder: '',
+				description: 'Whether Can Carry leftover absence days to the next year?',
 			},
 			{
-				displayName: 'Expiration Date Of Carry Over.',
+				displayName: 'Carry Over_days_deadline',
 				name: 'carry_over_days_deadline',
 				type: 'string',
 				default: '',
@@ -111,12 +113,12 @@ export const absence_reasonsCreateFields: INodeProperties[] = [
 				description: 'Expiration date of carry over absence days',
 			},
 			{
-				displayName: 'Allow Attachments',
+				displayName: 'Is Absence_attachments_allowed',
 				name: 'is_absence_attachments_allowed',
 				type: 'boolean',
 				default: false,
 				placeholder: '',
-				description: 'Whether one is allowed to upload stuff',
+				description: 'Whether Allow Attachments?',
 			},
 		],
 	},

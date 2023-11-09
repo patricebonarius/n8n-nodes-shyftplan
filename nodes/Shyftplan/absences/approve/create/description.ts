@@ -4,16 +4,16 @@ export const postApiV1AbsencesIdApproveCreateFields: INodeProperties[] = [
 		displayName: 'ID',
 		name: 'id',
 		type: 'number',
-		required: true,
 		default: '',
+		placeholder: '',
+		description: 'Absence ID',
+		required: true,
 		displayOptions: {
 			show: {
 				operation: ['postApiV1AbsencesIdApprove'],
 				resource: ['absences'],
 			},
 		},
-		placeholder: '',
-		description: 'Absence ID',
 	},
 	{
 		displayName: 'Additional Fields',
@@ -34,7 +34,7 @@ export const postApiV1AbsencesIdApproveCreateFields: INodeProperties[] = [
 				type: 'number',
 				default: '',
 				placeholder: '',
-				description: 'Enter ID',
+				description: 'Enter Company ID',
 			},
 			{
 				displayName: 'Force Collision',

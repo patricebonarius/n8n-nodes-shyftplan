@@ -4,39 +4,39 @@ import { INodeProperties } from 'n8n-workflow';
                     displayName: 'ID', 
                     name: 'id',
                     type: 'number', 
-                    required: true,
                     default: '',
-                    displayOptions: { 
-                    show: { 
-                        operation: [
-                            'getApiV1EmploymentsIdNotifications' 
-                        ], 
-                        resource: [
-                            'employments'
-                        ], 
-                    },
-                    },
                     placeholder: '',
-                    description: 'Employment ID', 
+                    description: "Employment ID",
+                    required: true,
+                    displayOptions: { 
+                        show: { 
+                            operation: [
+                                'getApiV1EmploymentsIdNotifications' 
+                            ], 
+                            resource: [
+                                'employments'
+                            ], 
+                        },
+                    }, 
                 },
 {
                     displayName: 'Company ID', 
                     name: 'company_id',
                     type: 'number', 
-                    required: true,
                     default: '',
-                    displayOptions: { 
-                    show: { 
-                        operation: [
-                            'getApiV1EmploymentsIdNotifications' 
-                        ], 
-                        resource: [
-                            'employments'
-                        ], 
-                    },
-                    },
                     placeholder: '',
-                    description: 'Company ID', 
+                    description: "Company ID",
+                    required: true,
+                    displayOptions: { 
+                        show: { 
+                            operation: [
+                                'getApiV1EmploymentsIdNotifications' 
+                            ], 
+                            resource: [
+                                'employments'
+                            ], 
+                        },
+                    }, 
                 },
 {
             displayName: 'Additional Fields',

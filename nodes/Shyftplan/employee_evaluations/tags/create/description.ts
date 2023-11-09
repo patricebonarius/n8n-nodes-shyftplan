@@ -6,7 +6,7 @@ export const postApiV1EmployeeEvaluationsEvaluationIdTagsCreateFields: INodeProp
 		type: 'number',
 		default: '',
 		placeholder: '',
-		description: 'Enter Company ID',
+		description: 'Enter company ID',
 		required: true,
 		displayOptions: {
 			show: {

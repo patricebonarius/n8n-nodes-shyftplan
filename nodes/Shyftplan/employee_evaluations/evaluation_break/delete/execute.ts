@@ -11,7 +11,7 @@ export async function deleteApiV1EmployeeEvaluationsStaffShiftIdEvaluationBreakE
 	const staff_shift_id = node.getNodeParameter('staff_shift_id', i) as number;
 	const evaluation_break_id = node.getNodeParameter('evaluation_break_id', i) as number;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {
+	let data: IDataObject = {
 		company_id,
 		staff_shift_id,
 		evaluation_break_id,
@@ -35,6 +35,7 @@ export async function deleteApiV1EmployeeEvaluationsStaffShiftIdEvaluationBreakE
 			evaluation_break_id,
 		method: 'DELETE',
 		body: data,
+		arrayFormat: 'repeat',
 	};
 
 	responseData = await node.helpers.httpRequest(myOptions);

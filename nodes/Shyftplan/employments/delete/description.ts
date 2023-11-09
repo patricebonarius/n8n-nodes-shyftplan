@@ -4,31 +4,31 @@ export const deleteApiV1EmploymentsIdDeleteFields: INodeProperties[] = [
 		displayName: 'Company ID',
 		name: 'company_id',
 		type: 'number',
-		required: true,
 		default: '',
+		placeholder: '',
+		description: 'Enter Company ID',
+		required: true,
 		displayOptions: {
 			show: {
 				operation: ['deleteApiV1EmploymentsId'],
 				resource: ['employments'],
 			},
 		},
-		placeholder: '',
-		description: 'Enter company ID',
 	},
 	{
-		displayName: 'Employments ID',
+		displayName: 'ID',
 		name: 'id',
 		type: 'number',
-		required: true,
 		default: '',
+		placeholder: '',
+		description: 'Enter Employment ID',
+		required: true,
 		displayOptions: {
 			show: {
 				operation: ['deleteApiV1EmploymentsId'],
 				resource: ['employments'],
 			},
 		},
-		placeholder: '',
-		description: 'Enter Employments ID',
 	},
 	{
 		displayName: 'Additional Fields',

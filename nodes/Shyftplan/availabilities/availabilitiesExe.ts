@@ -22,6 +22,7 @@ export async function availabilitiesExecute(node: IExecuteFunctions, operation: 
 		console.log(responseData);
 		return responseData;
 	}
+
 	if (operation === 'deleteApiV1AvailabilitiesExceptionsExceptionId') {
 		responseData = await deleteApiV1AvailabilitiesExceptionsExceptionIdDeleteExecute(
 			node,

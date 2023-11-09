@@ -1,94 +1,94 @@
 import { INodeProperties } from 'n8n-workflow';
-export const absence_reasonsbyidUpdateFields: INodeProperties[] = [
+export const putApiV1AbsenceReasonsIdUpdateFields: INodeProperties[] = [
 	{
-		displayName: 'Absence Reason ID.',
+		displayName: 'ID',
 		name: 'id',
 		type: 'number',
-		required: true,
 		default: '',
-		displayOptions: {
-			show: {
-				operation: ['absence_reasonsById_update'],
-				resource: ['absence_reasons'],
-			},
-		},
 		placeholder: '',
 		description: 'Absence Reason ID',
+		required: true,
+		displayOptions: {
+			show: {
+				operation: ['putApiV1AbsenceReasonsId'],
+				resource: ['absence_reasons'],
+			},
+		},
 	},
 	{
-		displayName: 'ID of a Company.',
+		displayName: 'Company ID',
 		name: 'company_id',
 		type: 'number',
-		required: true,
 		default: '',
-		displayOptions: {
-			show: {
-				operation: ['absence_reasonsById_update'],
-				resource: ['absence_reasons'],
-			},
-		},
 		placeholder: '',
 		description: 'ID of a Company',
+		required: true,
+		displayOptions: {
+			show: {
+				operation: ['putApiV1AbsenceReasonsId'],
+				resource: ['absence_reasons'],
+			},
+		},
 	},
 	{
-		displayName: 'Name of the Absence Reason.',
+		displayName: 'Name',
 		name: 'name',
 		type: 'string',
-		required: true,
 		default: '',
-		displayOptions: {
-			show: {
-				operation: ['absence_reasonsById_update'],
-				resource: ['absence_reasons'],
-			},
-		},
 		placeholder: '',
 		description: 'Name of the Absence Reason',
+		required: true,
+		displayOptions: {
+			show: {
+				operation: ['putApiV1AbsenceReasonsId'],
+				resource: ['absence_reasons'],
+			},
+		},
 	},
 	{
-		displayName: 'No of Days of the Absence Reason.',
+		displayName: 'Days',
 		name: 'days',
 		type: 'number',
-		required: true,
 		default: '',
-		displayOptions: {
-			show: {
-				operation: ['absence_reasonsById_update'],
-				resource: ['absence_reasons'],
-			},
-		},
 		placeholder: '',
 		description: 'No of Days of the Absence Reason',
+		required: true,
+		displayOptions: {
+			show: {
+				operation: ['putApiV1AbsenceReasonsId'],
+				resource: ['absence_reasons'],
+			},
+		},
 	},
 	{
-		displayName: 'Days Calculation Type',
+		displayName: 'Calculation Type',
 		name: 'calculation_type',
 		type: 'string',
-		required: true,
-		default: 'standart',
-		displayOptions: {
-			show: {
-				operation: ['absence_reasonsById_update'],
-				resource: ['absence_reasons'],
-			},
-		},
+		default: '',
 		placeholder: '',
 		description: 'Absence days calculation type',
-	},
-	{
-		displayName: 'Hours Calculation Type',
-		name: 'hours_calculation_type',
-		type: 'string',
 		required: true,
-		default: 'employee_profile',
 		displayOptions: {
 			show: {
-				operation: ['absence_reasonsById_update'],
+				operation: ['putApiV1AbsenceReasonsId'],
 				resource: ['absence_reasons'],
 			},
 		},
+	},
+	{
+		displayName: 'Hours Calculation_type',
+		name: 'hours_calculation_type',
+		type: 'string',
+		default: '',
 		placeholder: '',
 		description: 'Absence hours calculation type',
+		required: true,
+		displayOptions: {
+			show: {
+				operation: ['putApiV1AbsenceReasonsId'],
+				resource: ['absence_reasons'],
+			},
+		},
 	},
 	{
 		displayName: 'Additional Fields',
@@ -98,29 +98,29 @@ export const absence_reasonsbyidUpdateFields: INodeProperties[] = [
 		default: {},
 		displayOptions: {
 			show: {
-				operation: ['absence_reasonsById_update'],
+				operation: ['putApiV1AbsenceReasonsId'],
 				resource: ['absence_reasons'],
 			},
 		},
 		options: [
 			{
-				displayName: 'Short Name of the Absence Reason',
+				displayName: 'Short Name',
 				name: 'short_name',
 				type: 'string',
 				default: '',
 				placeholder: '',
-				description: 'Enter a short name',
+				description: 'Short name of the Absence Reason',
 			},
 			{
-				displayName: 'Leftover Absence Days To The Next Year',
+				displayName: 'Carry Over_days_enabled',
 				name: 'carry_over_days_enabled',
 				type: 'boolean',
 				default: false,
 				placeholder: '',
-				description: 'Whether Carry leftover absence days to the next year',
+				description: 'Whether Can Carry leftover absence days to the next year?',
 			},
 			{
-				displayName: 'Expiration Date Absence Days',
+				displayName: 'Carry Over_days_deadline',
 				name: 'carry_over_days_deadline',
 				type: 'string',
 				default: '',
@@ -128,7 +128,7 @@ export const absence_reasonsbyidUpdateFields: INodeProperties[] = [
 				description: 'Expiration date of carry over absence days',
 			},
 			{
-				displayName: 'Allow Attachments?',
+				displayName: 'Is Absence_attachments_allowed',
 				name: 'is_absence_attachments_allowed',
 				type: 'boolean',
 				default: false,

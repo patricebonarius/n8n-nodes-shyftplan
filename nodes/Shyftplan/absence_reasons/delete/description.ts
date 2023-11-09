@@ -1,34 +1,34 @@
 import { INodeProperties } from 'n8n-workflow';
-export const absence_reasonsbyidDeleteFields: INodeProperties[] = [
+export const deleteApiV1AbsenceReasonsIdDeleteFields: INodeProperties[] = [
 	{
-		displayName: 'Absence Reason ID.',
+		displayName: 'ID',
 		name: 'id',
 		type: 'number',
-		required: true,
 		default: '',
-		displayOptions: {
-			show: {
-				operation: ['absence_reasonsById_delete'],
-				resource: ['absence_reasons'],
-			},
-		},
 		placeholder: '',
 		description: 'Absence Reason ID',
-	},
-	{
-		displayName: 'ID of a Company.',
-		name: 'company_id',
-		type: 'number',
 		required: true,
-		default: '',
 		displayOptions: {
 			show: {
-				operation: ['absence_reasonsById_delete'],
+				operation: ['deleteApiV1AbsenceReasonsId'],
 				resource: ['absence_reasons'],
 			},
 		},
+	},
+	{
+		displayName: 'Company ID',
+		name: 'company_id',
+		type: 'number',
+		default: '',
 		placeholder: '',
 		description: 'ID of a Company',
+		required: true,
+		displayOptions: {
+			show: {
+				operation: ['deleteApiV1AbsenceReasonsId'],
+				resource: ['absence_reasons'],
+			},
+		},
 	},
 	{
 		displayName: 'Additional Fields',
@@ -38,7 +38,7 @@ export const absence_reasonsbyidDeleteFields: INodeProperties[] = [
 		default: {},
 		displayOptions: {
 			show: {
-				operation: ['absence_reasonsById_delete'],
+				operation: ['deleteApiV1AbsenceReasonsId'],
 				resource: ['absence_reasons'],
 			},
 		},

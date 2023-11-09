@@ -1,6 +1,6 @@
 import { IDataObject, IExecuteFunctions, IHttpRequestOptions } from 'n8n-workflow';
 
-export async function absence_reasonsbyidUpdateExecute(
+export async function putApiV1AbsenceReasonsIdUpdateExecute(
 	node: IExecuteFunctions,
 	operation: string,
 	i: number,
@@ -14,7 +14,7 @@ export async function absence_reasonsbyidUpdateExecute(
 	const calculation_type = node.getNodeParameter('calculation_type', i) as string;
 	const hours_calculation_type = node.getNodeParameter('hours_calculation_type', i) as string;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {
+	let data: IDataObject = {
 		id,
 		company_id,
 		name,
@@ -29,9 +29,10 @@ export async function absence_reasonsbyidUpdateExecute(
 
 	// construct request
 	const myOptions: IHttpRequestOptions = {
-		url: `${credentials.domain}/api/v1/absence_reasons/${id}`,
+		url: credentials.domain + '/api' + '/v1' + '/absence_reasons' + '/' + id,
 		method: 'PUT',
 		body: data,
+		arrayFormat: 'repeat',
 	};
 
 	responseData = await node.helpers.httpRequest(myOptions);

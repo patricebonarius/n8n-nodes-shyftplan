@@ -11,7 +11,7 @@ export async function postApiV1EmploymentsIdUiSettingsCreateExecute(
 	const setting = node.getNodeParameter('setting', i) as JSON;
 	const id = node.getNodeParameter('id', i) as number;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {
+	let data: IDataObject = {
 		company_id,
 		setting,
 		id,
@@ -23,9 +23,10 @@ export async function postApiV1EmploymentsIdUiSettingsCreateExecute(
 
 	// construct request
 	const myOptions: IHttpRequestOptions = {
-		url: credentials.domain + '/api/v1/' + 'employments/' + id,
+		url: credentials.domain + '/api' + '/v1' + '/employments' + '/' + id + '/ui_settings',
 		method: 'POST',
 		body: data,
+		arrayFormat: 'repeat',
 	};
 
 	responseData = await node.helpers.httpRequest(myOptions);

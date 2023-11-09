@@ -11,7 +11,7 @@ export async function postApiV2EmploymentsCreateExecute(
 	const first_name = node.getNodeParameter('first_name', i) as string;
 	const last_name = node.getNodeParameter('last_name', i) as string;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {
+	let data: IDataObject = {
 		company_id,
 		first_name,
 		last_name,
@@ -23,9 +23,10 @@ export async function postApiV2EmploymentsCreateExecute(
 
 	// construct request
 	const myOptions: IHttpRequestOptions = {
-		url: credentials.domain + '/api/2v' + 'employments',
+		url: credentials.domain + '/api' + '/v2' + '/employments',
 		method: 'POST',
 		body: data,
+		arrayFormat: 'repeat',
 	};
 
 	responseData = await node.helpers.httpRequest(myOptions);

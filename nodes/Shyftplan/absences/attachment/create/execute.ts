@@ -8,9 +8,9 @@ export async function postApiV1AbsencesIdAttachmentCreateExecute(
 	const credentials = await node.getCredentials('shyftplanApi');
 	let responseData;
 	const id = node.getNodeParameter('id', i) as number;
-	const file = node.getNodeParameter('file', i) as string;
+	const file = node.getNodeParameter('file', i) as JSON;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {
+	let data: IDataObject = {
 		id,
 		file,
 	};
@@ -24,6 +24,7 @@ export async function postApiV1AbsencesIdAttachmentCreateExecute(
 		url: credentials.domain + '/api' + '/v1' + '/absences' + '/' + id + '/attachment',
 		method: 'POST',
 		body: data,
+		arrayFormat: 'repeat',
 	};
 
 	responseData = await node.helpers.httpRequest(myOptions);

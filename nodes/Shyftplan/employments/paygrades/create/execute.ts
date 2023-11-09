@@ -10,7 +10,7 @@ const update_paygrades = node.getNodeParameter('update_paygrades', i) as boolean
 const update_force = node.getNodeParameter('update_force', i) as boolean;
 const update_all = node.getNodeParameter('update_all', i) as boolean;
 const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-const data: IDataObject = {
+let data: IDataObject = {
 id,
 paygrade_type_id,
 value,
@@ -19,17 +19,18 @@ update_force,
 update_all,
 };
 
-    // put it  all inputs together
-    Object.assign(data, additionalFields);
-    Object.assign(data, credentials);
+        // put it  all inputs together
+        Object.assign(data, additionalFields);
+        Object.assign(data, credentials);
 
-    // construct request
-    const myOptions: IHttpRequestOptions = {
-        url: credentials.domain + "/api/v1/" + "employments/" + id,
-        method: 'POST',
-        body: data,
-    };
-    
-    responseData = await node.helpers.httpRequest(myOptions);
-    return responseData;
-}
+        // construct request
+        const myOptions: IHttpRequestOptions = {
+            url: credentials.domain + "/api"+ "/v1"+ "/employments"+ "/" +id+ "/paygrades",
+            method: 'POST',
+            body: data,
+            arrayFormat: 'repeat',
+        };
+        
+        responseData = await node.helpers.httpRequest(myOptions);
+        return responseData;
+        }

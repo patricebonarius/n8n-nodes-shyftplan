@@ -10,7 +10,7 @@ export async function postApiV1EmployeeEvaluationsStaffShiftIdAcceptCreateExecut
 	const company_id = node.getNodeParameter('company_id', i) as number;
 	const staff_shift_id = node.getNodeParameter('staff_shift_id', i) as number;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {
+	let data: IDataObject = {
 		company_id,
 		staff_shift_id,
 	};
@@ -31,6 +31,7 @@ export async function postApiV1EmployeeEvaluationsStaffShiftIdAcceptCreateExecut
 			'/accept',
 		method: 'POST',
 		body: data,
+		arrayFormat: 'repeat',
 	};
 
 	responseData = await node.helpers.httpRequest(myOptions);

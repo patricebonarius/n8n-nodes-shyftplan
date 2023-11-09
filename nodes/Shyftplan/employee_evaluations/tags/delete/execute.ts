@@ -11,7 +11,7 @@ export async function deleteApiV1EmployeeEvaluationsEvaluationIdTagsEvaluationTa
 	const evaluation_id = node.getNodeParameter('evaluation_id', i) as number;
 	const evaluation_tag_id = node.getNodeParameter('evaluation_tag_id', i) as number;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {
+	let data: IDataObject = {
 		company_id,
 		evaluation_id,
 		evaluation_tag_id,
@@ -35,6 +35,7 @@ export async function deleteApiV1EmployeeEvaluationsEvaluationIdTagsEvaluationTa
 			evaluation_tag_id,
 		method: 'DELETE',
 		body: data,
+		arrayFormat: 'repeat',
 	};
 
 	responseData = await node.helpers.httpRequest(myOptions);

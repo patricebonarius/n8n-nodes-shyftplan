@@ -11,7 +11,7 @@ export async function postApiV1EmployeeEvaluationsStaffShiftIdCreateExecute(
 	const evaluation_ends_at = node.getNodeParameter('evaluation_ends_at', i) as string;
 	const staff_shift_id = node.getNodeParameter('staff_shift_id', i) as number;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {
+	let data: IDataObject = {
 		evaluation_starts_at,
 		evaluation_ends_at,
 		staff_shift_id,
@@ -26,6 +26,7 @@ export async function postApiV1EmployeeEvaluationsStaffShiftIdCreateExecute(
 		url: credentials.domain + '/api' + '/v1' + '/employee_evaluations' + '/' + staff_shift_id,
 		method: 'POST',
 		body: data,
+		arrayFormat: 'repeat',
 	};
 
 	responseData = await node.helpers.httpRequest(myOptions);

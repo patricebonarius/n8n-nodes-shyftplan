@@ -12,7 +12,7 @@ export async function postApiV1EmployeeEvaluationsStaffShiftIdEvaluationBreakCre
 	const ends_at = node.getNodeParameter('ends_at', i) as string;
 	const staff_shift_id = node.getNodeParameter('staff_shift_id', i) as number;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {
+	let data: IDataObject = {
 		company_id,
 		starts_at,
 		ends_at,
@@ -35,6 +35,7 @@ export async function postApiV1EmployeeEvaluationsStaffShiftIdEvaluationBreakCre
 			'/evaluation_break',
 		method: 'POST',
 		body: data,
+		arrayFormat: 'repeat',
 	};
 
 	responseData = await node.helpers.httpRequest(myOptions);

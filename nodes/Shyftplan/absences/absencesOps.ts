@@ -104,7 +104,7 @@ export const absencesOps: INodeProperties[] = [
 				action: 'Post absences',
 			},
 		],
-		default: 'absences_getAll',
+		default: 'postApiV1Absences',
 		noDataExpression: true,
 	},
 

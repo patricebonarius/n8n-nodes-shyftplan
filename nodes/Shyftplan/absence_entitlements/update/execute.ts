@@ -13,7 +13,7 @@ export async function putApiV2AbsenceEntitlementsUpdateExecute(
 	const days = node.getNodeParameter('days', i) as number;
 	const year = node.getNodeParameter('year', i) as number;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {
+	let data: IDataObject = {
 		company_id,
 		employment_id,
 		absence_reason_id,
@@ -27,9 +27,10 @@ export async function putApiV2AbsenceEntitlementsUpdateExecute(
 
 	// construct request
 	const myOptions: IHttpRequestOptions = {
-		url: credentials.domain + '/api/v2/absence_entitlements',
+		url: credentials.domain + '/api' + '/v2' + '/absence_entitlements',
 		method: 'PUT',
 		body: data,
+		arrayFormat: 'repeat',
 	};
 
 	responseData = await node.helpers.httpRequest(myOptions);

@@ -1,31 +1,45 @@
 import { IDataObject, IExecuteFunctions, IHttpRequestOptions } from 'n8n-workflow';
-    
-        export async function putApiV1EmployeeEvaluationsStaffShiftIdPaymentsPaymentIdUpdateExecute(node: IExecuteFunctions, operation: string, i: number) {
-            const credentials = await node.getCredentials('shyftplanApi');
-            let responseData;
-        const company_id = node.getNodeParameter('company_id', i) as number;
-const value = node.getNodeParameter('value', i) as number;
-const staff_shift_id = node.getNodeParameter('staff_shift_id', i) as number;
-const payment_id = node.getNodeParameter('payment_id', i) as number;
-const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-const data: IDataObject = {
-company_id,
-value,
-staff_shift_id,
-payment_id,
-};
 
-        // put it  all inputs together
-        Object.assign(data, additionalFields);
-        Object.assign(data, credentials);
+export async function putApiV1EmployeeEvaluationsStaffShiftIdPaymentsPaymentIdUpdateExecute(
+	node: IExecuteFunctions,
+	operation: string,
+	i: number,
+) {
+	const credentials = await node.getCredentials('shyftplanApi');
+	let responseData;
+	const company_id = node.getNodeParameter('company_id', i) as number;
+	const value = node.getNodeParameter('value', i) as number;
+	const staff_shift_id = node.getNodeParameter('staff_shift_id', i) as number;
+	const payment_id = node.getNodeParameter('payment_id', i) as number;
+	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
+	let data: IDataObject = {
+		company_id,
+		value,
+		staff_shift_id,
+		payment_id,
+	};
 
-        // construct request
-        const myOptions: IHttpRequestOptions = {
-            url: credentials.domain + "/api"+ "/v1"+ "/employee_evaluations"+ "/" +staff_shift_id+ "/payments"+ "/" +payment_id,
-            method: 'PUT',
-            body: data,
-        };
-        
-        responseData = await node.helpers.httpRequest(myOptions);
-        return responseData;
-        }
+	// put it  all inputs together
+	Object.assign(data, additionalFields);
+	Object.assign(data, credentials);
+
+	// construct request
+	const myOptions: IHttpRequestOptions = {
+		url:
+			credentials.domain +
+			'/api' +
+			'/v1' +
+			'/employee_evaluations' +
+			'/' +
+			staff_shift_id +
+			'/payments' +
+			'/' +
+			payment_id,
+		method: 'PUT',
+		body: data,
+		arrayFormat: 'repeat',
+	};
+
+	responseData = await node.helpers.httpRequest(myOptions);
+	return responseData;
+}

@@ -4,16 +4,16 @@ export const postApiV1AbsencesIdWithdrawCreateFields: INodeProperties[] = [
 		displayName: 'ID',
 		name: 'id',
 		type: 'number',
-		required: true,
 		default: '',
+		placeholder: '',
+		description: 'Absence ID',
+		required: true,
 		displayOptions: {
 			show: {
 				operation: ['postApiV1AbsencesIdWithdraw'],
 				resource: ['absences'],
 			},
 		},
-		placeholder: '',
-		description: 'Absence ID',
 	},
 	{
 		displayName: 'Additional Fields',

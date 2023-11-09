@@ -79,8 +79,12 @@ export const getApiV1AvailabilitiesGetAllFields: INodeProperties[] = [
 			},
 			{
 				displayName: 'IDs[]',
-				name: 'ids[]',
-				type: 'string',
+				name: 'idsSTARTEND',
+				type: 'json',
+				typeOptions: {
+					multipleValues: true,
+					multipleValueButtonText: 'Add Tag',
+				},
 				default: '',
 				placeholder: '',
 				description: 'Filter an array of Availability ID',
@@ -95,8 +99,12 @@ export const getApiV1AvailabilitiesGetAllFields: INodeProperties[] = [
 			},
 			{
 				displayName: 'Employment IDs[]',
-				name: 'employment_ids[]',
-				type: 'string',
+				name: 'employment_idsSTARTEND',
+				type: 'json',
+				typeOptions: {
+					multipleValues: true,
+					multipleValueButtonText: 'Add Tag',
+				},
 				default: '',
 				placeholder: '',
 				description: 'Filter an array of Employment ID',

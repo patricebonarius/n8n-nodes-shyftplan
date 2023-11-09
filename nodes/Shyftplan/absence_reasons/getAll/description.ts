@@ -1,5 +1,5 @@
 import { INodeProperties } from 'n8n-workflow';
-export const absence_reasonsGetAllFields: INodeProperties[] = [
+export const getApiV1AbsenceReasonsGetAllFields: INodeProperties[] = [
 	{
 		displayName: 'Additional Fields',
 		name: 'additionalFields',
@@ -8,13 +8,13 @@ export const absence_reasonsGetAllFields: INodeProperties[] = [
 		default: {},
 		displayOptions: {
 			show: {
-				operation: ['absence_reasons_getAll'],
+				operation: ['getApiV1AbsenceReasons'],
 				resource: ['absence_reasons'],
 			},
 		},
 		options: [
 			{
-				displayName: 'Pages',
+				displayName: 'Page',
 				name: 'page',
 				type: 'number',
 				default: '',
@@ -38,9 +38,13 @@ export const absence_reasonsGetAllFields: INodeProperties[] = [
 				description: 'Filter for single Company ID',
 			},
 			{
-				displayName: 'Array of Company ID',
-				name: 'company_ids[]',
-				type: 'string',
+				displayName: 'Company IDs[]',
+				name: 'company_idsSTARTEND',
+				type: 'json',
+				typeOptions: {
+					multipleValues: true,
+					multipleValueButtonText: 'Add Tag',
+				},
 				default: '',
 				placeholder: '',
 				description: 'Filter for an array of Company ID',

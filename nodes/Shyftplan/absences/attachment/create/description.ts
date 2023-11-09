@@ -4,31 +4,31 @@ export const postApiV1AbsencesIdAttachmentCreateFields: INodeProperties[] = [
 		displayName: 'ID',
 		name: 'id',
 		type: 'number',
-		required: true,
 		default: '',
+		placeholder: '',
+		description: 'Absence ID',
+		required: true,
 		displayOptions: {
 			show: {
 				operation: ['postApiV1AbsencesIdAttachment'],
 				resource: ['absences'],
 			},
 		},
-		placeholder: '',
-		description: 'Absence ID',
 	},
 	{
 		displayName: 'File',
 		name: 'file',
-		type: 'string',
-		required: true,
+		type: 'json',
 		default: '',
+		placeholder: '',
+		description: 'Attachment file (<= 5MB)',
+		required: true,
 		displayOptions: {
 			show: {
 				operation: ['postApiV1AbsencesIdAttachment'],
 				resource: ['absences'],
 			},
 		},
-		placeholder: '',
-		description: 'Attachment file (<= 5MB)',
 	},
 	{
 		displayName: 'Additional Fields',

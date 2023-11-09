@@ -26,8 +26,6 @@ export async function getApiV1EmploymentsGetAllExecute(
 		}
 	});
 
-	console.log('data', data);
-
 	const header = {
 		'content-type': 'x-www-form-urlencoded',
 	};

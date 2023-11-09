@@ -223,7 +223,7 @@ export const getApiV1EmploymentsGetAllFields: INodeProperties[] = [
 				type: 'string',
 				default: '',
 				placeholder: '',
-				description: 'tbd',
+				description: 'Enter tbd',
 			},
 			{
 				displayName: 'Invitation States[]',
@@ -235,7 +235,7 @@ export const getApiV1EmploymentsGetAllFields: INodeProperties[] = [
 				},
 				default: '',
 				placeholder: '',
-				description: 'tbd',
+				description: 'Enter tbd',
 			},
 			{
 				displayName: 'Include Live_info',

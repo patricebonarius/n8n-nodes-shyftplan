@@ -10,7 +10,7 @@ export async function deleteApiV1EmployeeEvaluationsStaffShiftIdDeleteExecute(
 	const company_id = node.getNodeParameter('company_id', i) as number;
 	const staff_shift_id = node.getNodeParameter('staff_shift_id', i) as number;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {
+	let data: IDataObject = {
 		company_id,
 		staff_shift_id,
 	};
@@ -24,6 +24,7 @@ export async function deleteApiV1EmployeeEvaluationsStaffShiftIdDeleteExecute(
 		url: credentials.domain + '/api' + '/v1' + '/employee_evaluations' + '/' + staff_shift_id,
 		method: 'DELETE',
 		body: data,
+		arrayFormat: 'repeat',
 	};
 
 	responseData = await node.helpers.httpRequest(myOptions);

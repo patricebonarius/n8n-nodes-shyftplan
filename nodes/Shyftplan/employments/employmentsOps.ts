@@ -169,7 +169,7 @@ export const employmentsOps: INodeProperties[] = [
 				action: 'Post employments by ID ui settings',
 			},
 		],
-		default: 'employments_getAll',
+		default: 'postApiV1EmploymentsIdUiSettings',
 		noDataExpression: true,
 	},
 

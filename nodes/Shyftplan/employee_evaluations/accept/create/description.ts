@@ -56,10 +56,14 @@ export const postApiV1EmployeeEvaluationsStaffShiftIdAcceptCreateFields: INodePr
 				displayName: 'Ignore Conflicts',
 				name: 'ignore_conflicts',
 				type: 'json',
+				typeOptions: {
+					multipleValues: true,
+					multipleValueButtonText: 'Add Tag',
+				},
 				default: '',
 				placeholder: '',
 				description:
-					'Either true to ignore all conflicts listed below or an Array of specific conflicts to ignore Only warnings can be ignored, enforced conflicts will persist. Possible values are:<ul> <li>minimum_break</li></ul>.',
+					'Whether true to ignore all conflicts listed below or an Array of specific conflicts to ignore Only warnings can be ignored, enforced conflicts will persist. Possible values are:<ul> <li>minimum_break</li></ul>.',
 			},
 		],
 	},
