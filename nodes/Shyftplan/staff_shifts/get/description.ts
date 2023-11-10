@@ -4,16 +4,16 @@ export const getApiV1StaffShiftsIdGetFields: INodeProperties[] = [
 		displayName: 'ID',
 		name: 'id',
 		type: 'number',
-		required: true,
 		default: '',
+		placeholder: '',
+		description: 'Enter StaffShift ID',
+		required: true,
 		displayOptions: {
 			show: {
 				operation: ['getApiV1StaffShiftsId'],
 				resource: ['staff_shifts'],
 			},
 		},
-		placeholder: '',
-		description: 'StaffShift ID',
 	},
 	{
 		displayName: 'Additional Fields',

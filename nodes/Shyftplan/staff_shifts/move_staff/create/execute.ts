@@ -11,7 +11,7 @@ export async function postApiV1StaffShiftsMoveStaffCreateExecute(
 	const employment_id = node.getNodeParameter('employment_id', i) as number;
 	const source_shift_id = node.getNodeParameter('source_shift_id', i) as number;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {
+	let data: IDataObject = {
 		shift_id,
 		employment_id,
 		source_shift_id,
@@ -23,9 +23,10 @@ export async function postApiV1StaffShiftsMoveStaffCreateExecute(
 
 	// construct request
 	const myOptions: IHttpRequestOptions = {
-		url: credentials.domain + '/api/v1/staff_shifts/move_staff',
+		url: credentials.domain + '/api' + '/v1' + '/staff_shifts' + '/move_staff',
 		method: 'POST',
 		body: data,
+		arrayFormat: 'repeat',
 	};
 
 	responseData = await node.helpers.httpRequest(myOptions);

@@ -9,7 +9,7 @@ export async function deleteApiV1StaffShiftsIdDeleteExecute(
 	let responseData;
 	const id = node.getNodeParameter('id', i) as number;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {
+	let data: IDataObject = {
 		id,
 	};
 
@@ -19,9 +19,10 @@ export async function deleteApiV1StaffShiftsIdDeleteExecute(
 
 	// construct request
 	const myOptions: IHttpRequestOptions = {
-		url: credentials.domain + '/api/v1/' + 'shifts/' + id,
+		url: credentials.domain + '/api' + '/v1' + '/staff_shifts' + '/' + id,
 		method: 'DELETE',
 		body: data,
+		arrayFormat: 'repeat',
 	};
 
 	responseData = await node.helpers.httpRequest(myOptions);

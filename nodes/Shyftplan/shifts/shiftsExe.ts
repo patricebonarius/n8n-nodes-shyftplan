@@ -2,7 +2,7 @@ import { IExecuteFunctions } from 'n8n-workflow';
 import { postApiV1ShiftsShiftIdPaygradesCreateExecute } from './paygrades/create/execute';
 import { getApiV1ShiftsShiftIdPaygradesGetAllExecute } from './paygrades/getAll/execute';
 import { deleteApiV1ShiftsShiftIdPaygradesIdDeleteExecute } from './paygrades/delete/execute';
-import { putApiV1ShiftsShiftIdPaygradesIdUpdateExecute } from './paygrades/update/execute';
+
 import { patchApiV1ShiftsIdPatchExecute } from './patch/execute';
 import { putApiV1ShiftsIdUpdateExecute } from './update/execute';
 import { getApiV1ShiftsIdGetExecute } from './get/execute';
@@ -40,11 +40,11 @@ export async function shiftsExecute(node: IExecuteFunctions, operation: string, 
 		console.log(responseData);
 		return responseData;
 	}
-	if (operation === 'putApiV1ShiftsShiftIdPaygradesId') {
+	/* if (operation === 'putApiV1ShiftsShiftIdPaygradesId') {
 		responseData = await putApiV1ShiftsShiftIdPaygradesIdUpdateExecute(node, operation, i);
 		console.log(responseData);
 		return responseData;
-	}
+	} */
 	if (operation === 'patchApiV1ShiftsId') {
 		responseData = await patchApiV1ShiftsIdPatchExecute(node, operation, i);
 		console.log(responseData);

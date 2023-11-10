@@ -11,7 +11,7 @@ export async function postApiV1StaffShiftsReplaceCreateExecute(
 	const employment_id = node.getNodeParameter('employment_id', i) as number;
 	const source_employment_id = node.getNodeParameter('source_employment_id', i) as number;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {
+	let data: IDataObject = {
 		shift_id,
 		employment_id,
 		source_employment_id,
@@ -23,9 +23,10 @@ export async function postApiV1StaffShiftsReplaceCreateExecute(
 
 	// construct request
 	const myOptions: IHttpRequestOptions = {
-		url: credentials.domain + '/api/v1/staff_shifts/replace',
+		url: credentials.domain + '/api' + '/v1' + '/staff_shifts' + '/replace',
 		method: 'POST',
 		body: data,
+		arrayFormat: 'repeat',
 	};
 
 	responseData = await node.helpers.httpRequest(myOptions);

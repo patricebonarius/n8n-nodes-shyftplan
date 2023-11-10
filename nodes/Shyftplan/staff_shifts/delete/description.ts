@@ -4,16 +4,16 @@ export const deleteApiV1StaffShiftsIdDeleteFields: INodeProperties[] = [
 		displayName: 'ID',
 		name: 'id',
 		type: 'number',
-		required: true,
 		default: '',
+		placeholder: '',
+		description: 'Enter StaffShift ID',
+		required: true,
 		displayOptions: {
 			show: {
 				operation: ['deleteApiV1StaffShiftsId'],
 				resource: ['staff_shifts'],
 			},
 		},
-		placeholder: '',
-		description: 'StaffShift ID',
 	},
 	{
 		displayName: 'Additional Fields',
@@ -42,7 +42,7 @@ export const deleteApiV1StaffShiftsIdDeleteFields: INodeProperties[] = [
 				type: 'boolean',
 				default: false,
 				placeholder: '',
-				description: 'WhetherUnassign to other connected shifts',
+				description: 'Whether Unassign to other connected shifts',
 			},
 		],
 	},

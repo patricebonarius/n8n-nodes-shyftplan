@@ -91,9 +91,20 @@ import { shiftplansOps } from './shiftplans/shiftplansOps';
 import { shiftplansExecute } from './shiftplans/shiftplansExe';
 import { shiftsOps } from './shifts/shiftsOps';
 import { shiftsExecute } from './shifts/shiftsExe';
-
+import { shifts_tagsOps } from './shifts_tags/shifts_tagsOps';
+import { shifts_tagsExecute } from './shifts_tags/shifts_tagsExe';
+import { special_datesOps } from './special_dates/special_datesOps';
+import { special_datesExecute } from './special_dates/special_datesExe';
+import { sso_settingsOps } from './sso_settings/sso_settingsOps';
+import { sso_settingsExecute } from './sso_settings/sso_settingsExe';
 import { staff_shiftsOps } from './staff_shifts/staff_shiftsOps';
 import { staff_shiftsExecute } from './staff_shifts/staff_shiftsExe';
+import { staff_shifts_tagsOps } from './staff_shifts_tags/staff_shifts_tagsOps';
+import { staff_shifts_tagsExecute } from './staff_shifts_tags/staff_shifts_tagsExe';
+import { tagsOps } from './tags/tagsOps';
+import { tagsExecute } from './tags/tagsExe';
+import { usersOps } from './users/usersOps';
+import { usersExecute } from './users/usersExe';
 
 export class Shyftplan implements INodeType {
 	description: INodeTypeDescription = {
@@ -149,11 +160,11 @@ export class Shyftplan implements INodeType {
 						value: 'availabilities',
 					},
 					{
-						name: 'Availability Aggregations',
+						name: 'Availability Aggregation',
 						value: 'availability_aggregations',
 					},
 					{
-						name: 'Background Jobs',
+						name: 'Background Job',
 						value: 'background_jobs',
 					},
 					{
@@ -161,7 +172,7 @@ export class Shyftplan implements INodeType {
 						value: 'calendar',
 					},
 					{
-						name: 'Chat Messages',
+						name: 'Chat Message',
 						value: 'chat_messages',
 					},
 					{
@@ -181,7 +192,7 @@ export class Shyftplan implements INodeType {
 						value: 'employments',
 					},
 					{
-						name: 'Employment Paygrades',
+						name: 'Employment Paygrade',
 						value: 'employments_paygrades',
 					},
 					{
@@ -189,16 +200,16 @@ export class Shyftplan implements INodeType {
 						value: 'employments_positions',
 					},
 					{
-						name: 'Employment Rotation Groups',
+						name: 'Employment Rotation Group',
 						value: 'employments_rotation_groups',
-					},
-					{
-						name: 'Evaluation Break',
-						value: 'evaluation_breaks',
 					},
 					{
 						name: 'Evaluation',
 						value: 'evaluations',
+					},
+					{
+						name: 'Evaluation Break',
+						value: 'evaluation_breaks',
 					},
 					{
 						name: 'Individual Rotation',
@@ -233,7 +244,7 @@ export class Shyftplan implements INodeType {
 						value: 'payments',
 					},
 					{
-						name: 'Payslips',
+						name: 'Payslip',
 						value: 'payslips',
 					},
 					{
@@ -245,16 +256,16 @@ export class Shyftplan implements INodeType {
 						value: 'punch_timings',
 					},
 					{
-						name: 'Qualifications',
+						name: 'Qualification',
 						value: 'qualifications',
-					},
-					{
-						name: 'Replace Request',
-						value: 'replace_requests',
 					},
 					{
 						name: 'Replace Evaluation',
 						value: 'replaced_evaluations',
+					},
+					{
+						name: 'Replace Request',
+						value: 'replace_requests',
 					},
 					{
 						name: 'Request',
@@ -269,37 +280,60 @@ export class Shyftplan implements INodeType {
 						value: 'sessions',
 					},
 					{
-						name: 'Shift Assignment Groups',
+						name: 'Shift',
+						value: 'shifts',
+					},
+					{
+						name: 'Shift Assignment Group',
 						value: 'shift_assignment_groups',
 					},
 					{
-						name: 'Shift Breaks',
+						name: 'Shift Break',
 						value: 'shift_breaks',
 					},
 					{
-						name: 'Shift Presets',
+						name: 'Shift Preset',
 						value: 'shift_presets',
-					},
-					{
-						name: 'Shift Rotation Groups',
-						value: 'shift_rotation_groups',
 					},
 					{
 						name: 'Shift Rotation',
 						value: 'shift_rotations',
 					},
 					{
+						name: 'Shift Rotation Group',
+						value: 'shift_rotation_groups',
+					},
+					{
+						name: 'Shift Tag',
+						value: 'shift_tags',
+					},
+					{
 						name: 'Shiftplan',
 						value: 'shiftplans',
 					},
 					{
-						name: 'Shift',
-						value: 'shifts',
+						name: 'Special Date',
+						value: 'special_dates',
 					},
-
+					{
+						name: 'SSo Setting',
+						value: 'sso_settings',
+					},
 					{
 						name: 'Staff Shift',
 						value: 'staff_shifts',
+					},
+					{
+						name: 'Staff Shift Tag',
+						value: 'staff_shifts_tags',
+					},
+					{
+						name: 'Tag',
+						value: 'tags',
+					},
+					{
+						name: 'User',
+						value: 'users',
 					},
 				],
 				default: 'employments',
@@ -389,13 +423,24 @@ export class Shyftplan implements INodeType {
 			...shift_rotation_groupsOps,
 			/* shift rotations Operations */
 			...shift_rotationsOps,
-			/* shifts Operations */
-			...shiftsOps,
-
-			/* staff shifts Operations */
-			...staff_shiftsOps,
 			/* shiftplan Operations */
 			...shiftplansOps,
+			/* shifts Operations */
+			...shiftsOps,
+			/* shift tags Operations */
+			...shifts_tagsOps,
+			/* special dates Operations */
+			...special_datesOps,
+			/* ss0 settings Operations */
+			...sso_settingsOps,
+			/* staff shifts Operations */
+			...staff_shiftsOps,
+			/* staff shifts tags Operations */
+			...staff_shifts_tagsOps,
+			/* tags Operations */
+			...tagsOps,
+			/* user Operations */
+			...usersOps,
 		],
 	};
 
@@ -587,9 +632,32 @@ export class Shyftplan implements INodeType {
 				responseData = await shiftsExecute(this, operation, i);
 				returnData.push(responseData);
 			}
-
+			if (resource === 'shift_tags') {
+				responseData = await shifts_tagsExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'special_dates') {
+				responseData = await special_datesExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'sso_settings') {
+				responseData = await sso_settingsExecute(this, operation, i);
+				returnData.push(responseData);
+			}
 			if (resource === 'staff_shifts') {
 				responseData = await staff_shiftsExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'staff_shift_tags') {
+				responseData = await staff_shifts_tagsExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'tag') {
+				responseData = await tagsExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'users') {
+				responseData = await usersExecute(this, operation, i);
 				returnData.push(responseData);
 			}
 		}

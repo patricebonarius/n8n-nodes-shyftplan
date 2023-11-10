@@ -32,13 +32,13 @@ export const staff_shiftsOps: INodeProperties[] = [
 			{
 				name: 'Get Staff Shifts',
 				value: 'getApiV1StaffShifts',
-				description: 'List all StaffShifts.',
+				description: 'List all StaffShifts',
 				action: 'Get staff shifts',
 			},
 			{
 				name: 'Post Staff Shifts',
 				value: 'postApiV1StaffShifts',
-				description: 'Create a new StaffShift.',
+				description: 'Create a new StaffShift',
 				action: 'Post staff shifts',
 			},
 			{
@@ -54,7 +54,7 @@ export const staff_shiftsOps: INodeProperties[] = [
 				action: 'Delete staff shifts by ID',
 			},
 		],
-		default: 'staff_shifts_getAll',
+		default: 'deleteApiV1StaffShiftsId',
 		noDataExpression: true,
 	},
 
