@@ -1,17 +1,17 @@
 import { INodeProperties } from 'n8n-workflow';
-export const getApiV1PaygradeTypesIdGetFields: INodeProperties[] = [
+export const postApiV1NewsfeedsCreateFields: INodeProperties[] = [
 	{
-		displayName: 'ID',
-		name: 'id',
-		type: 'number',
+		displayName: 'Newsfeed[message]',
+		name: 'newsfeedSTARTmessageEND',
+		type: 'string',
 		default: '',
 		placeholder: '',
-		description: 'Enter PaygradeType ID',
+		description: 'Newsfeed message',
 		required: true,
 		displayOptions: {
 			show: {
-				operation: ['getApiV1PaygradeTypesId'],
-				resource: ['paygrade_types'],
+				operation: ['postApiV1Newsfeeds'],
+				resource: ['newsfeeds'],
 			},
 		},
 	},
@@ -23,8 +23,8 @@ export const getApiV1PaygradeTypesIdGetFields: INodeProperties[] = [
 		default: {},
 		displayOptions: {
 			show: {
-				operation: ['getApiV1PaygradeTypesId'],
-				resource: ['paygrade_types'],
+				operation: ['postApiV1Newsfeeds'],
+				resource: ['newsfeeds'],
 			},
 		},
 		options: [

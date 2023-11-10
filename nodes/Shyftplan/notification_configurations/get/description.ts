@@ -1,17 +1,17 @@
 import { INodeProperties } from 'n8n-workflow';
-export const getApiV1PaygradeTypesIdGetFields: INodeProperties[] = [
+export const getApiV1NotificationConfigurationsIdGetFields: INodeProperties[] = [
 	{
 		displayName: 'ID',
 		name: 'id',
 		type: 'number',
 		default: '',
 		placeholder: '',
-		description: 'Enter PaygradeType ID',
+		description: 'NotificationConfiguration ID',
 		required: true,
 		displayOptions: {
 			show: {
-				operation: ['getApiV1PaygradeTypesId'],
-				resource: ['paygrade_types'],
+				operation: ['getApiV1NotificationConfigurationsId'],
+				resource: ['notification_configurations'],
 			},
 		},
 	},
@@ -23,8 +23,8 @@ export const getApiV1PaygradeTypesIdGetFields: INodeProperties[] = [
 		default: {},
 		displayOptions: {
 			show: {
-				operation: ['getApiV1PaygradeTypesId'],
-				resource: ['paygrade_types'],
+				operation: ['getApiV1NotificationConfigurationsId'],
+				resource: ['notification_configurations'],
 			},
 		},
 		options: [

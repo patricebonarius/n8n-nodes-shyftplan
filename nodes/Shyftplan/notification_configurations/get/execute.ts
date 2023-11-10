@@ -1,6 +1,6 @@
 import { IDataObject, IExecuteFunctions, IHttpRequestOptions } from 'n8n-workflow';
 
-export async function getApiV1PaygradeTypesIdGetExecute(
+export async function getApiV1NotificationConfigurationsIdGetExecute(
 	node: IExecuteFunctions,
 	operation: string,
 	i: number,
@@ -35,7 +35,7 @@ export async function getApiV1PaygradeTypesIdGetExecute(
 
 	// construct request
 	const myOptions: IHttpRequestOptions = {
-		url: credentials.domain + '/api' + '/v1' + '/paygrade_types' + '/' + id,
+		url: credentials.domain + '/api' + '/v1' + '/notification_configurations' + '/' + id,
 		method: 'GET',
 		headers: header,
 		qs: data,

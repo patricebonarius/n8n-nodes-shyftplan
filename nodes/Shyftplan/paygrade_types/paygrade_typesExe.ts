@@ -1,15 +1,17 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { paygrade_typesByIdGetExecute } from './get/execute';
-import { paygrade_typesGetAllExecute } from './getAll/execute';
-export async function paygrade_typesExe(node: IExecuteFunctions, operation: string, i: number) {
+import { getApiV1PaygradeTypesGetAllExecute } from './getAll/execute';
+import { getApiV1PaygradeTypesIdGetExecute } from './get/execute';
+
+export async function paygrade_typesExecute(node: IExecuteFunctions, operation: string, i: number) {
 	let responseData;
-	if (operation === 'paygrade_typesById_get') {
-		responseData = await paygrade_typesByIdGetExecute(node, operation, i);
+
+	if (operation === 'getApiV1PaygradeTypes') {
+		responseData = await getApiV1PaygradeTypesGetAllExecute(node, operation, i);
 		console.log(responseData);
 		return responseData;
 	}
-	if (operation === 'paygrade_types_getAll') {
-		responseData = await paygrade_typesGetAllExecute(node, operation, i);
+	if (operation === 'getApiV1PaygradeTypesId') {
+		responseData = await getApiV1PaygradeTypesIdGetExecute(node, operation, i);
 		console.log(responseData);
 		return responseData;
 	}

@@ -1,6 +1,6 @@
 import { IDataObject, IExecuteFunctions, IHttpRequestOptions } from 'n8n-workflow';
 
-export async function getApiV1PaygradeTypesIdGetExecute(
+export async function deleteApiV1PositionsIdDeleteExecute(
 	node: IExecuteFunctions,
 	operation: string,
 	i: number,
@@ -17,28 +17,11 @@ export async function getApiV1PaygradeTypesIdGetExecute(
 	Object.assign(data, additionalFields);
 	Object.assign(data, credentials);
 
-	let dataKeys = Object.keys(data);
-	dataKeys.forEach((key) => {
-		if (key.includes('START')) {
-			// switch that part if value is not of type number
-			let currentValue = data[key];
-			let newKey = key.replace(/(START)/g, '[');
-			newKey = newKey.replace(/(END)/g, ']');
-			data = { ...data, [newKey]: currentValue };
-			delete data[key];
-		}
-	});
-
-	const header = {
-		'content-type': 'x-www-form-urlencoded',
-	};
-
 	// construct request
 	const myOptions: IHttpRequestOptions = {
-		url: credentials.domain + '/api' + '/v1' + '/paygrade_types' + '/' + id,
-		method: 'GET',
-		headers: header,
-		qs: data,
+		url: credentials.domain + '/api' + '/v1' + '/positions' + '/' + id,
+		method: 'DELETE',
+		body: data,
 		arrayFormat: 'repeat',
 	};
 

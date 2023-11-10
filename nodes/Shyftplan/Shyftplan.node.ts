@@ -49,9 +49,25 @@ import { live_staff_shiftsOps } from './live_staff_shifts/live_staff_shiftsOps';
 import { live_staff_shiftsExecute } from './live_staff_shifts/live_staff_shiftsExe';
 import { locationsOps } from './locations/locationsOps';
 import { locationsExecute } from './locations/locationsExe';
-
+import { loginOps } from './login/loginOps';
+import { loginExecute } from './login/loginExe';
+import { newsfeedsOps } from './newsfeeds/newsfeedsOps';
+import { newsfeedsExecute } from './newsfeeds/newsfeedsExe';
+import { notification_configurationsOps } from './notification_configurations/notification_configurationsOps';
+import { notification_configurationsExecute } from './notification_configurations/notification_configurationsExe';
 import { paygrade_typesOps } from './paygrade_types/paygrade_typesOps';
-import { paygrade_typesExe } from './paygrade_types/paygrade_typesExe';
+import { paygrade_typesExecute } from './paygrade_types/paygrade_typesExe';
+import { paymentsOps } from './payments/paymentsOps';
+import { paymentsExecute } from './payments/paymentsExe';
+import { payslipsOps } from './payslips/payslipsOps';
+import { payslipsExecute } from './payslips/payslipsExe';
+import { positionsOps } from './positions/positionsOps';
+import { positionsExecute } from './positions/positionsExe';
+import { punch_timingsOps } from './punch_timings/punch_timingsOps';
+import { punch_timingsExecute } from './punch_timings/punch_timingsExe';
+import { qualificationsOps } from './qualifications/qualificationsOps';
+import { qualificationsExecute } from './qualifications/qualificationsExe';
+
 import { shiftsOps } from './shifts/shiftsOps';
 import { shiftsExecute } from './shifts/shiftsExe';
 import { staff_shiftsOps } from './staff_shifts/staff_shiftsOps';
@@ -180,11 +196,39 @@ export class Shyftplan implements INodeType {
 						name: 'Location',
 						value: 'locations',
 					},
-
+					{
+						name: 'Log In',
+						value: 'login',
+					},
+					{
+						name: 'Notification Configuration',
+						value: 'notification_configurations',
+					},
 					{
 						name: 'Paygrade Type',
 						value: 'paygrade_types',
 					},
+					{
+						name: 'Payment',
+						value: 'payments',
+					},
+					{
+						name: 'Payslips',
+						value: 'payslips',
+					},
+					{
+						name: 'Position',
+						value: 'positions',
+					},
+					{
+						name: 'Punch Timing',
+						value: 'punch_timings',
+					},
+					{
+						name: 'Qualifications',
+						value: 'qualifications',
+					},
+
 					{
 						name: 'Shift',
 						value: 'shifts',
@@ -245,11 +289,27 @@ export class Shyftplan implements INodeType {
 			...languagesOps,
 			/* live staff shifts Operations */
 			...live_staff_shiftsOps,
-
 			/* location Operations */
 			...locationsOps,
+			/* login Operations */
+			...loginOps,
+			/* newsfeeds Operations */
+			...newsfeedsOps,
+			/* notification configs Operations */
+			...notification_configurationsOps,
 			/* location Operations */
 			...paygrade_typesOps,
+			/* payments Operations */
+			...paymentsOps,
+			/* payslips Operations */
+			...payslipsOps,
+			/* positions Operations */
+			...positionsOps,
+			/* punch timings Operations */
+			...punch_timingsOps,
+			/* qualifcations Operations */
+			...qualificationsOps,
+
 			/* shifts Operations */
 			...shiftsOps,
 			/* staff shifts Operations */
@@ -363,11 +423,43 @@ export class Shyftplan implements INodeType {
 				responseData = await locationsExecute(this, operation, i);
 				returnData.push(responseData);
 			}
-
-			if (resource === 'paygrade_types') {
-				responseData = await paygrade_typesExe(this, operation, i);
+			if (resource === 'login') {
+				responseData = await loginExecute(this, operation, i);
 				returnData.push(responseData);
 			}
+			if (resource === 'newsfeeds') {
+				responseData = await newsfeedsExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'notification_configurations') {
+				responseData = await notification_configurationsExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'paygrade_types') {
+				responseData = await paygrade_typesExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'payments') {
+				responseData = await paymentsExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'payslips') {
+				responseData = await payslipsExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'positions') {
+				responseData = await positionsExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'punch_timings') {
+				responseData = await punch_timingsExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'qualifications') {
+				responseData = await qualificationsExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+
 			if (resource === 'shifts') {
 				responseData = await shiftsExecute(this, operation, i);
 				returnData.push(responseData);

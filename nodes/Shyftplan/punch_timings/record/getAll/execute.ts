@@ -1,17 +1,14 @@
 import { IDataObject, IExecuteFunctions, IHttpRequestOptions } from 'n8n-workflow';
 
-export async function getApiV1PaygradeTypesIdGetExecute(
+export async function getApiV1PunchTimingsRecordGetAllExecute(
 	node: IExecuteFunctions,
 	operation: string,
 	i: number,
 ) {
 	const credentials = await node.getCredentials('shyftplanApi');
 	let responseData;
-	const id = node.getNodeParameter('id', i) as number;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	let data: IDataObject = {
-		id,
-	};
+	let data: IDataObject = {};
 
 	// put it  all inputs together
 	Object.assign(data, additionalFields);
@@ -35,7 +32,7 @@ export async function getApiV1PaygradeTypesIdGetExecute(
 
 	// construct request
 	const myOptions: IHttpRequestOptions = {
-		url: credentials.domain + '/api' + '/v1' + '/paygrade_types' + '/' + id,
+		url: credentials.domain + '/api' + '/v1' + '/punch_timings' + '/record',
 		method: 'GET',
 		headers: header,
 		qs: data,

@@ -1,5 +1,5 @@
 import { INodeProperties } from 'n8n-workflow';
-        export const getApiV1PaygradeTypesGetAllFields: INodeProperties[] = [
+        export const getApiV1PositionsGetAllFields: INodeProperties[] = [
         {
             displayName: 'Additional Fields',
             name: 'additionalFields',
@@ -8,8 +8,8 @@ import { INodeProperties } from 'n8n-workflow';
             default: {},
             displayOptions: {
                 show: {
-                    operation: ['getApiV1PaygradeTypes'],
-                    resource: ['paygrade_types'],
+                    operation: ['getApiV1Positions'],
+                    resource: ['positions'],
                 },
             },
             options: [{
@@ -18,7 +18,7 @@ import { INodeProperties } from 'n8n-workflow';
                             type: 'number', 
                             default: '',
                             placeholder: '',
-                            description: "Enter Company ID", 
+                            description: "EnterFilter for single Company ID", 
                         },
 {
                             displayName: 'Page', 
@@ -26,7 +26,7 @@ import { INodeProperties } from 'n8n-workflow';
                             type: 'number', 
                             default: '',
                             placeholder: '',
-                            description: "Pages starts with 1", 
+                            description: "EnterPages starts with 1", 
                         },
 {
                             displayName: 'Per Page', 
@@ -34,7 +34,7 @@ import { INodeProperties } from 'n8n-workflow';
                             type: 'number', 
                             default: '',
                             placeholder: '',
-                            description: "Between 1 and 1000", 
+                            description: "EnterBetween 1 and 1000", 
                         },
 {
                             displayName: 'Updated After', 
@@ -42,7 +42,7 @@ import { INodeProperties } from 'n8n-workflow';
                             type: 'string', 
                             default: '',
                             placeholder: '',
-                            description: "Return all records which are updated after", 
+                            description: "EnterReturn all records which are updated after", 
                         },
 {
                             displayName: 'Created After', 
@@ -50,7 +50,7 @@ import { INodeProperties } from 'n8n-workflow';
                             type: 'string', 
                             default: '',
                             placeholder: '',
-                            description: "Return all records which are created after", 
+                            description: "EnterReturn all records which are created after", 
                         },
 {
                             displayName: 'Updated Before', 
@@ -58,7 +58,7 @@ import { INodeProperties } from 'n8n-workflow';
                             type: 'string', 
                             default: '',
                             placeholder: '',
-                            description: "Return all records which are updated before", 
+                            description: "EnterReturn all records which are updated before", 
                         },
 {
                             displayName: 'Created Before', 
@@ -66,7 +66,39 @@ import { INodeProperties } from 'n8n-workflow';
                             type: 'string', 
                             default: '',
                             placeholder: '',
-                            description: "Return all records which are created before", 
+                            description: "EnterReturn all records which are created before", 
+                        },
+{
+                            displayName: 'ID', 
+                            name: 'id',
+                            type: 'number', 
+                            default: '',
+                            placeholder: '',
+                            description: "EnterFilter for single Position ID", 
+                        },
+{
+                            displayName: 'IDs[]', 
+                            name: 'idsSTARTEND',
+                            type: 'json', 
+                            typeOptions: {
+                                multipleValues: true,
+                                multipleValueButtonText: 'Add Tag',
+                            },
+                            default: '',
+                            placeholder: '',
+                            description: "EnterFilter an array of Position ID", 
+                        },
+{
+                            displayName: 'Company IDs[]', 
+                            name: 'company_idsSTARTEND',
+                            type: 'json', 
+                            typeOptions: {
+                                multipleValues: true,
+                                multipleValueButtonText: 'Add Tag',
+                            },
+                            default: '',
+                            placeholder: '',
+                            description: "EnterFilter an array of Company ID", 
                         },
 	],
     },];

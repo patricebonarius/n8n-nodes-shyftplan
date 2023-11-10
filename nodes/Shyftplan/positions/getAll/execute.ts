@@ -1,6 +1,6 @@
 import { IDataObject, IExecuteFunctions, IHttpRequestOptions } from 'n8n-workflow';
     
-        export async function getApiV1PaygradeTypesGetAllExecute(node: IExecuteFunctions, operation: string, i: number) {
+        export async function getApiV1PositionsGetAllExecute(node: IExecuteFunctions, operation: string, i: number) {
             const credentials = await node.getCredentials('shyftplanApi');
             let responseData;
         const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
@@ -29,7 +29,7 @@ let data: IDataObject = {
     
         // construct request
         const myOptions: IHttpRequestOptions = {
-            url: credentials.domain + "/api"+ "/v1"+ "/paygrade_types",
+            url: credentials.domain + "/api"+ "/v1"+ "/positions",
             method: 'GET',
             headers: header,
             qs: data,

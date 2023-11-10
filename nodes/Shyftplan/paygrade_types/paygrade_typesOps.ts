@@ -1,6 +1,7 @@
 import { INodeProperties } from 'n8n-workflow';
-import { paygrade_typesGetAllFields } from './getAll/description';
-import { paygrade_typesByIdGetFields } from './get/description';
+import { getApiV1PaygradeTypesGetAllFields } from './getAll/description';
+import { getApiV1PaygradeTypesIdGetFields } from './get/description';
+
 export const paygrade_typesOps: INodeProperties[] = [
 	{
 		displayName: 'Operation',
@@ -13,23 +14,23 @@ export const paygrade_typesOps: INodeProperties[] = [
 		},
 		options: [
 			{
-				name: 'Get A Paygrade Type',
-				value: 'paygrade_typesById_get',
-				description: 'Get single paygrade_types',
-				action: 'Get a singular type by ID',
+				name: 'Get Paygrade Types',
+				value: 'getApiV1PaygradeTypes',
+				description: 'List all PaygradeTypes',
+				action: 'Get paygrade types',
 			},
 			{
-				name: 'Get All Paygrade Types',
-				value: 'paygrade_types_getAll',
-				description: 'Get all paygrade_types',
-				action: 'Get a list of paygrade types',
+				name: 'Get Paygrade Types By ID',
+				value: 'getApiV1PaygradeTypesId',
+				description: 'Return a PaygradeType',
+				action: 'Get paygrade types by ID',
 			},
 		],
-		default: 'paygrade_types_getAll',
+		default: 'getApiV1PaygradeTypesId',
 		noDataExpression: true,
 	},
-	/*  Get Fields  */
-	...paygrade_typesByIdGetFields,
-	/*  Get All Fields  */
-	...paygrade_typesGetAllFields,
+
+	...getApiV1PaygradeTypesGetAllFields,
+
+	...getApiV1PaygradeTypesIdGetFields,
 ];

@@ -1,17 +1,17 @@
 import { INodeProperties } from 'n8n-workflow';
-export const getApiV1PaygradeTypesIdGetFields: INodeProperties[] = [
+export const getApiV1PaymentsStaffShiftIdGetFields: INodeProperties[] = [
 	{
-		displayName: 'ID',
-		name: 'id',
+		displayName: 'Staff Shift_ID',
+		name: 'staff_shift_id',
 		type: 'number',
 		default: '',
 		placeholder: '',
-		description: 'Enter PaygradeType ID',
+		description: 'Staff_Shift ID',
 		required: true,
 		displayOptions: {
 			show: {
-				operation: ['getApiV1PaygradeTypesId'],
-				resource: ['paygrade_types'],
+				operation: ['getApiV1PaymentsStaffShiftId'],
+				resource: ['payments'],
 			},
 		},
 	},
@@ -23,8 +23,8 @@ export const getApiV1PaygradeTypesIdGetFields: INodeProperties[] = [
 		default: {},
 		displayOptions: {
 			show: {
-				operation: ['getApiV1PaygradeTypesId'],
-				resource: ['paygrade_types'],
+				operation: ['getApiV1PaymentsStaffShiftId'],
+				resource: ['payments'],
 			},
 		},
 		options: [
