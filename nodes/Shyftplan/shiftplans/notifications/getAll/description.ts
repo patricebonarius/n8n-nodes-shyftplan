@@ -4,31 +4,31 @@ export const getApiV1ShiftplansShiftplanIdNotificationsGetAllFields: INodeProper
 		displayName: 'Company ID',
 		name: 'company_id',
 		type: 'number',
-		required: true,
 		default: '',
+		placeholder: '',
+		description: 'Enter Company ID',
+		required: true,
 		displayOptions: {
 			show: {
 				operation: ['getApiV1ShiftplansShiftplanIdNotifications'],
 				resource: ['shiftplans'],
 			},
 		},
-		placeholder: '',
-		description: 'Enter Company ID',
 	},
 	{
 		displayName: 'Shiftplan ID',
 		name: 'shiftplan_id',
 		type: 'number',
-		required: true,
 		default: '',
+		placeholder: '',
+		description: 'Enter Shiftplan ID',
+		required: true,
 		displayOptions: {
 			show: {
 				operation: ['getApiV1ShiftplansShiftplanIdNotifications'],
 				resource: ['shiftplans'],
 			},
 		},
-		placeholder: '',
-		description: 'Enter Shiftplan ID',
 	},
 	{
 		displayName: 'Additional Fields',

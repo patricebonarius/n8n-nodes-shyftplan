@@ -11,7 +11,7 @@ export async function postApiV1ShiftplansShiftplanIdNotificationsMessagesCreateE
 	const shiftplan_id = node.getNodeParameter('shiftplan_id', i) as number;
 	const notification_type = node.getNodeParameter('notification_type', i) as string;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {
+	let data: IDataObject = {
 		company_id,
 		shiftplan_id,
 		notification_type,
@@ -23,9 +23,17 @@ export async function postApiV1ShiftplansShiftplanIdNotificationsMessagesCreateE
 
 	// construct request
 	const myOptions: IHttpRequestOptions = {
-		url: credentials.domain + '/api/v1/' + 'shiftplans/' + shiftplan_id,
+		url:
+			credentials.domain +
+			'/api' +
+			'/v1' +
+			'/shiftplans' +
+			'/' +
+			shiftplan_id +
+			'/notifications_messages',
 		method: 'POST',
 		body: data,
+		arrayFormat: 'repeat',
 	};
 
 	responseData = await node.helpers.httpRequest(myOptions);

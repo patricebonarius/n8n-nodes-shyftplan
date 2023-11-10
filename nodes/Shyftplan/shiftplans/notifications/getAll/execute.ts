@@ -10,7 +10,7 @@ export async function getApiV1ShiftplansShiftplanIdNotificationsGetAllExecute(
 	const company_id = node.getNodeParameter('company_id', i) as number;
 	const shiftplan_id = node.getNodeParameter('shiftplan_id', i) as number;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {
+	let data: IDataObject = {
 		company_id,
 		shiftplan_id,
 	};
@@ -19,16 +19,30 @@ export async function getApiV1ShiftplansShiftplanIdNotificationsGetAllExecute(
 	Object.assign(data, additionalFields);
 	Object.assign(data, credentials);
 
+	let dataKeys = Object.keys(data);
+	dataKeys.forEach((key) => {
+		if (key.includes('START')) {
+			// switch that part if value is not of type number
+			let currentValue = data[key];
+			let newKey = key.replace(/(START)/g, '[');
+			newKey = newKey.replace(/(END)/g, ']');
+			data = { ...data, [newKey]: currentValue };
+			delete data[key];
+		}
+	});
+
 	const header = {
 		'content-type': 'x-www-form-urlencoded',
 	};
 
 	// construct request
 	const myOptions: IHttpRequestOptions = {
-		url: '' + credentials.domain + '/api/v1/' + 'shiftplans/' + shiftplan_id + '/notifications',
+		url:
+			credentials.domain + '/api' + '/v1' + '/shiftplans' + '/' + shiftplan_id + '/notifications',
 		method: 'GET',
 		headers: header,
 		qs: data,
+		arrayFormat: 'repeat',
 	};
 
 	responseData = await node.helpers.httpRequest(myOptions);

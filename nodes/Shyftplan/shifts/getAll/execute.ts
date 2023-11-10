@@ -8,11 +8,23 @@ export async function getApiV1ShiftsGetAllExecute(
 	const credentials = await node.getCredentials('shyftplanApi');
 	let responseData;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {};
+	let data: IDataObject = {};
 
 	// put it  all inputs together
 	Object.assign(data, additionalFields);
 	Object.assign(data, credentials);
+
+	let dataKeys = Object.keys(data);
+	dataKeys.forEach((key) => {
+		if (key.includes('START')) {
+			// switch that part if value is not of type number
+			let currentValue = data[key];
+			let newKey = key.replace(/(START)/g, '[');
+			newKey = newKey.replace(/(END)/g, ']');
+			data = { ...data, [newKey]: currentValue };
+			delete data[key];
+		}
+	});
 
 	const header = {
 		'content-type': 'x-www-form-urlencoded',
@@ -20,10 +32,11 @@ export async function getApiV1ShiftsGetAllExecute(
 
 	// construct request
 	const myOptions: IHttpRequestOptions = {
-		url: '' + credentials.domain + '/api/v1/shifts',
+		url: credentials.domain + '/api' + '/v1' + '/shifts',
 		method: 'GET',
 		headers: header,
 		qs: data,
+		arrayFormat: 'repeat',
 	};
 
 	responseData = await node.helpers.httpRequest(myOptions);

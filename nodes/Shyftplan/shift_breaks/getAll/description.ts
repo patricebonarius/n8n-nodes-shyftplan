@@ -1,0 +1,105 @@
+import { INodeProperties } from 'n8n-workflow';
+export const getApiV1ShiftBreaksGetAllFields: INodeProperties[] = [
+	{
+		displayName: 'Company ID',
+		name: 'company_id',
+		type: 'number',
+		default: '',
+		placeholder: '',
+		description: 'Enter Company ID',
+		required: true,
+		displayOptions: {
+			show: {
+				operation: ['getApiV1ShiftBreaks'],
+				resource: ['shift_breaks'],
+			},
+		},
+	},
+	{
+		displayName: 'Additional Fields',
+		name: 'additionalFields',
+		type: 'collection',
+		placeholder: 'Add Field',
+		default: {},
+		displayOptions: {
+			show: {
+				operation: ['getApiV1ShiftBreaks'],
+				resource: ['shift_breaks'],
+			},
+		},
+		options: [
+			{
+				displayName: 'ID',
+				name: 'id',
+				type: 'number',
+				default: '',
+				placeholder: '',
+				description: 'Enter Filter for single Evaluation break ID',
+			},
+			{
+				displayName: 'IDs[]',
+				name: 'idsSTARTEND',
+				type: 'json',
+				typeOptions: {
+					multipleValues: true,
+					multipleValueButtonText: 'Add Tag',
+				},
+				default: '',
+				placeholder: '',
+				description: 'Enter Filter for an array of Evaluation break ID',
+			},
+			{
+				displayName: 'Shift ID',
+				name: 'shift_id',
+				type: 'number',
+				default: '',
+				placeholder: '',
+				description: 'Enter Filter for break times of a shift',
+			},
+			{
+				displayName: 'Shift IDs[]',
+				name: 'shift_idsSTARTEND',
+				type: 'json',
+				typeOptions: {
+					multipleValues: true,
+					multipleValueButtonText: 'Add Tag',
+				},
+				default: '',
+				placeholder: '',
+				description: 'Enter Filter an array of shifts',
+			},
+			{
+				displayName: 'Starts At',
+				name: 'starts_at',
+				type: 'string',
+				default: '',
+				placeholder: '',
+				description: 'Enter Filter for shift breaks from',
+			},
+			{
+				displayName: 'Ends At',
+				name: 'ends_at',
+				type: 'string',
+				default: '',
+				placeholder: '',
+				description: 'Enter Filter for shift breaks to',
+			},
+			{
+				displayName: 'Page',
+				name: 'page',
+				type: 'number',
+				default: '',
+				placeholder: '',
+				description: 'Enter Pages starts with 1',
+			},
+			{
+				displayName: 'Per Page',
+				name: 'per_page',
+				type: 'number',
+				default: '',
+				placeholder: '',
+				description: 'Enter Between 1 and 1000',
+			},
+		],
+	},
+];

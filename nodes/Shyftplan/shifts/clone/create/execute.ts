@@ -11,7 +11,7 @@ export async function postApiV1ShiftsIdCloneCreateExecute(
 	const date = node.getNodeParameter('date', i) as string;
 	const id = node.getNodeParameter('id', i) as number;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {
+	let data: IDataObject = {
 		company_id,
 		date,
 		id,
@@ -23,9 +23,10 @@ export async function postApiV1ShiftsIdCloneCreateExecute(
 
 	// construct request
 	const myOptions: IHttpRequestOptions = {
-		url: credentials.domain + '/api/v1/' + 'shifts/' + id,
+		url: credentials.domain + '/api' + '/v1' + '/shifts' + '/' + id + '/clone',
 		method: 'POST',
 		body: data,
+		arrayFormat: 'repeat',
 	};
 
 	responseData = await node.helpers.httpRequest(myOptions);

@@ -10,7 +10,7 @@ export async function getApiV1ShiftsShiftIdPaygradesGetAllExecute(
 	const company_id = node.getNodeParameter('company_id', i) as number;
 	const shift_id = node.getNodeParameter('shift_id', i) as number;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {
+	let data: IDataObject = {
 		company_id,
 		shift_id,
 	};
@@ -19,16 +19,29 @@ export async function getApiV1ShiftsShiftIdPaygradesGetAllExecute(
 	Object.assign(data, additionalFields);
 	Object.assign(data, credentials);
 
+	let dataKeys = Object.keys(data);
+	dataKeys.forEach((key) => {
+		if (key.includes('START')) {
+			// switch that part if value is not of type number
+			let currentValue = data[key];
+			let newKey = key.replace(/(START)/g, '[');
+			newKey = newKey.replace(/(END)/g, ']');
+			data = { ...data, [newKey]: currentValue };
+			delete data[key];
+		}
+	});
+
 	const header = {
 		'content-type': 'x-www-form-urlencoded',
 	};
 
 	// construct request
 	const myOptions: IHttpRequestOptions = {
-		url: '' + credentials.domain + '/api/v1/' + 'shifts/' + shift_id + '/paygrades',
+		url: credentials.domain + '/api' + '/v1' + '/shifts' + '/' + shift_id + '/paygrades',
 		method: 'GET',
 		headers: header,
 		qs: data,
+		arrayFormat: 'repeat',
 	};
 
 	responseData = await node.helpers.httpRequest(myOptions);

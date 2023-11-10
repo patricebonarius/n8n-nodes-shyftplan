@@ -12,7 +12,7 @@ export async function postApiV1ShiftplansCreateExecute(
 	const starts_at = node.getNodeParameter('starts_at', i) as string;
 	const ends_at = node.getNodeParameter('ends_at', i) as string;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {
+	let data: IDataObject = {
 		location_id,
 		name,
 		starts_at,
@@ -25,9 +25,10 @@ export async function postApiV1ShiftplansCreateExecute(
 
 	// construct request
 	const myOptions: IHttpRequestOptions = {
-		url: credentials.domain + '/api/v1/shiftplans',
+		url: credentials.domain + '/api' + '/v1' + '/shiftplans',
 		method: 'POST',
 		body: data,
+		arrayFormat: 'repeat',
 	};
 
 	responseData = await node.helpers.httpRequest(myOptions);

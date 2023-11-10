@@ -10,7 +10,7 @@ export async function postApiV1ShiftplansAssignEmploymentsToOpenShiftsCreateExec
 	const company_id = node.getNodeParameter('company_id', i) as number;
 	const shiftplan_id = node.getNodeParameter('shiftplan_id', i) as number;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {
+	let data: IDataObject = {
 		company_id,
 		shiftplan_id,
 	};
@@ -21,9 +21,10 @@ export async function postApiV1ShiftplansAssignEmploymentsToOpenShiftsCreateExec
 
 	// construct request
 	const myOptions: IHttpRequestOptions = {
-		url: credentials.domain + '/api/v1/shiftplans/assign_employments_to_open_shifts',
+		url: credentials.domain + '/api' + '/v1' + '/shiftplans' + '/assign_employments_to_open_shifts',
 		method: 'POST',
 		body: data,
+		arrayFormat: 'repeat',
 	};
 
 	responseData = await node.helpers.httpRequest(myOptions);

@@ -16,7 +16,7 @@ export async function postApiV1ShiftplansShiftplanIdCopyCreateExecute(
 	const copy_full_shiftplan = node.getNodeParameter('copy_full_shiftplan', i) as boolean;
 	const shiftplan_id = node.getNodeParameter('shiftplan_id', i) as number;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {
+	let data: IDataObject = {
 		company_id,
 		name,
 		starts_at,
@@ -33,9 +33,10 @@ export async function postApiV1ShiftplansShiftplanIdCopyCreateExecute(
 
 	// construct request
 	const myOptions: IHttpRequestOptions = {
-		url: credentials.domain + '/api/v1/' + 'shiftplans/' + shiftplan_id,
+		url: credentials.domain + '/api' + '/v1' + '/shiftplans' + '/' + shiftplan_id + '/copy',
 		method: 'POST',
 		body: data,
+		arrayFormat: 'repeat',
 	};
 
 	responseData = await node.helpers.httpRequest(myOptions);

@@ -4,16 +4,16 @@ export const getApiV1ShiftplansIdGetFields: INodeProperties[] = [
 		displayName: 'ID',
 		name: 'id',
 		type: 'number',
-		required: true,
 		default: '',
+		placeholder: '',
+		description: 'Enter Shiftplan ID',
+		required: true,
 		displayOptions: {
 			show: {
 				operation: ['getApiV1ShiftplansId'],
 				resource: ['shiftplans'],
 			},
 		},
-		placeholder: '',
-		description: 'Shiftplan ID',
 	},
 	{
 		displayName: 'Additional Fields',
@@ -34,7 +34,7 @@ export const getApiV1ShiftplansIdGetFields: INodeProperties[] = [
 				type: 'number',
 				default: '',
 				placeholder: '',
-				description: 'Enter a company ID',
+				description: 'Enter Company ID',
 			},
 		],
 	},

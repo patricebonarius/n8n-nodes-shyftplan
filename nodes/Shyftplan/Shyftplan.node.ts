@@ -75,13 +75,25 @@ import { requestsOps } from './requests/requestsOps';
 import { requestsExecute } from './requests/requestsExe';
 import { rightsOps } from './rights/rightsOps';
 import { rightsExecute } from './rights/rightsExe';
-
-import { shiftsOps } from './shifts/shiftsOps';
-import { shiftsExecute } from './shifts/shiftsExe';
-import { staff_shiftsOps } from './staff_shifts/staff_shiftsOps';
-import { staff_shiftsExecute } from './staff_shifts/staff_shiftsExe';
+import { sessionsOps } from './sessions/sessionsOps';
+import { sessionsExecute } from './sessions/sessionsExe';
+import { shift_assignment_groupsOps } from './shift_assignment_groups/shift_assignment_groupsOps';
+import { shift_assignment_groupsExecute } from './shift_assignment_groups/shift_assignment_groupsExe';
+import { shift_breaksOps } from './shift_breaks/shift_breaksOps';
+import { shift_breaksExecute } from './shift_breaks/shift_breaksExe';
+import { shift_presetsOps } from './shift_presets/shift_presetsOps';
+import { shift_presetsExecute } from './shift_presets/shift_presetsExe';
+import { shift_rotation_groupsExecute } from './shift_rotation_groups/shift_rotation_groupsExe';
+import { shift_rotation_groupsOps } from './shift_rotation_groups/shift_rotation_groupsOps';
+import { shift_rotationsOps } from './shift_rotations/shift_rotationsOps';
+import { shift_rotationsExecute } from './shift_rotations/shift_rotationsExe';
 import { shiftplansOps } from './shiftplans/shiftplansOps';
 import { shiftplansExecute } from './shiftplans/shiftplansExe';
+import { shiftsOps } from './shifts/shiftsOps';
+import { shiftsExecute } from './shifts/shiftsExe';
+
+import { staff_shiftsOps } from './staff_shifts/staff_shiftsOps';
+import { staff_shiftsExecute } from './staff_shifts/staff_shiftsExe';
 
 export class Shyftplan implements INodeType {
 	description: INodeTypeDescription = {
@@ -252,18 +264,42 @@ export class Shyftplan implements INodeType {
 						name: 'Right',
 						value: 'rights',
 					},
-
 					{
-						name: 'Shift',
-						value: 'shifts',
+						name: 'Session',
+						value: 'sessions',
 					},
 					{
-						name: 'Staff Shift',
-						value: 'staff_shifts',
+						name: 'Shift Assignment Groups',
+						value: 'shift_assignment_groups',
+					},
+					{
+						name: 'Shift Breaks',
+						value: 'shift_breaks',
+					},
+					{
+						name: 'Shift Presets',
+						value: 'shift_presets',
+					},
+					{
+						name: 'Shift Rotation Groups',
+						value: 'shift_rotation_groups',
+					},
+					{
+						name: 'Shift Rotation',
+						value: 'shift_rotations',
 					},
 					{
 						name: 'Shiftplan',
 						value: 'shiftplans',
+					},
+					{
+						name: 'Shift',
+						value: 'shifts',
+					},
+
+					{
+						name: 'Staff Shift',
+						value: 'staff_shifts',
 					},
 				],
 				default: 'employments',
@@ -341,9 +377,21 @@ export class Shyftplan implements INodeType {
 			...requestsOps,
 			/* rights Operations */
 			...rightsOps,
-
+			/* sessions Operations */
+			...sessionsOps,
+			/* shift assignment groups Operations */
+			...shift_assignment_groupsOps,
+			/* shift breaks Operations */
+			...shift_breaksOps,
+			/* shift presets Operations */
+			...shift_presetsOps,
+			/* shift presets Operations */
+			...shift_rotation_groupsOps,
+			/* shift rotations Operations */
+			...shift_rotationsOps,
 			/* shifts Operations */
 			...shiftsOps,
+
 			/* staff shifts Operations */
 			...staff_shiftsOps,
 			/* shiftplan Operations */
@@ -507,17 +555,41 @@ export class Shyftplan implements INodeType {
 				responseData = await rightsExecute(this, operation, i);
 				returnData.push(responseData);
 			}
-
-			if (resource === 'shifts') {
-				responseData = await shiftsExecute(this, operation, i);
+			if (resource === 'sessions') {
+				responseData = await sessionsExecute(this, operation, i);
 				returnData.push(responseData);
 			}
-			if (resource === 'staff_shifts') {
-				responseData = await staff_shiftsExecute(this, operation, i);
+			if (resource === 'shift_assignment_groups') {
+				responseData = await shift_assignment_groupsExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'shift_breaks') {
+				responseData = await shift_breaksExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'shift_presets') {
+				responseData = await shift_presetsExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'shift_rotation_groups') {
+				responseData = await shift_rotation_groupsExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'shift_rotations') {
+				responseData = await shift_rotationsExecute(this, operation, i);
 				returnData.push(responseData);
 			}
 			if (resource === 'shiftplans') {
 				responseData = await shiftplansExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'shifts') {
+				responseData = await shiftsExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+
+			if (resource === 'staff_shifts') {
+				responseData = await staff_shiftsExecute(this, operation, i);
 				returnData.push(responseData);
 			}
 		}

@@ -13,7 +13,7 @@ export async function postApiV1ShiftsCreateExecute(
 	const shiftplan_id = node.getNodeParameter('shiftplan_id', i) as number;
 	const locations_position_id = node.getNodeParameter('locations_position_id', i) as number;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {
+	let data: IDataObject = {
 		starts_at,
 		ends_at,
 		workers,
@@ -27,9 +27,10 @@ export async function postApiV1ShiftsCreateExecute(
 
 	// construct request
 	const myOptions: IHttpRequestOptions = {
-		url: credentials.domain + '/api/v1/shifts',
+		url: credentials.domain + '/api' + '/v1' + '/shifts',
 		method: 'POST',
 		body: data,
+		arrayFormat: 'repeat',
 	};
 
 	responseData = await node.helpers.httpRequest(myOptions);

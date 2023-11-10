@@ -4,115 +4,115 @@ import { INodeProperties } from 'n8n-workflow';
                     displayName: 'Company ID', 
                     name: 'company_id',
                     type: 'number', 
-                    required: true,
                     default: '',
-                    displayOptions: { 
-                    show: { 
-                        operation: [
-                            'putApiV1ShiftplansShiftplanIdDayNotesId' 
-                        ], 
-                        resource: [
-                            'shiftplans'
-                        ], 
-                    },
-                    },
                     placeholder: '',
-                    description: 'Company ID', 
+                    description: "Enter Company ID",
+                    required: true,
+                    displayOptions: { 
+                        show: { 
+                            operation: [
+                                'putApiV1ShiftplansShiftplanIdDayNotesId' 
+                            ], 
+                            resource: [
+                                'shiftplans'
+                            ], 
+                        },
+                    }, 
                 },
 {
-                    displayName: 'title', 
+                    displayName: 'Title', 
                     name: 'title',
                     type: 'string', 
-                    required: true,
                     default: '',
-                    displayOptions: { 
-                    show: { 
-                        operation: [
-                            'putApiV1ShiftplansShiftplanIdDayNotesId' 
-                        ], 
-                        resource: [
-                            'shiftplans'
-                        ], 
-                    },
-                    },
                     placeholder: '',
-                    description: 'Day note title', 
+                    description: "Enter Day note title",
+                    required: true,
+                    displayOptions: { 
+                        show: { 
+                            operation: [
+                                'putApiV1ShiftplansShiftplanIdDayNotesId' 
+                            ], 
+                            resource: [
+                                'shiftplans'
+                            ], 
+                        },
+                    }, 
                 },
 {
                     displayName: 'Starts At', 
                     name: 'starts_at',
                     type: 'string', 
-                    required: true,
                     default: '',
-                    displayOptions: { 
-                    show: { 
-                        operation: [
-                            'putApiV1ShiftplansShiftplanIdDayNotesId' 
-                        ], 
-                        resource: [
-                            'shiftplans'
-                        ], 
-                    },
-                    },
                     placeholder: '',
-                    description: 'Day note start date', 
+                    description: "Enter Day note start date",
+                    required: true,
+                    displayOptions: { 
+                        show: { 
+                            operation: [
+                                'putApiV1ShiftplansShiftplanIdDayNotesId' 
+                            ], 
+                            resource: [
+                                'shiftplans'
+                            ], 
+                        },
+                    }, 
                 },
 {
                     displayName: 'Ends At', 
                     name: 'ends_at',
                     type: 'string', 
-                    required: true,
                     default: '',
-                    displayOptions: { 
-                    show: { 
-                        operation: [
-                            'putApiV1ShiftplansShiftplanIdDayNotesId' 
-                        ], 
-                        resource: [
-                            'shiftplans'
-                        ], 
-                    },
-                    },
                     placeholder: '',
-                    description: 'Day note end date', 
+                    description: "Enter Day note end date",
+                    required: true,
+                    displayOptions: { 
+                        show: { 
+                            operation: [
+                                'putApiV1ShiftplansShiftplanIdDayNotesId' 
+                            ], 
+                            resource: [
+                                'shiftplans'
+                            ], 
+                        },
+                    }, 
                 },
 {
                     displayName: 'Shiftplan ID', 
                     name: 'shiftplan_id',
                     type: 'number', 
-                    required: true,
                     default: '',
-                    displayOptions: { 
-                    show: { 
-                        operation: [
-                            'putApiV1ShiftplansShiftplanIdDayNotesId' 
-                        ], 
-                        resource: [
-                            'shiftplans'
-                        ], 
-                    },
-                    },
                     placeholder: '',
-                    description: '', 
+                    description: "Enter ",
+                    required: true,
+                    displayOptions: { 
+                        show: { 
+                            operation: [
+                                'putApiV1ShiftplansShiftplanIdDayNotesId' 
+                            ], 
+                            resource: [
+                                'shiftplans'
+                            ], 
+                        },
+                    }, 
                 },
 {
                     displayName: 'ID', 
                     name: 'id',
                     type: 'number', 
-                    required: true,
                     default: '',
-                    displayOptions: { 
-                    show: { 
-                        operation: [
-                            'putApiV1ShiftplansShiftplanIdDayNotesId' 
-                        ], 
-                        resource: [
-                            'shiftplans'
-                        ], 
-                    },
-                    },
                     placeholder: '',
-                    description: '', 
+                    description: "Enter ",
+                    required: true,
+                    displayOptions: { 
+                        show: { 
+                            operation: [
+                                'putApiV1ShiftplansShiftplanIdDayNotesId' 
+                            ], 
+                            resource: [
+                                'shiftplans'
+                            ], 
+                        },
+                    }, 
                 },
 {
             displayName: 'Additional Fields',
@@ -127,12 +127,12 @@ import { INodeProperties } from 'n8n-workflow';
                 },
             },
             options: [{
-                    displayName: 'description', 
-                    name: 'description',
-                    type: 'string', 
-                    default: '',
-                    placeholder: '',
-                    description: 'Day note description', 
-                },
+                            displayName: 'Description', 
+                            name: 'description',
+                            type: 'string', 
+                            default: '',
+                            placeholder: '',
+                            description: "Enter Day note description", 
+                        },
 	],
     },];

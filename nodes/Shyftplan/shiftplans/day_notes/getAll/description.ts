@@ -4,39 +4,39 @@ import { INodeProperties } from 'n8n-workflow';
                     displayName: 'Company ID', 
                     name: 'company_id',
                     type: 'number', 
-                    required: true,
                     default: '',
-                    displayOptions: { 
-                    show: { 
-                        operation: [
-                            'getApiV1ShiftplansShiftplanIdDayNotes' 
-                        ], 
-                        resource: [
-                            'shiftplans'
-                        ], 
-                    },
-                    },
                     placeholder: '',
-                    description: 'Company ID', 
+                    description: "Enter Company ID",
+                    required: true,
+                    displayOptions: { 
+                        show: { 
+                            operation: [
+                                'getApiV1ShiftplansShiftplanIdDayNotes' 
+                            ], 
+                            resource: [
+                                'shiftplans'
+                            ], 
+                        },
+                    }, 
                 },
 {
                     displayName: 'Shiftplan ID', 
                     name: 'shiftplan_id',
                     type: 'number', 
-                    required: true,
                     default: '',
-                    displayOptions: { 
-                    show: { 
-                        operation: [
-                            'getApiV1ShiftplansShiftplanIdDayNotes' 
-                        ], 
-                        resource: [
-                            'shiftplans'
-                        ], 
-                    },
-                    },
                     placeholder: '',
-                    description: 'Shiftplan ID', 
+                    description: "Enter Shiftplan ID",
+                    required: true,
+                    displayOptions: { 
+                        show: { 
+                            operation: [
+                                'getApiV1ShiftplansShiftplanIdDayNotes' 
+                            ], 
+                            resource: [
+                                'shiftplans'
+                            ], 
+                        },
+                    }, 
                 },
 {
             displayName: 'Additional Fields',
@@ -51,20 +51,20 @@ import { INodeProperties } from 'n8n-workflow';
                 },
             },
             options: [{
-                    displayName: 'page', 
-                    name: 'page',
-                    type: 'number', 
-                    default: '',
-                    placeholder: '',
-                    description: 'Pages starts with 1', 
-                },
+                            displayName: 'Page', 
+                            name: 'page',
+                            type: 'number', 
+                            default: '',
+                            placeholder: '',
+                            description: "Enter Pages starts with 1", 
+                        },
 {
-                    displayName: 'Per Page', 
-                    name: 'per_page',
-                    type: 'number', 
-                    default: '',
-                    placeholder: '',
-                    description: 'Between 1 and 1000', 
-                },
+                            displayName: 'Per Page', 
+                            name: 'per_page',
+                            type: 'number', 
+                            default: '',
+                            placeholder: '',
+                            description: "Enter Between 1 and 1000", 
+                        },
 	],
     },];

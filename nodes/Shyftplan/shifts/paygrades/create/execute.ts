@@ -12,7 +12,7 @@ export async function postApiV1ShiftsShiftIdPaygradesCreateExecute(
 	const value = node.getNodeParameter('value', i) as number;
 	const shift_id = node.getNodeParameter('shift_id', i) as number;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {
+	let data: IDataObject = {
 		company_id,
 		paygrade_type_id,
 		value,
@@ -25,9 +25,10 @@ export async function postApiV1ShiftsShiftIdPaygradesCreateExecute(
 
 	// construct request
 	const myOptions: IHttpRequestOptions = {
-		url: credentials.domain + '/api/v1/' + 'shifts/' + shift_id,
+		url: credentials.domain + '/api' + '/v1' + '/shifts' + '/' + shift_id + '/paygrades',
 		method: 'POST',
 		body: data,
+		arrayFormat: 'repeat',
 	};
 
 	responseData = await node.helpers.httpRequest(myOptions);

@@ -9,21 +9,21 @@ export async function postApiV1ShiftplansIdAssignRotationCreateExecute(
 	let responseData;
 	const company_id = node.getNodeParameter('company_id', i) as number;
 	const shift_rotation_id = node.getNodeParameter('shift_rotation_id', i) as number;
-	const workers_per_positions_list_id = node.getNodeParameter(
-		'workers_per_positions_list[][id]',
+	const workers_per_positions_listSTARTENDSTARTidEND = node.getNodeParameter(
+		'workers_per_positions_listSTARTENDSTARTidEND',
 		i,
-	) as string;
-	const workers_per_positions_list_workers = node.getNodeParameter(
-		'workers_per_positions_list[][workers]',
+	) as JSON;
+	const workers_per_positions_listSTARTENDSTARTworkersEND = node.getNodeParameter(
+		'workers_per_positions_listSTARTENDSTARTworkersEND',
 		i,
-	) as string;
+	) as JSON;
 	const id = node.getNodeParameter('id', i) as number;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {
+	let data: IDataObject = {
 		company_id,
 		shift_rotation_id,
-		workers_per_positions_list_id,
-		workers_per_positions_list_workers,
+		workers_per_positions_listSTARTENDSTARTidEND,
+		workers_per_positions_listSTARTENDSTARTworkersEND,
 		id,
 	};
 
@@ -33,9 +33,10 @@ export async function postApiV1ShiftplansIdAssignRotationCreateExecute(
 
 	// construct request
 	const myOptions: IHttpRequestOptions = {
-		url: credentials.domain + '/api/v1/' + 'shiftplans/' + shift_rotation_id,
+		url: credentials.domain + '/api' + '/v1' + '/shiftplans' + '/' + id + '/assign_rotation',
 		method: 'POST',
 		body: data,
+		arrayFormat: 'repeat',
 	};
 
 	responseData = await node.helpers.httpRequest(myOptions);

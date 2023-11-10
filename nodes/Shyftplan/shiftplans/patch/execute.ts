@@ -10,7 +10,7 @@ export async function patchApiV1ShiftplansIdPatchExecute(
 	const company_id = node.getNodeParameter('company_id', i) as number;
 	const id = node.getNodeParameter('id', i) as number;
 	const additionalFields = node.getNodeParameter('additionalFields', i) as IDataObject;
-	const data: IDataObject = {
+	let data: IDataObject = {
 		company_id,
 		id,
 	};
@@ -21,9 +21,10 @@ export async function patchApiV1ShiftplansIdPatchExecute(
 
 	// construct request
 	const myOptions: IHttpRequestOptions = {
-		url: credentials.domain + '/api/v1/' + 'shiftplans/' + id,
+		url: credentials.domain + '/api' + '/v1' + '/shiftplans' + '/' + id,
 		method: 'PATCH',
 		body: data,
+		arrayFormat: 'repeat',
 	};
 
 	responseData = await node.helpers.httpRequest(myOptions);
