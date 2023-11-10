@@ -67,6 +67,14 @@ import { punch_timingsOps } from './punch_timings/punch_timingsOps';
 import { punch_timingsExecute } from './punch_timings/punch_timingsExe';
 import { qualificationsOps } from './qualifications/qualificationsOps';
 import { qualificationsExecute } from './qualifications/qualificationsExe';
+import { replace_requestsOps } from './replace_requests/replace_requestsOps';
+import { replace_requestsExecute } from './replace_requests/replace_requestsExe';
+import { replaced_evaluationsOps } from './replaced_evaluations/replaced_evaluationsOps';
+import { replaced_evaluationsExecute } from './replaced_evaluations/replaced_evaluationsExe';
+import { requestsOps } from './requests/requestsOps';
+import { requestsExecute } from './requests/requestsExe';
+import { rightsOps } from './rights/rightsOps';
+import { rightsExecute } from './rights/rightsExe';
 
 import { shiftsOps } from './shifts/shiftsOps';
 import { shiftsExecute } from './shifts/shiftsExe';
@@ -228,6 +236,22 @@ export class Shyftplan implements INodeType {
 						name: 'Qualifications',
 						value: 'qualifications',
 					},
+					{
+						name: 'Replace Request',
+						value: 'replace_requests',
+					},
+					{
+						name: 'Replace Evaluation',
+						value: 'replaced_evaluations',
+					},
+					{
+						name: 'Request',
+						value: 'requests',
+					},
+					{
+						name: 'Right',
+						value: 'rights',
+					},
 
 					{
 						name: 'Shift',
@@ -309,6 +333,14 @@ export class Shyftplan implements INodeType {
 			...punch_timingsOps,
 			/* qualifcations Operations */
 			...qualificationsOps,
+			/* replace Requets Operations */
+			...replace_requestsOps,
+			/* replaced evaluations Operations */
+			...replaced_evaluationsOps,
+			/* requests Operations */
+			...requestsOps,
+			/* rights Operations */
+			...rightsOps,
 
 			/* shifts Operations */
 			...shiftsOps,
@@ -455,8 +487,24 @@ export class Shyftplan implements INodeType {
 				responseData = await punch_timingsExecute(this, operation, i);
 				returnData.push(responseData);
 			}
+			if (resource === 'replace_requets') {
+				responseData = await replace_requestsExecute(this, operation, i);
+				returnData.push(responseData);
+			}
 			if (resource === 'qualifications') {
 				responseData = await qualificationsExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'replaced_evaluations') {
+				responseData = await replaced_evaluationsExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'requets') {
+				responseData = await requestsExecute(this, operation, i);
+				returnData.push(responseData);
+			}
+			if (resource === 'rights') {
+				responseData = await rightsExecute(this, operation, i);
 				returnData.push(responseData);
 			}
 
